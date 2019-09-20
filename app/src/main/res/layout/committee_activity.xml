@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="@string/app_name"></android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/CommitteeBasicInfo_RelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/committe_ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/CommitteeName_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/committe_ImageView"
+                    android:layout_centerHorizontal="true"
+                    android:padding="8dp"
+                    android:textColor="@color/Black"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="200dp"
+                android:layout_height="3dp"
+                android:layout_below="@id/CommitteeBasicInfo_RelativeLayout"
+                android:layout_centerHorizontal="true"
+                android:background="@color/DarkGrey"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
+
+            <RelativeLayout
+                android:id="@+id/headsandVice_RelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view2"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp">
+
+                <FrameLayout
+                    android:id="@+id/HeadNVice_FrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:padding="8dp">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/HeadNVice2_FrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/HeadNVice_FrameLayout"
+                    android:padding="8dp">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/Members_FrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/HeadNVice2_FrameLayout"
+                    android:padding="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                </FrameLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

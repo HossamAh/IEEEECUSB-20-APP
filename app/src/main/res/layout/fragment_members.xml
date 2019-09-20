@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MembersFragment">
+
+    <TextView
+        android:id="@+id/membersTitle_textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="200dp"
+        android:layout_height="3dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/DarkGrey"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
+
+    <ListView
+        android:id="@+id/Members_ListView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_gravity="center_horizontal"
+        android:isScrollContainer="true"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:verticalScrollbarPosition="defaultPosition" />
+
+</LinearLayout>
