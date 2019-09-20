@@ -1,0 +1,4 @@
+#Thu Sep 19 21:12:11 EET 2019
+base.0=G\:\\android course\\FireBase\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
