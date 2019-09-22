@@ -87,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView mUser_Image;
     private TextView mNameTextView;
     private String Title;
+    private Users user;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -130,7 +131,7 @@ public class HomeActivity extends AppCompatActivity {
         switch (chatType){
             case 0://private chat.
                 ChatKey = setOneToOneChat(ProfileUID,mFireBaseAuth.getCurrentUser().getUid());
-                mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("Messages").child(ChatKey);
+                mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("PrivateChatting").child(ChatKey);
     //          mChatHeadingTextView.setText(ProfileUserName);
                 Title = ProfileUserName;
                 setTitle(ProfileUserName);
@@ -138,14 +139,14 @@ public class HomeActivity extends AppCompatActivity {
 
             case 1:
                 ChatKey = CommitteeName+"_Chat";
-                mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("Committees chatting").child("Messages").child(ChatKey);
+                mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("Committees chatting").child(ChatKey);
       //          mChatHeadingTextView.setText(CommitteeName);
                 setTitle(CommitteeName);
                 Title = CommitteeName;
                 break;
             case 2:
                 ChatKey = "IEEECUSB_Chat";
-                mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("Committees chatting").child("Messages").child(ChatKey);
+                mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("Committees chatting").child(ChatKey);
         //        mChatHeadingTextView.setText("IEEECUSB");
                 setTitle("IEEECUSB");
                 Title = "IEEECUSB";
@@ -159,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
         mFireBaseDataBase.getReference().child("users").child(mFireBaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users user ;
+
                 user  = dataSnapshot.getValue(Users.class);
                 mFirebaseUserName = user.getUser_Name();
                 mNameTextView.setVisibility(View.GONE);
@@ -227,8 +228,20 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Send messages on click
-                FreindlyMessage message = new FreindlyMessage(mMessageEditText.getText().toString(),mFirebaseUserName,null,getTimestamp(),mFireBaseAuth.getCurrentUser().getUid());
-                mFirebaseDatabaseReference.push().setValue(message);
+                FreindlyMessage message = new FreindlyMessage(mMessageEditText.getText().toString(),mFirebaseUserName,null,getTimestamp(),mFireBaseAuth.getCurrentUser().getUid(),user.getUrl());
+                mFirebaseDatabaseReference.child("Messages").push().setValue(message);
+                checkIsExist(ChatKey,chatType);
+                mFirebaseDatabaseReference.child("ChatNode").child("Last Message").setValue(message);
+                if(chatType ==0)
+                {
+                    mFirebaseDatabaseReference.child("ChatNode").child("ReceiverName").setValue(ProfileUserName);
+                    mFirebaseDatabaseReference.child("ChatNode").child("ReceiverImageUrl").setValue(user.getUrl());
+                }
+                else
+                    {
+                        mFirebaseDatabaseReference.child("ChatNode").child("ReceiverName").setValue(ChatKey);
+                        //
+                    }
                 // Clear input box
                 mMessageEditText.setText("");
             }
@@ -238,7 +251,7 @@ public class HomeActivity extends AppCompatActivity {
         onSignedInInit(mFirebaseUserName);
     }
 
-    private boolean checkIsExist(final String chatKey, int chatType) {
+    private void checkIsExist(final String chatKey, final int chatType) {
         final boolean[] check = new boolean[1];
         check[0] = false;
         mFireBaseDataBase.getReference().child("users").child(mFireBaseAuth.getCurrentUser().getUid()).child("ChattingList").addValueEventListener(new ValueEventListener() {
@@ -256,6 +269,10 @@ public class HomeActivity extends AppCompatActivity {
                 {
                     Log.e("HomeActivity","the chat is not exist before");
                     mFireBaseDataBase.getReference().child("users").child(mFireBaseAuth.getCurrentUser().getUid()).child("ChattingList").push().setValue(ChatKey);
+                    if(chatType ==0)
+                    {
+                        mFireBaseDataBase.getReference().child("users").child(ProfileUID).child("ChattingList").push().setValue(ChatKey);
+                    }
                 }
             }
 
@@ -265,35 +282,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        /*if (chatType == 0) {
-            mFireBaseDataBase.getReference().child("Messages").child(chatKey).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    check[0] = dataSnapshot.exists();
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    check[0] = false;
-                }
-            });
-        }
-        else if(chatType ==1 || chatType ==2)
-        {
-            mFireBaseDataBase.getReference().child("Committees chatting").child("Messages").child(chatKey).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    check[0] = dataSnapshot.exists();
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    check[0] = false;
-                }
-            });
-        }*/
-
-        return check[0];
     }
 
 
@@ -329,7 +318,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             };
-            mFirebaseDatabaseReference.addChildEventListener(childEventListener);
+            mFirebaseDatabaseReference.child("Messages").addChildEventListener(childEventListener);
         }
     }
         private void detachDatabaseReadListener(){
@@ -418,7 +407,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
-                        FreindlyMessage message = new FreindlyMessage(null,mFirebaseUserName,downloadUri.toString(),getTimestamp(),mFireBaseAuth.getCurrentUser().getUid());
+                        FreindlyMessage message = new FreindlyMessage(null,mFirebaseUserName,downloadUri.toString(),getTimestamp(),mFireBaseAuth.getCurrentUser().getUid(),user.getUrl());
                         mFirebaseDatabaseReference.push().setValue(message);
                         mMessageAdapter.notifyDataSetChanged();
                     } else {

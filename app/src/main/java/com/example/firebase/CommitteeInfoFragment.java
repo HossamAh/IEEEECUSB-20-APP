@@ -41,7 +41,7 @@ public class CommitteeInfoFragment extends Fragment {
     private String Vice_ID;
     private List<String> mMembers_IDs;
     private List<Users> mMembers;
-    private Users Head,Vice;
+    private Users Head1,Head2,Vice;
     private int headsCount;
 
     public CommitteeInfoFragment() {
@@ -67,8 +67,18 @@ public class CommitteeInfoFragment extends Fragment {
 
         mFireBaseDatabaseReference = mFireBaseDatabase.getReference();
 
-
-
+        mCommitteeHead1_NameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ProfileActivity.class).putExtra("UserID", Head1.getUid()));
+            }
+        });
+        mCommitteeHead2_NameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ProfileActivity.class).putExtra("UserID", Head2.getUid()));
+            }
+        });
 
         Bundle CommitteeData = getArguments();
         Head_IDs = CommitteeData.getStringArrayList("Heads_IDS");
@@ -88,12 +98,12 @@ public class CommitteeInfoFragment extends Fragment {
             mFireBaseDatabaseReference.child("users").child(Head_IDs.get(0)).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Users user = dataSnapshot.getValue(Users.class);
+                    Head1 = dataSnapshot.getValue(Users.class);
                     Log.e("CommitteeActivity", dataSnapshot.getValue().toString());
                     Log.e("CommitteeActivity", "heads num: " + Head_IDs.size());
-
-                    mCommitteeHead1_NameTextView.setText(user.getUser_Name());
-                    mCommitteeHead2_NameTextView.setText(user.getUser_Name());
+                    Head1.setUid(dataSnapshot.getKey());
+                    mCommitteeHead1_NameTextView.setText(Head1.getUser_Name());
+                    //mCommitteeHead2_NameTextView.setText(user.getUser_Name());
 
                 }
 
@@ -102,13 +112,15 @@ public class CommitteeInfoFragment extends Fragment {
 
                 }
             });
+
             ValueEventListener Head2Listener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Users user = dataSnapshot.getValue(Users.class);
+                    Head2 = dataSnapshot.getValue(Users.class);
                     Log.e("CommitteeActivity", "head2" + dataSnapshot.getValue().toString());
                     mCommitteeHead2_NameTextView.setVisibility(View.VISIBLE);
-                    mCommitteeHead2_NameTextView.setText(user.getUser_Name());
+                    mCommitteeHead2_NameTextView.setText(Head2.getUser_Name());
+                    Head2.setUid(dataSnapshot.getKey());
 
                 }
 

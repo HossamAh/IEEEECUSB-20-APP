@@ -1,6 +1,7 @@
 package com.example.firebase;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,6 +29,7 @@ public class ViceFragment extends Fragment {
     private DatabaseReference mFireBaseDatabaseReference;
     private TextView mCommitteeVice_NameTextView,ViceTitle_TextView;
     private String Committee_Name;
+    private Users Vice;
     public ViceFragment() {
         // Required empty public constructor
     }
@@ -55,6 +57,12 @@ public class ViceFragment extends Fragment {
             ViceTitle_TextView.setText("Vice:");
         }
 
+        mCommitteeVice_NameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ProfileActivity.class).putExtra("UserID", Vice.getUid()));
+            }
+        });
 
         Vice_ID = getArguments().getString("ViceID");
         //Log.e("ViceFragment",Vice_ID);
@@ -64,9 +72,10 @@ if(Vice_ID !=null) {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             Log.e("ViceFragment", dataSnapshot.getValue().toString());
 
-            Users user = dataSnapshot.getValue(Users.class);
+            Vice= dataSnapshot.getValue(Users.class);
             //user.setUid(snapshot.getKey());
-            mCommitteeVice_NameTextView.setText(user.getUser_Name());
+            mCommitteeVice_NameTextView.setText(Vice.getUser_Name());
+            Vice.setUid(dataSnapshot.getKey());
 
 
         }

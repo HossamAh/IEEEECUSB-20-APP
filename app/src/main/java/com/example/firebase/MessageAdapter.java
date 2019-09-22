@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.firebase.models.FreindlyMessage;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -29,6 +30,8 @@ public class MessageAdapter extends ArrayAdapter<FreindlyMessage> {
         ImageView photoImageView = (ImageView) convertView.findViewById(R.id.photoImageView);
         TextView messageTextView = (TextView) convertView.findViewById(R.id.messageTextView);
         TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
+        TextView TimeStamp = (TextView)convertView.findViewById(R.id.Time_textView);
+        ImageView senderImage = (ImageView) convertView.findViewById(R.id.Sender_imageView);
 
         FreindlyMessage message = getItem(position);
 
@@ -40,11 +43,43 @@ public class MessageAdapter extends ArrayAdapter<FreindlyMessage> {
             Picasso.get().load(message.getPhotoUrl())
                     .into(photoImageView);
         } else {
+
             messageTextView.setVisibility(View.VISIBLE);
             photoImageView.setVisibility(View.GONE);
             messageTextView.setText(message.getText());
         }
+        if(message.getSender_imageUrl() !=null)
+        {
+            Picasso.get().load(message.getSender_imageUrl()).
+                    transform(new CircleTransform()).into(senderImage);
+        }
+        else
+        {
+            senderImage.setImageResource(R.drawable.defaultprofile);
+        }
         authorTextView.setText(message.getName());
+        TimeStamp.setText(message.getTimestamp());
+        if(message.getUser_id().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+            if(message.getText()!=null)
+            {
+                messageTextView.setBackgroundResource(R.drawable.auth_background);
+            }
+            else
+                {
+                    photoImageView.setBackgroundResource(R.drawable.auth_background);
+                }
+        }
+        else
+            {
+                if(message.getText()!=null)
+                {
+                    messageTextView.setBackgroundResource(R.drawable.others_background);
+                }
+                else
+                {
+                    photoImageView.setBackgroundResource(R.drawable.others_background);
+                }
+            }
 
         return convertView;
     }

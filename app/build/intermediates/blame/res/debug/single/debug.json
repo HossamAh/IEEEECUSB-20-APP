@@ -408,6 +408,10 @@
         "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\layout\\item_message.xml"
     },
     {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable_others_background.xml.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\drawable\\others_background.xml"
+    },
+    {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_bar_title_item.xml.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
@@ -566,6 +570,10 @@
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_icon.xml.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable_auth_background.xml.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\drawable\\auth_background.xml"
     },
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -982,10 +990,6 @@
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_profile.xml.flat",
-        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\layout\\activity_profile.xml"
     },
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
@@ -1930,6 +1934,10 @@
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_btn_checkable.xml.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\color-v23\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\layout_profile_activity.xml.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\layout\\profile_activity.xml"
     },
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",

@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -45,53 +46,16 @@ public class chatNodeAdapter extends ArrayAdapter<ChatNode> {
 
         final ChatNode chatNode = getItem(position);
 
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mFirebaseReference = mFirebaseDatabase.getReference();
-        ChildEventListener getLastMessageListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                FreindlyMessage LastMessage = dataSnapshot.getValue(FreindlyMessage.class);
-                if(chatNode.getLastMessage().getUser_id().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-                {
-                    messageTextView.setText("You: "+LastMessage.getText());
-                }
-                else
-                {
-                    messageTextView.setText(LastMessage.getName()+": "+LastMessage.getText());
-                }
 
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        String ID = chatNode.getChatID();
-        if (ID.indexOf("_Chat") != -1)//privateChat
-        {
-            mFirebaseReference.child("Messages").child(ID).addChildEventListener(getLastMessageListener);
-        }
-        else {
-            mFirebaseReference.child("Committees chatting").child("Messages").child(ID).addChildEventListener(getLastMessageListener);
-        }
         ReceiverTextView.setText(chatNode.getReceiverName());
-
+        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(chatNode.getLastMessage().getUser_id()))
+        {
+            messageTextView.setText("You: "+chatNode.getLastMessage().getText());
+        }
+        else
+            {
+                messageTextView.setText(chatNode.getLastMessage().getName()+": "+chatNode.getLastMessage().getText());
+            }
 
         boolean isPhoto = chatNode.getReceiverImageUrl() != null;
         if (isPhoto) {

@@ -39,6 +39,14 @@ public class chattingList extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(mChattingAdapter!=null)
+        mChattingAdapter.clear();
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +56,7 @@ public class chattingList extends Fragment {
         Log.e("ChattingListFragment","in ChattingListFragment ");
         chatNodes = new ArrayList<>();
         chattingIDsList = getArguments().getStringArrayList("ChattingIDs");
+
         for(String ID : chattingIDsList)
         {
             Log.e("ChattingListFragment","IDs is : "+ID);
@@ -58,7 +67,7 @@ public class chattingList extends Fragment {
         mFireBaseDatabase = FirebaseDatabase.getInstance();
         mFireBaseDatabaseReference = mFireBaseDatabase.getReference();
         mChattingAdapter = new chatNodeAdapter(getContext(),R.layout.chat_item,chatNodes);
-
+        chattings.setAdapter(mChattingAdapter);
 
 
 
@@ -66,8 +75,27 @@ public class chattingList extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e("ChattingListFragment",dataSnapshot.getValue().toString());
-                chatNode.setReceiverName(dataSnapshot.getValue(Users.class).getUser_Name());
-                chatNode.setReceiverImageUrl(dataSnapshot.getValue(Users.class).getUrl());
+                ChatNode chatNode = new ChatNode();
+                for(DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    if(snapshot.getKey().equals("Last Message"))
+                    {
+                        chatNode.setLastMessage(snapshot.getValue(FreindlyMessage.class));
+                    }
+                    else if(snapshot.getKey().equals("ReceiverName"))
+                    {
+                        chatNode.setReceiverName(snapshot.getValue().toString());
+                    }
+                    else
+                        {
+                            chatNode.setReceiverImageUrl(snapshot.getValue().toString());
+                        }
+                }
+                chatNodes.add(chatNode);
+                for(ChatNode chatNode1:chatNodes)
+                {
+                    Log.e("ChattingListFragment",chatNode1.getLastMessage().getText());
+                }
                 mChattingAdapter.notifyDataSetChanged();
             }
 
@@ -78,33 +106,20 @@ public class chattingList extends Fragment {
         };
 
 
-if(chattingIDsList !=null) {
-    for (String ID : chattingIDsList) {
-        chatNode = new ChatNode();
-        chatNode.setChatID(ID);
-        if (ID.indexOf("_Chat") != -1)//privateChat
-        {
-            Log.e("ChattingListFragment",ID);
-            int AuthIDIndex = ID.indexOf(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            int AuthIDLenght = ID.length();
-            if (AuthIDIndex > 0) {
-                String ReceiverID = ID.substring(0, AuthIDIndex);
-                mFireBaseDatabaseReference.child("users").child(ReceiverID).addValueEventListener(GetUserDataListener);
-            }
-            else if (AuthIDIndex == 0)
-            {
-                String ReceiverID = ID.substring(AuthIDLenght);
-                mFireBaseDatabaseReference.child("users").child(ReceiverID).addValueEventListener(GetUserDataListener);
-            }
-        }
-        else
-         {
-            int committeeNameEndIndex = ID.indexOf("_Chat");
-            chatNode.setReceiverName(ID.substring(0, committeeNameEndIndex));
 
+        if(chattingIDsList !=null) {
+            chatNodes.clear();
+    for (String ID : chattingIDsList) {
+
+        if(ID.indexOf("_Chat")!= -1)//committee chat
+        {
+            mFireBaseDatabaseReference.child("Committees chatting").child(ID).child("ChatNode").addValueEventListener(GetUserDataListener);
         }
-        chatNodes.add(chatNode);
-        chattings.setAdapter(mChattingAdapter);
+        else //private
+            {
+                mFireBaseDatabaseReference.child("PrivateChatting").child(ID).child("ChatNode").addValueEventListener(GetUserDataListener);
+            }
+
     }
 
 }
@@ -113,5 +128,15 @@ if(chattingIDsList !=null) {
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mChattingAdapter.clear();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mChattingAdapter.clear();
+    }
 }

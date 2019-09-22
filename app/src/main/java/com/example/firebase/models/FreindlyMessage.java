@@ -6,6 +6,24 @@ public class FreindlyMessage {
     private String photoUrl;
     private String timestamp;
     private String user_id;
+    private String sender_imageUrl;
+
+    public void setSender_imageUrl(String sender_imageUrl) {
+        this.sender_imageUrl = sender_imageUrl;
+    }
+
+    public String getSender_imageUrl() {
+        return sender_imageUrl;
+    }
+
+    public FreindlyMessage(String text, String name, String photoUrl, String timestamp, String user_id, String sender_imageUrl) {
+        this.text = text;
+        this.name = name;
+        this.photoUrl = photoUrl;
+        this.timestamp = timestamp;
+        this.user_id = user_id;
+        this.sender_imageUrl = sender_imageUrl;
+    }
 
     public FreindlyMessage() {
     }

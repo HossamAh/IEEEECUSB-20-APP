@@ -3,7 +3,10 @@ package com.example.firebase;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -53,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.profile_activity);
 
         Name=(TextView)findViewById(R.id.UserName_textView);
         CommitteeName1=(TextView)findViewById(R.id.UserCommittee1_textView);
@@ -78,6 +81,7 @@ public class ProfileActivity extends AppCompatActivity {
         committeeChat1.setVisibility(View.INVISIBLE);
         clubChat.setVisibility(View.INVISIBLE);
         PositionName.setVisibility(View.INVISIBLE);
+        ChattingList.setVisibility(View.INVISIBLE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         chatIDs = new ArrayList<>();
@@ -106,12 +110,14 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if(user !=null) {
                     UpdateUI();
-                    mChattingFragment = new chattingList();
-                    chattingListBundle.putStringArrayList("ChattingIDs",chatIDs);
-                    mChattingFragment.setArguments(chattingListBundle);
-                    getSupportFragmentManager().beginTransaction().add(R.id.chatting_List, mChattingFragment, "chattingFragment").commitAllowingStateLoss();
 
-                   // Toast.makeText(ProfileActivity.this,"User UID is = "+dataSnapshot.getKey(),Toast.LENGTH_LONG).show();
+                    chattingListBundle.putStringArrayList("ChattingIDs",chatIDs);
+                    if(!chatIDs.isEmpty()) {
+                        Log.e("ProfileAvtivity","check if user is the target or not :"+user.getUser_Name());
+                        mChattingFragment = new chattingList();
+                        mChattingFragment.setArguments(chattingListBundle);
+                        getSupportFragmentManager().beginTransaction().add(R.id.chatting_List, mChattingFragment, "chattingFragment").commitAllowingStateLoss();
+                    }
                 }
                 else
                     Toast.makeText(ProfileActivity.this,"user is null ",Toast.LENGTH_LONG).show();
@@ -123,21 +129,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         };
 
-       /* ValueEventListener getChattingIDsListenet = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             for(DataSnapshot snapshot : dataSnapshot.getChildren())
-             {
-                 chatIDs.add(snapshot.getValue().toString());
-             }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-*/
 
 
         privateChat.setText("Private Chatting");
@@ -210,8 +202,6 @@ public class ProfileActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle !=null)
         {
-            Log.e("ProfileActivity",bundle.getString("UserID"));
-            Log.e("ProfileActivity","user");
             privateChat.setVisibility(View.VISIBLE);
             Profile_Uid = bundle.getString("UserID");
             databaseReference.child(Profile_Uid).addValueEventListener(profileUser);
@@ -227,12 +217,7 @@ public class ProfileActivity extends AppCompatActivity {
             Profile_Uid = firebaseAuth.getCurrentUser().getUid();
             databaseReference.child(Profile_Uid).addValueEventListener(profileUser);
 
-           /* mChattingFragment = new chattingList();
-            Bundle chattingListBundle = new Bundle();
-            chattingListBundle.putStringArrayList("ChattingIDs",user.getChats_IDs());
-            mChattingFragment.setArguments(chattingListBundle);
-            getSupportFragmentManager().beginTransaction().add(R.id.chatting_List, mChattingFragment, "chattingFragment").commit();
-        */
+
         }
 
 
@@ -268,21 +253,56 @@ public class ProfileActivity extends AppCompatActivity {
     private void UpdateUI()
     {
         progressBar.setVisibility(View.GONE);
+        if(user.getUser_Position().equals("Chairman")|| user.getUser_Position() .equals("Chairman Vice"))
+        {
+            CommitteeName2.setVisibility(View.GONE);
+            committeeChat2.setVisibility(View.GONE);
+        }
+        else
+            {
+                CommitteeName2.setVisibility(View.VISIBLE);
+                committeeChat2.setVisibility(View.VISIBLE);
+            }
+
         Name.setVisibility(View.VISIBLE);
         CommitteeName1.setVisibility(View.VISIBLE);
-        CommitteeName2.setVisibility(View.VISIBLE);
-
         ProfileImage.setVisibility(View.VISIBLE);
-        committeeChat1.setVisibility(View.VISIBLE);
-        committeeChat2.setVisibility(View.VISIBLE);
-
-        clubChat.setVisibility(View.VISIBLE);
         PositionName.setVisibility(View.VISIBLE);
+
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null)
+        {
+            if(bundle.getString("UserID").equals(firebaseAuth.getCurrentUser().getUid()))
+            {
+                privateChat.setVisibility(View.GONE);
+                committeeChat1.setVisibility(View.VISIBLE);
+                committeeChat2.setVisibility(View.VISIBLE);
+                clubChat.setVisibility(View.VISIBLE);
+                ChattingList.setVisibility(View.VISIBLE);
+
+            }
+            else {
+                committeeChat1.setVisibility(View.GONE);
+                committeeChat2.setVisibility(View.GONE);
+                clubChat.setVisibility(View.GONE);
+                ChattingList.setVisibility(View.GONE);
+            }
+        }
+        else
+            {
+                committeeChat1.setVisibility(View.VISIBLE);
+                committeeChat2.setVisibility(View.VISIBLE);
+                clubChat.setVisibility(View.VISIBLE);
+                ChattingList.setVisibility(View.VISIBLE);
+            }
+
 
         if (user.getUser_Position().equals("Head") || user.getUser_Position().equals( "Vice")||
         (user.getUser_Position().equals("Technical Manager") || user.getUser_Position().equals("Technical Vice"))
                 || (user.getUser_Position().equals("Chairman") || user.getUser_Position() .equals("Chairman Vice")))
         {
+
                 Log.e("ProfileActivity",user.getUser_Committee());
                 CommitteeName1.setText(user.getUser_Committee());
                 committeeChat1.setText(user.getUser_Committee() + " Chatting");

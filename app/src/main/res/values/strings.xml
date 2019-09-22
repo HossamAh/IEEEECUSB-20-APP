@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FireBase</string>
+    <string name="app_name">IEEE CUSB</string>
     <string name="Email_EditText">Email</string>
     <string name="Password_EditText">Password</string>
     <string name="SignUp_Button">SignUp</string>
