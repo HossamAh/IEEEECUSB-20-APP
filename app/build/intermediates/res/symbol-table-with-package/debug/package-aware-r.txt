@@ -1191,8 +1191,11 @@ id direct
 id disableHome
 id draw_Logout_menu
 id draw_committees_menu
+id draw_creation_menu
 id draw_notifications_menu
 id draw_profile_menu
+id draw_view_tasks_menu
+id drawer_layout
 id edit_query
 id end
 id end_padder
@@ -1246,6 +1249,9 @@ id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
 id nameTextView
+id navHeader
+id navHeaderImage
+id nav_view
 id navigation_header_container
 id never
 id none
@@ -1326,6 +1332,7 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1440,6 +1447,7 @@ layout item_message
 layout member_item
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
+layout nav_header
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -1461,9 +1469,9 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu main_menu
+menu nav_drawer
 menu nav_menu
 mipmap ic_launcher
-mipmap ic_launcher_round
 string CHANNEL_DESCRIPTION
 string CHANNEL_NEWS
 string Email_EditText
