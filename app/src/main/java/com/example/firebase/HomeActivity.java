@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView mNameTextView;
     private String Title;
     private Users user;
-
+    private String chatID;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,34 +122,38 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //check for what is the chat  type is
-
         ProfileUID = getIntent().getExtras().get("ProfileUID").toString(); //if the auth profile will be empty string.
         chatType = getIntent().getExtras().getInt("chatType");//0 for private , 1 for committee , 2 for club
         CommitteeName = getIntent().getExtras().get("CommitteeName").toString(); //if the private chat or club  will be empty string.
         ProfileUserName = getIntent().getExtras().get("ProfileUserName").toString();
+        mNameTextView.setVisibility(View.GONE);
 
         switch (chatType){
             case 0://private chat.
                 ChatKey = setOneToOneChat(ProfileUID,mFireBaseAuth.getCurrentUser().getUid());
                 mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("PrivateChatting").child(ChatKey);
-    //          mChatHeadingTextView.setText(ProfileUserName);
+                //          mChatHeadingTextView.setText(ProfileUserName);
                 Title = ProfileUserName;
                 setTitle(ProfileUserName);
+                toolbar.setTitle(Title);
                 break;
 
             case 1:
                 ChatKey = CommitteeName+"_Chat";
                 mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("Committees chatting").child(ChatKey);
-      //          mChatHeadingTextView.setText(CommitteeName);
+                //          mChatHeadingTextView.setText(CommitteeName);
                 setTitle(CommitteeName);
                 Title = CommitteeName;
+                toolbar.setTitle(Title);
                 break;
             case 2:
                 ChatKey = "IEEECUSB_Chat";
                 mFirebaseDatabaseReference = mFireBaseDataBase.getReference().child("Committees chatting").child(ChatKey);
-        //        mChatHeadingTextView.setText("IEEECUSB");
+                //        mChatHeadingTextView.setText("IEEECUSB");
                 setTitle("IEEECUSB");
+
                 Title = "IEEECUSB";
+                toolbar.setTitle(Title);
                 break;
         }
 
@@ -164,19 +168,33 @@ public class HomeActivity extends AppCompatActivity {
                 user  = dataSnapshot.getValue(Users.class);
                 mFirebaseUserName = user.getUser_Name();
                 mNameTextView.setVisibility(View.GONE);
-                toolbar.setTitle(Title);
+
+                //mNameTextView.setText(Title);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mFireBaseDataBase.getReference().child("users").child(ProfileUID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                user  = dataSnapshot.getValue(Users.class);
                 //mNameTextView.setText(Title);
                 if(chatType ==0) {
-                    if (user.getUrl() != null)
+                    if(user.getUrl() != null)
                         Picasso.get().load(user.getUrl()).transform(new CircleTransform()).into(mUser_Image);
                     else {
                         mUser_Image.setImageResource(R.drawable.defaultprofile);
                     }
                 }
                 else
-                    {
-                        mUser_Image.setVisibility(View.GONE);
-                    }
+                {
+                    mUser_Image.setVisibility(View.GONE);
+                }
 
             }
 
@@ -238,10 +256,10 @@ public class HomeActivity extends AppCompatActivity {
                     mFirebaseDatabaseReference.child("ChatNode").child("ReceiverImageUrl").setValue(user.getUrl());
                 }
                 else
-                    {
-                        mFirebaseDatabaseReference.child("ChatNode").child("ReceiverName").setValue(ChatKey);
-                        //
-                    }
+                {
+                    mFirebaseDatabaseReference.child("ChatNode").child("ReceiverName").setValue(ChatKey);
+                    //
+                }
                 // Clear input box
                 mMessageEditText.setText("");
             }
@@ -321,7 +339,7 @@ public class HomeActivity extends AppCompatActivity {
             mFirebaseDatabaseReference.child("Messages").addChildEventListener(childEventListener);
         }
     }
-        private void detachDatabaseReadListener(){
+    private void detachDatabaseReadListener(){
         if(childEventListener != null)
             mFirebaseDatabaseReference.removeEventListener(childEventListener);
         childEventListener=null;

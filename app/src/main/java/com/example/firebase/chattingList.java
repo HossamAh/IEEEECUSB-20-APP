@@ -1,6 +1,7 @@
 package com.example.firebase;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.firebase.models.ChatNode;
@@ -69,7 +71,12 @@ public class chattingList extends Fragment {
         mChattingAdapter = new chatNodeAdapter(getContext(),R.layout.chat_item,chatNodes);
         chattings.setAdapter(mChattingAdapter);
 
+        chattings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            }
+        });
 
         ValueEventListener GetUserDataListener = new ValueEventListener() {
             @Override
@@ -105,8 +112,6 @@ public class chattingList extends Fragment {
             }
         };
 
-
-
         if(chattingIDsList !=null) {
             chatNodes.clear();
     for (String ID : chattingIDsList) {
@@ -119,12 +124,8 @@ public class chattingList extends Fragment {
             {
                 mFireBaseDatabaseReference.child("PrivateChatting").child(ID).child("ChatNode").addValueEventListener(GetUserDataListener);
             }
-
     }
-
 }
-
-
         return view;
     }
 
