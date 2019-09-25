@@ -36,7 +36,10 @@ public class chattingList extends Fragment {
     private FirebaseDatabase mFireBaseDatabase;
     private DatabaseReference mFireBaseDatabaseReference;
     private ChatNode chatNode;
-    private String currentID;
+    private int chatType;
+    private String ProfileUid; //receiver id
+    private String CommitteeName;
+    private String ProfileName;//receiver name
     public chattingList() {
         // Required empty public constructor
     }
@@ -74,8 +77,50 @@ public class chattingList extends Fragment {
         chattings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Log.e("ChattingListFragment",chattingIDsList.get(position));
+                if(chattingIDsList.get(position).indexOf("_Chat") < 0 )//private chat
+                    {
+
+                        chatType = 0;
+                        int authIDLength = FirebaseAuth.getInstance().getCurrentUser().getUid().length();
+                        int authIDStartIndex = chattingIDsList.get(position).indexOf(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        if(authIDStartIndex == 0)
+                        {
+                            ProfileUid = chattingIDsList.get(position).substring(authIDLength);
+                            Log.e("ChattingListFragment","authIDStartIndex = 0"+chattingIDsList.get(position).substring(authIDLength));
+
+                        }
+                        else {
+                            ProfileUid = chattingIDsList.get(position).substring(0,authIDStartIndex);
+                            Log.e("ChattingListFragment","authIDStartIndex > 0"+chattingIDsList.get(position).substring(0,5));
+                        }
+                        ProfileName = chatNodes.get(position).getReceiverName();
+                        CommitteeName="";
+                    }
+                else if(chattingIDsList.get(position).equals("IEEECUSB_Chat"))
+                    {
+                        ProfileName="";
+                        ProfileUid="";
+                        chatType=2;
+                        CommitteeName = "";
+                    }
+                else
+                    {
+                        chatType=1;
+                        ProfileUid="";
+                        ProfileName="";
+                      CommitteeName = chattingIDsList.get(position).substring(0,chattingIDsList.get(position).indexOf("_Chat"));
+                    }
+
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                intent.putExtra("ProfileUID", ProfileUid);
+                intent.putExtra("chatType", chatType);
+                intent.putExtra("CommitteeName",CommitteeName);
+                intent.putExtra("ProfileUserName", ProfileName);
+                startActivity(intent);
 
             }
+
         });
 
         ValueEventListener GetUserDataListener = new ValueEventListener() {
@@ -130,9 +175,9 @@ public class chattingList extends Fragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        mChattingAdapter.clear();
+    public void onResume() {
+        super.onResume();
+        mChattingAdapter.notifyDataSetChanged();
     }
 
     @Override

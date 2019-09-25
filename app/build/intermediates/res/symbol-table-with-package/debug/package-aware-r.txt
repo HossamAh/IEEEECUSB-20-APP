@@ -1152,6 +1152,7 @@ id ReciverName_textView
 id SHIFT
 id SYM
 id Sender_imageView
+id ShowPreviousChatting_button
 id SignUp_ButtonLogIn
 id Time_textView
 id UserCommittee1_textView
@@ -1198,7 +1199,6 @@ id center
 id center_horizontal
 id center_vertical
 id chains
-id chatting_List
 id checkbox
 id chronometer
 id clip_horizontal
@@ -1310,6 +1310,7 @@ id photoImageView
 id photoPickerButton
 id pin
 id position_textView
+id previousChattingTitle
 id progressBar
 id progress_circular
 id progress_horizontal
@@ -1396,6 +1397,7 @@ id useLogo
 id userCommittee2_textView
 id viceName_textView
 id vice_textView
+id view
 id view2
 id view3
 id view4
@@ -1460,6 +1462,7 @@ layout activity_create_notifications
 layout activity_home
 layout activity_login
 layout activity_main
+layout activity_previous_chatting
 layout activity_result
 layout activity_view_notifications
 layout chat_item

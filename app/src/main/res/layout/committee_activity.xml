@@ -3,101 +3,100 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/Grey">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp">
+
+        <RelativeLayout
+            android:id="@+id/CommitteeBasicInfo_RelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:id="@+id/committe_ImageView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/CommitteeName_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/committe_ImageView"
+                android:layout_centerHorizontal="true"
+                android:padding="8dp"
+                android:textColor="@color/Black"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/headsandVice_RelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view2"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <FrameLayout
+                android:id="@+id/HeadNVice_FrameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:clipToPadding="false">
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/HeadNVice2_FrameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/HeadNVice_FrameLayout"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/Members_FrameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_below="@id/HeadNVice2_FrameLayout"
+                android:layout_marginTop="8dp">
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="200dp"
+            android:layout_height="3dp"
+            android:layout_below="@id/CommitteeBasicInfo_RelativeLayout"
+            android:layout_centerHorizontal="true"
+            android:background="@color/DarkGrey"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+
+    </RelativeLayout>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/blue2"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:title="@string/app_name"></android.support.v7.widget.Toolbar>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:id="@+id/CommitteeBasicInfo_RelativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp">
-
-                <ImageView
-                    android:id="@+id/committe_ImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_centerHorizontal="true"
-                    tools:srcCompat="@tools:sample/avatars" />
-
-                <TextView
-                    android:id="@+id/CommitteeName_TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/committe_ImageView"
-                    android:layout_centerHorizontal="true"
-                    android:padding="8dp"
-                    android:textColor="@color/Black"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="200dp"
-                android:layout_height="3dp"
-                android:layout_below="@id/CommitteeBasicInfo_RelativeLayout"
-                android:layout_centerHorizontal="true"
-                android:background="@color/DarkGrey"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp" />
-
-            <RelativeLayout
-                android:id="@+id/headsandVice_RelativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/view2"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp">
-
-                <FrameLayout
-                    android:id="@+id/HeadNVice_FrameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:padding="8dp">
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/HeadNVice2_FrameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/HeadNVice_FrameLayout"
-                    android:padding="8dp">
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/Members_FrameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/HeadNVice2_FrameLayout"
-                    android:padding="8dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp">
-
-                </FrameLayout>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>

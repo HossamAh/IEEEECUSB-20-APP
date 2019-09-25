@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -59,7 +60,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     private DrawerLayout drawer;
     private TextView NavHeaderUserName;
     private ImageView NavHeaderUserImage;
-
+    private Button ViewChatting;
+    private View Line;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +73,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-
-
+        Line = findViewById(R.id.view5);
+        ViewChatting = (Button)findViewById(R.id.ShowPreviousChatting_button);
         Name = (TextView) findViewById(R.id.UserName_textView);
         CommitteeName1 = (TextView) findViewById(R.id.UserCommittee1_textView);
         CommitteeName2 = (TextView) findViewById(R.id.userCommittee2_textView);
@@ -86,7 +88,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
         progressBar = (ProgressBar) findViewById(R.id.Profile_progressBar);
-        ChattingList = (FrameLayout) findViewById(R.id.chatting_List);
         navigationView = (NavigationView)findViewById(R.id.nav_view);
         View Header = navigationView.getHeaderView(0);
 
@@ -98,7 +99,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         committeeChat1.setVisibility(View.INVISIBLE);
         clubChat.setVisibility(View.INVISIBLE);
         PositionName.setVisibility(View.INVISIBLE);
-        ChattingList.setVisibility(View.INVISIBLE);
+        Line.setVisibility(View.GONE);
+        ViewChatting.setVisibility(View.GONE);
 
         NavHeaderUserName = (TextView)Header.findViewById(R.id.NavHeaderUserName_textView);
         NavHeaderUserImage=(ImageView)Header.findViewById(R.id.navHeaderImage);
@@ -114,18 +116,31 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        final Bundle chattingListBundle = new Bundle();
+
         chatIDs = new ArrayList<>();
 
 
 
 
 
+        ViewChatting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!chatIDs.isEmpty()) {
+                    Log.e("ProfileActivity", "check if user is the target or not :" + user.getUser_Name());
+                    Intent intent =new Intent(ProfileActivity.this,PreviousChatting.class);
+                    intent.putExtras(chattingListBundle);
+                    startActivity(intent);
+                    }
 
+            }
+        });
 
         ValueEventListener profileUser = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Bundle chattingListBundle = new Bundle();
+
                 user = dataSnapshot.getValue(Users.class);
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (snapshot.getKey().equals("ChattingList")) {
@@ -135,6 +150,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                             chatIDs.add(snapshot1.getValue().toString());
                         }
                         //chatIDs = snapshot.getValue(ArrayList.class);
+                        chattingListBundle.putStringArrayList("ChattingIDs", chatIDs);
                     }
                 }
                 for (String ID : chatIDs) {
@@ -144,13 +160,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 if (user != null) {
                     UpdateUI();
 
-                    chattingListBundle.putStringArrayList("ChattingIDs", chatIDs);
-                    if (!chatIDs.isEmpty()) {
-                        Log.e("ProfileAvtivity", "check if user is the target or not :" + user.getUser_Name());
-                        mChattingFragment = new chattingList();
-                        mChattingFragment.setArguments(chattingListBundle);
-                        getSupportFragmentManager().beginTransaction().add(R.id.chatting_List, mChattingFragment, "chattingFragment").commitAllowingStateLoss();
-                    }
                 } else
                     Toast.makeText(ProfileActivity.this, "user is null ", Toast.LENGTH_LONG).show();
             }
@@ -298,18 +307,25 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 committeeChat2.setVisibility(View.VISIBLE);
                 clubChat.setVisibility(View.VISIBLE);
                 ChattingList.setVisibility(View.VISIBLE);
+                Line.setVisibility(View.VISIBLE);
+                ViewChatting.setVisibility(View.GONE);
+
 
             } else {
                 committeeChat1.setVisibility(View.GONE);
                 committeeChat2.setVisibility(View.GONE);
                 clubChat.setVisibility(View.GONE);
-                ChattingList.setVisibility(View.GONE);
+                Line.setVisibility(View.GONE);
+                ViewChatting.setVisibility(View.GONE);
+
             }
         } else {
             committeeChat1.setVisibility(View.VISIBLE);
             committeeChat2.setVisibility(View.VISIBLE);
             clubChat.setVisibility(View.VISIBLE);
-            ChattingList.setVisibility(View.VISIBLE);
+            Line.setVisibility(View.VISIBLE);
+            ViewChatting.setVisibility(View.VISIBLE);
+
         }
 
 

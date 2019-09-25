@@ -17,8 +17,7 @@
         android:paddingLeft="16dp"
         android:paddingTop="8dp"
         android:paddingRight="16dp"
-        android:paddingBottom="8dp"
-        android:text="TextView" />
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/HeadName_textView"
@@ -28,12 +27,11 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_toRightOf="@id/Head_textView"
+        android:layout_toEndOf="@id/Head_textView"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingRight="8dp"
-        android:paddingBottom="8dp"
-        android:text="TextView" />
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/headName_textView"
@@ -44,12 +42,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_toRightOf="@id/Head_textView"
+        android:layout_toEndOf="@id/Head_textView"
         android:paddingLeft="8dp"
-        android:paddingTop="8dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="8dp"
-        android:text="TextView" />
+        android:paddingRight="8dp" />
 
 
 </RelativeLayout>

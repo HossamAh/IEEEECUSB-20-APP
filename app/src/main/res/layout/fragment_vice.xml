@@ -9,25 +9,21 @@
         android:id="@+id/vice_textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_weight="2"
-        android:padding="8dp"
-        android:text="TextView" />
+        android:padding="8dp" />
 
     <TextView
         android:id="@+id/viceName_textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_weight="5"
         android:padding="8dp"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingRight="8dp"
-        android:paddingBottom="8dp"
-        android:text="TextView" />
+        android:paddingBottom="8dp" />
 </LinearLayout>

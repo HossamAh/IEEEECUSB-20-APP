@@ -84,7 +84,7 @@ public class MembersFragment extends Fragment {
                     Log.e("CommitteeActivity", user.getUser_Name());
                     mMembersAdapter.notifyDataSetChanged();
                     Log.e("CommitteeActivity", "members number :"+mMembersListView.getCount());
-                    setListViewHeightBasedOnChildren(mMembersListView);
+                   // setListViewHeightBasedOnChildren(mMembersListView);
                 }
 
                 @Override

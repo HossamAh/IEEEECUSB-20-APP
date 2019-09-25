@@ -33,8 +33,9 @@
     <ListView
         android:id="@+id/Members_ListView"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
         android:isScrollContainer="true"
         android:paddingLeft="16dp"
         android:paddingTop="8dp"
