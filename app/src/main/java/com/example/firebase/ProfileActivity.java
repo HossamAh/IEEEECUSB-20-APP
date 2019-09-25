@@ -347,6 +347,18 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                             Log.d(TAG, msg);
                         }
                     });
+            FirebaseMessaging.getInstance().subscribeToTopic("HighBoard")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            String msg = "subscribe successful";
+                            if (!task.isSuccessful()) {
+                                msg = "subscribe failed";
+                            }
+                            Log.d(TAG, msg);
+                        }
+                    });
+
             CommitteeName2.setText("High Board");
             committeeChat2.setText("High Board" + " Chatting");
         } else if (user.getUser_Position().equals("Member")) {
@@ -357,6 +369,30 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             committeeChat2.setVisibility(View.GONE);
         }
         FirebaseMessaging.getInstance().subscribeToTopic(user.getUser_Committee().replaceAll("\\s", "") + "_Chatting")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "subscribe successful";
+                        if (!task.isSuccessful()) {
+                            msg = "subscribe failed";
+                        }
+                        Log.d(TAG, msg);
+                    }
+                });
+
+        FirebaseMessaging.getInstance().subscribeToTopic(user.getUser_Committee().replaceAll("\\s", ""))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "subscribe successful";
+                        if (!task.isSuccessful()) {
+                            msg = "subscribe failed";
+                        }
+                        Log.d(TAG, msg);
+                    }
+                });
+
+        FirebaseMessaging.getInstance().subscribeToTopic("IEEECUSB")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
