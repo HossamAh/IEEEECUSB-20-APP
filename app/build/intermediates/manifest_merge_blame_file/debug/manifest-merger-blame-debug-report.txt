@@ -6,259 +6,270 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="19"
-8-->G:\android course\FireBase\app\src\main\AndroidManifest.xml
+8-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="28" />
-9-->G:\android course\FireBase\app\src\main\AndroidManifest.xml
+9-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml
 10
-11    <uses-permission android:name="android.permission.INTERNET" />
-11-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:48:5-67
-11-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:48:22-64
-12    <uses-permission android:name="android.permission.VIBRATE" />
-12-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:50:5-66
-12-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:50:22-63
+11    <uses-permission android:name="android.permission.VIBRATE" />
+11-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:53:5-66
+11-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:53:22-63
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:55:5-67
+12-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:55:22-64
 13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-13-->[com.google.firebase:firebase-storage:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\4d918562546c21333825c652a639e1f9\firebase-storage-16.0.4\AndroidManifest.xml:23:5-79
-13-->[com.google.firebase:firebase-storage:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\4d918562546c21333825c652a639e1f9\firebase-storage-16.0.4\AndroidManifest.xml:23:22-76
+13-->[com.google.firebase:firebase-storage:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4a1bab6f5c9790b9a238a6bf2ed7d37f\firebase-storage-16.0.4\AndroidManifest.xml:23:5-79
+13-->[com.google.firebase:firebase-storage:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4a1bab6f5c9790b9a238a6bf2ed7d37f\firebase-storage-16.0.4\AndroidManifest.xml:23:22-76
 14    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-14-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:24:5-68
-14-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:24:22-65
+14-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:24:5-68
+14-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:24:22-65
 15    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-15-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:26:5-82
-15-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:26:22-79
+15-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:26:5-82
+15-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:26:22-79
 16
 17    <application
-17-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:6:5-47:19
+17-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:6:5-52:19
 18        android:allowBackup="true"
-18-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:7:9-35
+18-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:7:9-35
 19        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
-19-->[com.android.support:support-compat:28.0.0] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\895559d2bf708e950c8f9daa6bb1fb41\support-compat-28.0.0\AndroidManifest.xml:22:18-91
+19-->[com.android.support:support-compat:28.0.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\bae3a19fe0c1ee11fdc4df62c8dee558\support-compat-28.0.0\AndroidManifest.xml:22:18-91
 20        android:debuggable="true"
 21        android:icon="@mipmap/ic_launcher"
-21-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:8:9-43
+21-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:8:9-43
 22        android:label="@string/app_name"
-22-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:9:9-41
+22-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:9:9-41
 23        android:roundIcon="@mipmap/ic_launcher_round"
-23-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:10:9-54
+23-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:10:9-54
 24        android:supportsRtl="true"
-24-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:11:9-35
-25        android:theme="@style/AppTheme.NoActionBar" >
-25-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:12:9-52
-26        <activity android:name="com.example.firebase.DisplayTaskActivity" />
-26-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:13:9-66
-26-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:13:19-54
-27        <activity android:name="com.example.firebase.WelcomeActivity" >
-27-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:14:9-21:20
-27-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:14:19-50
-28            <intent-filter>
-28-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:15:13-20:29
-29                <action android:name="android.intent.action.MAIN" />
-29-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:16:17-69
-29-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:16:25-66
-30                <action android:name="android.intent.action.VIEW" />
-30-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:17:17-69
-30-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:17:25-66
-31
-32                <category android:name="android.intent.category.LAUNCHER" />
-32-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:19:17-77
-32-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:19:27-74
-33            </intent-filter>
-34        </activity>
-35        <activity android:name="com.example.firebase.Create" />
-35-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:22:9-44
-35-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:22:19-41
-36        <activity android:name="com.example.firebase.PreviousChatting" />
-36-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:23:9-54
-36-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:23:19-51
-37        <activity
-37-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:24:9-27:71
-38            android:name="com.example.firebase.AnnouncementDisplayActivity"
-38-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:25:13-56
-39            android:label="@string/title_activity_announcement_display"
-39-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:26:13-72
-40            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
-40-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:27:13-68
-41        <activity android:name="com.example.firebase.CommitteesListActivity" />
-41-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:28:9-60
-41-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:28:19-57
-42        <activity android:name="com.example.firebase.ViewNotifications" />
-42-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:29:9-55
-42-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:29:19-52
-43        <activity android:name="com.example.firebase.CreateNotifications" />
-43-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:30:9-57
-43-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:30:19-54
-44        <activity android:name="com.example.firebase.CommitteActivity" />
-44-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:31:9-54
-44-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:31:19-51
-45        <activity android:name="com.example.firebase.ProfileActivity" />
-45-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:32:9-53
-45-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:32:19-50
-46        <activity android:name="com.example.firebase.HomeActivity" />
-46-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:33:9-50
-46-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:33:19-47
-47        <activity android:name="com.example.firebase.LoginActivity" />
-47-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:34:9-51
-47-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:34:19-48
-48        <activity android:name="com.example.firebase.MainActivity" />
-48-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:35:9-59
-48-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:35:19-47
-49
-50        <service android:name="com.example.firebase.Notifications.MyAndroidFirebaseMessagingService" >
-50-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:37:9-41:19
-50-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:37:18-81
-51            <intent-filter>
-51-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:38:13-40:29
-52                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-52-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:39:17-78
-52-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:39:25-75
-53            </intent-filter>
-54        </service>
-55        <service android:name="com.example.firebase.Notifications.MyAndroidFirebaseInstanceIDService" >
-55-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:42:9-46:19
-55-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:42:18-82
-56            <intent-filter>
-56-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:43:13-45:29
-57                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-57-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:44:17-80
-57-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:44:25-77
-58            </intent-filter>
-59        </service>
-60
-61        <activity
-61-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:23:9-29:75
-62            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
-62-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:24:13-85
-63            android:excludeFromRecents="true"
-63-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:25:13-46
-64            android:exported="true"
-64-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:26:13-36
-65            android:launchMode="singleInstance"
-65-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:27:13-48
-66            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
-66-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:28:13-102
-67            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-67-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:29:13-72
-68
-69        <service
-69-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:31:9-35:19
-70            android:name="com.google.firebase.components.ComponentDiscoveryService"
-70-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:31:18-89
-71            android:exported="false" >
-71-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:31:13-37
-72            <meta-data
-72-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:32:13-34:85
-73                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-73-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:33:17-109
-74                android:value="com.google.firebase.components.ComponentRegistrar" />
-74-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f399493a57f45b389beaa2c9d2759570\firebase-auth-16.0.4\AndroidManifest.xml:34:17-82
-75            <meta-data
-75-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:32:13-34:85
-76                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
-76-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:33:17-96
-77                android:value="com.google.firebase.components.ComponentRegistrar" />
-77-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:34:17-82
-78        </service>
-79        <!--
-80             FirebaseMessagingService performs security checks at runtime,
-81             no need for explicit permissions despite exported="true"
-82        -->
-83        <service
-83-->[com.google.firebase:firebase-messaging:17.3.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\867110f9d52010542d15c324d0eb9dee\firebase-messaging-17.3.4\AndroidManifest.xml:28:9-34:19
-84            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-84-->[com.google.firebase:firebase-messaging:17.3.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\867110f9d52010542d15c324d0eb9dee\firebase-messaging-17.3.4\AndroidManifest.xml:29:13-82
-85            android:exported="true" >
-85-->[com.google.firebase:firebase-messaging:17.3.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\867110f9d52010542d15c324d0eb9dee\firebase-messaging-17.3.4\AndroidManifest.xml:30:13-36
-86            <intent-filter android:priority="-500" >
-86-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:38:13-40:29
-87                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-87-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:39:17-78
-87-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:39:25-75
-88            </intent-filter>
-89        </service>
-90
-91        <provider
-91-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\cf78f357bff3f103a9e2f823ec47f4d4\extensions-1.1.1\AndroidManifest.xml:23:9-27:43
-92            android:name="android.arch.lifecycle.ProcessLifecycleOwnerInitializer"
-92-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\cf78f357bff3f103a9e2f823ec47f4d4\extensions-1.1.1\AndroidManifest.xml:24:13-83
-93            android:authorities="com.example.firebase.lifecycle-trojan"
-93-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\cf78f357bff3f103a9e2f823ec47f4d4\extensions-1.1.1\AndroidManifest.xml:25:13-68
-94            android:exported="false"
-94-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\cf78f357bff3f103a9e2f823ec47f4d4\extensions-1.1.1\AndroidManifest.xml:26:13-37
-95            android:multiprocess="true" />
-95-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\cf78f357bff3f103a9e2f823ec47f4d4\extensions-1.1.1\AndroidManifest.xml:27:13-40
-96        <provider
-96-->[com.squareup.picasso:picasso:2.71828] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\21f20da300f0bb965f3f417e794d7655\picasso-2.71828\AndroidManifest.xml:8:9-11:40
-97            android:name="com.squareup.picasso.PicassoProvider"
-97-->[com.squareup.picasso:picasso:2.71828] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\21f20da300f0bb965f3f417e794d7655\picasso-2.71828\AndroidManifest.xml:9:13-64
-98            android:authorities="com.example.firebase.com.squareup.picasso"
-98-->[com.squareup.picasso:picasso:2.71828] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\21f20da300f0bb965f3f417e794d7655\picasso-2.71828\AndroidManifest.xml:10:13-72
-99            android:exported="false" />
-99-->[com.squareup.picasso:picasso:2.71828] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\21f20da300f0bb965f3f417e794d7655\picasso-2.71828\AndroidManifest.xml:11:13-37
-100
-101        <receiver
-101-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:37:9-44:20
-102            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-102-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:38:13-78
-103            android:exported="true"
-103-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:39:13-36
-104            android:permission="com.google.android.c2dm.permission.SEND" >
-104-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:40:13-73
-105            <intent-filter>
-105-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:41:13-43:29
-106                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-106-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:42:17-81
-106-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:42:25-78
-107            </intent-filter>
-108        </receiver>
-109        <!--
-110             FirebaseInstanceIdService performs security checks at runtime,
-111             no need for explicit permissions despite exported="true"
-112        -->
-113        <service
-113-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:50:9-56:19
-114            android:name="com.google.firebase.iid.FirebaseInstanceIdService"
-114-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:51:13-77
-115            android:exported="true" >
-115-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:52:13-36
-116            <intent-filter android:priority="-500" >
-116-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:43:13-45:29
-117                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-117-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:44:17-80
-117-->G:\android course\FireBase\app\src\main\AndroidManifest.xml:44:25-77
-118            </intent-filter>
-119        </service>
-120
-121        <activity
-121-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\b9ffff42fac733baed479ce77a508552\play-services-base-16.0.1\AndroidManifest.xml:23:9-26:75
-122            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-122-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\b9ffff42fac733baed479ce77a508552\play-services-base-16.0.1\AndroidManifest.xml:24:13-79
-123            android:exported="false"
-123-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\b9ffff42fac733baed479ce77a508552\play-services-base-16.0.1\AndroidManifest.xml:25:13-37
-124            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-124-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\b9ffff42fac733baed479ce77a508552\play-services-base-16.0.1\AndroidManifest.xml:26:13-72
-125
-126        <provider
-126-->[com.google.firebase:firebase-common:16.0.3] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\a48782d3fd02d5ce5e143923d5cc08c6\firebase-common-16.0.3\AndroidManifest.xml:10:9-14:39
-127            android:name="com.google.firebase.provider.FirebaseInitProvider"
-127-->[com.google.firebase:firebase-common:16.0.3] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\a48782d3fd02d5ce5e143923d5cc08c6\firebase-common-16.0.3\AndroidManifest.xml:11:13-77
-128            android:authorities="com.example.firebase.firebaseinitprovider"
-128-->[com.google.firebase:firebase-common:16.0.3] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\a48782d3fd02d5ce5e143923d5cc08c6\firebase-common-16.0.3\AndroidManifest.xml:12:13-72
+24-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:11:9-35
+25        android:testOnly="true"
+26        android:theme="@style/AppTheme.NoActionBar" >
+26-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:12:9-52
+27        <activity android:name="com.example.firebase.DisplayEventActivity" />
+27-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:13:9-67
+27-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:13:19-55
+28        <activity android:name="com.example.firebase.DisplayTaskActivity" />
+28-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:14:9-57
+28-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:14:19-54
+29        <activity android:name="com.example.firebase.WelcomeActivity" >
+29-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:15:9-22:20
+29-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:15:19-50
+30            <intent-filter>
+30-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:16:13-21:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:17:17-69
+31-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:17:25-66
+32                <action android:name="android.intent.action.VIEW" />
+32-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:18:17-69
+32-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:18:25-66
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:20:17-77
+34-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:20:27-74
+35            </intent-filter>
+36        </activity>
+37        <activity android:name="com.example.firebase.Create" />
+37-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:23:9-44
+37-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:23:19-41
+38        <activity android:name="com.example.firebase.PreviousChatting" />
+38-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:24:9-54
+38-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:24:19-51
+39        <activity
+39-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:25:9-28:71
+40            android:name="com.example.firebase.AnnouncementDisplayActivity"
+40-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:26:13-56
+41            android:label="@string/title_activity_announcement_display"
+41-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:27:13-72
+42            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+42-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:28:13-68
+43        <activity android:name="com.example.firebase.CommitteesListActivity" />
+43-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:29:9-60
+43-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:29:19-57
+44        <activity android:name="com.example.firebase.ViewNotifications" />
+44-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:30:9-55
+44-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:30:19-52
+45        <activity android:name="com.example.firebase.CreateNotifications" />
+45-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:31:9-57
+45-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:31:19-54
+46        <activity android:name="com.example.firebase.CommitteActivity" />
+46-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:32:9-54
+46-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:32:19-51
+47        <activity android:name="com.example.firebase.ProfileActivity" />
+47-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:33:9-53
+47-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:33:19-50
+48        <activity android:name="com.example.firebase.HomeActivity" />
+48-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:34:9-50
+48-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:34:19-47
+49        <activity android:name="com.example.firebase.LoginActivity" />
+49-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:35:9-51
+49-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:35:19-48
+50        <activity android:name="com.example.firebase.MainActivity" />
+50-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:36:9-50
+50-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:36:19-47
+51
+52        <service android:name="com.example.firebase.Notifications.MyAndroidFirebaseMessagingService" >
+52-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:38:9-42:19
+52-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:38:18-81
+53            <intent-filter>
+53-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:39:13-41:29
+54                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+54-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:40:17-78
+54-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:40:25-75
+55            </intent-filter>
+56        </service>
+57        <service android:name="com.example.firebase.Notifications.MyAndroidFirebaseInstanceIDService" >
+57-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:43:9-47:19
+57-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:43:18-82
+58            <intent-filter>
+58-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:44:13-46:29
+59                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+59-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:45:17-80
+59-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:45:25-77
+60            </intent-filter>
+61        </service>
+62
+63        <meta-data
+63-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:49:9-51:57
+64            android:name="preloaded_fonts"
+64-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:50:13-43
+65            android:resource="@array/preloaded_fonts" />
+65-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:51:13-54
+66
+67        <activity
+67-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:23:9-29:75
+68            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+68-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:24:13-85
+69            android:excludeFromRecents="true"
+69-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:25:13-46
+70            android:exported="true"
+70-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:26:13-36
+71            android:launchMode="singleInstance"
+71-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:27:13-48
+72            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+72-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:28:13-102
+73            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+73-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:29:13-72
+74
+75        <service
+75-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:31:9-35:19
+76            android:name="com.google.firebase.components.ComponentDiscoveryService"
+76-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:31:18-89
+77            android:exported="false" >
+77-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:31:13-37
+78            <meta-data
+78-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:32:13-34:85
+79                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+79-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:33:17-109
+80                android:value="com.google.firebase.components.ComponentRegistrar" />
+80-->[com.google.firebase:firebase-auth:16.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\4026d0ddb3282a0981eeb21805151b1d\firebase-auth-16.0.4\AndroidManifest.xml:34:17-82
+81            <meta-data
+81-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:32:13-34:85
+82                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+82-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:33:17-96
+83                android:value="com.google.firebase.components.ComponentRegistrar" />
+83-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:34:17-82
+84        </service>
+85        <!--
+86             FirebaseMessagingService performs security checks at runtime,
+87             no need for explicit permissions despite exported="true"
+88        -->
+89        <service
+89-->[com.google.firebase:firebase-messaging:17.3.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b8cf7e2d6e8f2efb92defe895ea5d4da\firebase-messaging-17.3.4\AndroidManifest.xml:28:9-34:19
+90            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+90-->[com.google.firebase:firebase-messaging:17.3.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b8cf7e2d6e8f2efb92defe895ea5d4da\firebase-messaging-17.3.4\AndroidManifest.xml:29:13-82
+91            android:exported="true" >
+91-->[com.google.firebase:firebase-messaging:17.3.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\b8cf7e2d6e8f2efb92defe895ea5d4da\firebase-messaging-17.3.4\AndroidManifest.xml:30:13-36
+92            <intent-filter android:priority="-500" >
+92-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:39:13-41:29
+93                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+93-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:40:17-78
+93-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:40:25-75
+94            </intent-filter>
+95        </service>
+96
+97        <provider
+97-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f46e6ca0801de93a8a4ee189696fe61f\extensions-1.1.1\AndroidManifest.xml:23:9-27:43
+98            android:name="android.arch.lifecycle.ProcessLifecycleOwnerInitializer"
+98-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f46e6ca0801de93a8a4ee189696fe61f\extensions-1.1.1\AndroidManifest.xml:24:13-83
+99            android:authorities="com.example.firebase.lifecycle-trojan"
+99-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f46e6ca0801de93a8a4ee189696fe61f\extensions-1.1.1\AndroidManifest.xml:25:13-68
+100            android:exported="false"
+100-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f46e6ca0801de93a8a4ee189696fe61f\extensions-1.1.1\AndroidManifest.xml:26:13-37
+101            android:multiprocess="true" />
+101-->[android.arch.lifecycle:extensions:1.1.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\f46e6ca0801de93a8a4ee189696fe61f\extensions-1.1.1\AndroidManifest.xml:27:13-40
+102        <provider
+102-->[com.squareup.picasso:picasso:2.71828] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\34e8a1e1612e5acc9ed9420b0aad0a5f\picasso-2.71828\AndroidManifest.xml:8:9-11:40
+103            android:name="com.squareup.picasso.PicassoProvider"
+103-->[com.squareup.picasso:picasso:2.71828] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\34e8a1e1612e5acc9ed9420b0aad0a5f\picasso-2.71828\AndroidManifest.xml:9:13-64
+104            android:authorities="com.example.firebase.com.squareup.picasso"
+104-->[com.squareup.picasso:picasso:2.71828] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\34e8a1e1612e5acc9ed9420b0aad0a5f\picasso-2.71828\AndroidManifest.xml:10:13-72
+105            android:exported="false" />
+105-->[com.squareup.picasso:picasso:2.71828] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\34e8a1e1612e5acc9ed9420b0aad0a5f\picasso-2.71828\AndroidManifest.xml:11:13-37
+106
+107        <receiver
+107-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:37:9-44:20
+108            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+108-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:38:13-78
+109            android:exported="true"
+109-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:39:13-36
+110            android:permission="com.google.android.c2dm.permission.SEND" >
+110-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:40:13-73
+111            <intent-filter>
+111-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:41:13-43:29
+112                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+112-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:42:17-81
+112-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:42:25-78
+113            </intent-filter>
+114        </receiver>
+115        <!--
+116             FirebaseInstanceIdService performs security checks at runtime,
+117             no need for explicit permissions despite exported="true"
+118        -->
+119        <service
+119-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:50:9-56:19
+120            android:name="com.google.firebase.iid.FirebaseInstanceIdService"
+120-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:51:13-77
+121            android:exported="true" >
+121-->[com.google.firebase:firebase-iid:17.0.4] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\84352e1e1ec013e986febc13a77b8b12\firebase-iid-17.0.4\AndroidManifest.xml:52:13-36
+122            <intent-filter android:priority="-500" >
+122-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:44:13-46:29
+123                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+123-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:45:17-80
+123-->C:\Users\Dell\Desktop\IEEEECUSB-20-APP\app\src\main\AndroidManifest.xml:45:25-77
+124            </intent-filter>
+125        </service>
+126
+127        <activity
+127-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\95ee8f65ea17f24286635144d13a6dae\play-services-base-16.0.1\AndroidManifest.xml:23:9-26:75
+128            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+128-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\95ee8f65ea17f24286635144d13a6dae\play-services-base-16.0.1\AndroidManifest.xml:24:13-79
 129            android:exported="false"
-129-->[com.google.firebase:firebase-common:16.0.3] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\a48782d3fd02d5ce5e143923d5cc08c6\firebase-common-16.0.3\AndroidManifest.xml:13:13-37
-130            android:initOrder="100" />
-130-->[com.google.firebase:firebase-common:16.0.3] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\a48782d3fd02d5ce5e143923d5cc08c6\firebase-common-16.0.3\AndroidManifest.xml:14:13-36
+129-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\95ee8f65ea17f24286635144d13a6dae\play-services-base-16.0.1\AndroidManifest.xml:25:13-37
+130            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+130-->[com.google.android.gms:play-services-base:16.0.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\95ee8f65ea17f24286635144d13a6dae\play-services-base-16.0.1\AndroidManifest.xml:26:13-72
 131
-132        <meta-data
-132-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\420e505f8c61bae48fe711a15e44fd53\play-services-basement-16.0.1\AndroidManifest.xml:23:9-25:69
-133            android:name="com.google.android.gms.version"
-133-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\420e505f8c61bae48fe711a15e44fd53\play-services-basement-16.0.1\AndroidManifest.xml:24:13-58
-134            android:value="@integer/google_play_services_version" />
-134-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\420e505f8c61bae48fe711a15e44fd53\play-services-basement-16.0.1\AndroidManifest.xml:25:13-66
-135        <meta-data
-135-->[com.android.support:support-v4:26.1.0] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\6b407c900b1ead6e3743b71fbe19b5d5\support-v4-26.1.0\AndroidManifest.xml:26:9-28:38
-136            android:name="android.support.VERSION"
-136-->[com.android.support:support-v4:26.1.0] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\6b407c900b1ead6e3743b71fbe19b5d5\support-v4-26.1.0\AndroidManifest.xml:27:13-51
-137            android:value="26.1.0" />
-137-->[com.android.support:support-v4:26.1.0] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\6b407c900b1ead6e3743b71fbe19b5d5\support-v4-26.1.0\AndroidManifest.xml:28:13-35
-138    </application>
-139
-140</manifest>
+132        <provider
+132-->[com.google.firebase:firebase-common:16.0.3] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3f2a2c7673ce75475727297e1f490a86\firebase-common-16.0.3\AndroidManifest.xml:10:9-14:39
+133            android:name="com.google.firebase.provider.FirebaseInitProvider"
+133-->[com.google.firebase:firebase-common:16.0.3] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3f2a2c7673ce75475727297e1f490a86\firebase-common-16.0.3\AndroidManifest.xml:11:13-77
+134            android:authorities="com.example.firebase.firebaseinitprovider"
+134-->[com.google.firebase:firebase-common:16.0.3] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3f2a2c7673ce75475727297e1f490a86\firebase-common-16.0.3\AndroidManifest.xml:12:13-72
+135            android:exported="false"
+135-->[com.google.firebase:firebase-common:16.0.3] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3f2a2c7673ce75475727297e1f490a86\firebase-common-16.0.3\AndroidManifest.xml:13:13-37
+136            android:initOrder="100" />
+136-->[com.google.firebase:firebase-common:16.0.3] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\3f2a2c7673ce75475727297e1f490a86\firebase-common-16.0.3\AndroidManifest.xml:14:13-36
+137
+138        <meta-data
+138-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\8354cd3338f4bb11250aa9a0a8c2dda7\play-services-basement-16.0.1\AndroidManifest.xml:23:9-25:69
+139            android:name="com.google.android.gms.version"
+139-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\8354cd3338f4bb11250aa9a0a8c2dda7\play-services-basement-16.0.1\AndroidManifest.xml:24:13-58
+140            android:value="@integer/google_play_services_version" />
+140-->[com.google.android.gms:play-services-basement:16.0.1] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\8354cd3338f4bb11250aa9a0a8c2dda7\play-services-basement-16.0.1\AndroidManifest.xml:25:13-66
+141        <meta-data
+141-->[com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\c1e1d19cc243bb7cd325c1c63798c474\support-v4-26.1.0\AndroidManifest.xml:26:9-28:38
+142            android:name="android.support.VERSION"
+142-->[com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\c1e1d19cc243bb7cd325c1c63798c474\support-v4-26.1.0\AndroidManifest.xml:27:13-51
+143            android:value="26.1.0" />
+143-->[com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-2\files-2.1\c1e1d19cc243bb7cd325c1c63798c474\support-v4-26.1.0\AndroidManifest.xml:28:13-35
+144    </application>
+145
+146</manifest>

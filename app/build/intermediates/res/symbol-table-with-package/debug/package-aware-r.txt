@@ -33,6 +33,10 @@ animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
 array CommitteesList
 array Postition
+array com_google_android_gms_fonts_certs
+array com_google_android_gms_fonts_certs_dev
+array com_google_android_gms_fonts_certs_prod
+array preloaded_fonts
 attr action
 attr actionBarDivider
 attr actionBarItemBackground
@@ -1103,6 +1107,8 @@ drawable ic_menu_slideshow
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ieee
+drawable ieeeblue
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1125,6 +1131,7 @@ drawable splash
 drawable sub_btn
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+font ruluko
 id ALT
 id CTRL
 id ChattingNodesList
@@ -1137,8 +1144,12 @@ id CommitteesList_ListView
 id CommittessListTitile_textView
 id CreateAnnouncment
 id CreateTask
+id DATE
+id DETAILS
 id DateEditText
 id DateTextView
+id Deadline
+id Deatails
 id DetailsEditText
 id DetailsTextView
 id EmailEditTextLogIn
@@ -1148,6 +1159,8 @@ id HeadNVice_FrameLayout
 id HeadName_textView
 id Head_textView
 id IEEECUSB_Chat_textView
+id ImageURL
+id LOCATION
 id LocationEditText
 id LocationTextView
 id META
@@ -1169,9 +1182,12 @@ id Sender_imageView
 id ShowPreviousChatting_button
 id SignUp_ButtonLogIn
 id Submit_button
+id TOPIC
+id Target
 id TargetSpinner
 id TargetTextView
 id Time_textView
+id Topic
 id TopicEditText
 id TopicTextView
 id UserCommittee1_textView
@@ -1233,6 +1249,8 @@ id coordinator
 id custom
 id customPanel
 id dark
+id deadline
+id deatails
 id decor_content_parent
 id default_activity_button
 id design_bottom_sheet
@@ -1276,6 +1294,7 @@ id icon_group
 id icon_only
 id ifRoom
 id image
+id imageView4
 id info
 id invisible
 id italic
@@ -1389,6 +1408,7 @@ id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
+id target
 id text
 id text2
 id textSpacerNoButtons
@@ -1405,6 +1425,7 @@ id title_template
 id toolbar
 id top
 id topPanel
+id topic
 id touch_outside
 id transition_current_scene
 id transition_layout_save
@@ -1481,6 +1502,8 @@ layout activity_announcement_display
 layout activity_committees_list
 layout activity_create
 layout activity_create_notifications
+layout activity_display_event
+layout activity_display_task
 layout activity_home
 layout activity_login
 layout activity_main
