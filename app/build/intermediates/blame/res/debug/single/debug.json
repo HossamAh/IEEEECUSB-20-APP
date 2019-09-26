@@ -356,6 +356,10 @@
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },
     {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable_sub_btn.png.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\drawable\\sub_btn.png"
+    },
+    {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_design_bottom_navigation_item_background.xml.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\6c2164896ca319583b40d5b80aa35763\\design-28.0.0\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
     },
@@ -770,6 +774,10 @@
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\anim_frombottom.xml.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\anim\\frombottom.xml"
     },
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_text_btn_ripple_color.xml.flat",
@@ -1640,6 +1648,10 @@
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable\\abc_cab_background_internal_bg.xml"
     },
     {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_create.xml.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\layout\\activity_create.xml"
+    },
+    {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_layout_snackbar.xml.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\6c2164896ca319583b40d5b80aa35763\\design-28.0.0\\res\\layout\\design_layout_snackbar.xml"
     },
@@ -1658,6 +1670,10 @@
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg.png.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\drawable\\bg.png"
     },
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -1788,12 +1804,20 @@
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable_splash.png.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\drawable\\splash.png"
+    },
+    {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_part_chronometer.xml.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\895559d2bf708e950c8f9daa6bb1fb41\\support-compat-28.0.0\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_welcome.xml.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\layout\\activity_welcome.xml"
     },
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
@@ -2096,6 +2120,10 @@
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_16dp.png"
     },
     {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ballon.png.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\drawable\\ballon.png"
+    },
+    {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
     },
@@ -2130,6 +2158,10 @@
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_text_color.xml.flat",
         "source": "C:\\Users\\H S\\.gradle\\caches\\transforms-2\\files-2.1\\6c2164896ca319583b40d5b80aa35763\\design-28.0.0\\res\\color\\mtrl_chip_text_color.xml"
+    },
+    {
+        "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\anim_fromtop.xml.flat",
+        "source": "G:\\android course\\FireBase\\app\\src\\main\\res\\anim\\fromtop.xml"
     },
     {
         "merged": "G:\\android course\\FireBase\\app\\build\\intermediates\\res\\merged\\debug\\interpolator-v21_mtrl_linear_out_slow_in.xml.flat",

@@ -15,6 +15,8 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim frombottom
+anim fromtop
 anim nav_default_enter_anim
 anim nav_default_exit_anim
 anim nav_default_pop_enter_anim
@@ -1057,6 +1059,8 @@ drawable abc_vector_test
 drawable auth_background
 drawable avd_hide_password
 drawable avd_show_password
+drawable ballon
+drawable bg
 drawable circle
 drawable committee
 drawable common_full_open_on_phone
@@ -1117,6 +1121,8 @@ drawable notify_panel_notification_icon_bg
 drawable others_background
 drawable side_nav_bar
 drawable smallcircle
+drawable splash
+drawable sub_btn
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -1129,6 +1135,12 @@ id CommitteeName_textView
 id Committee_spinner
 id CommitteesList_ListView
 id CommittessListTitile_textView
+id CreateAnnouncment
+id CreateTask
+id DateEditText
+id DateTextView
+id DetailsEditText
+id DetailsTextView
 id EmailEditTextLogIn
 id FUNCTION
 id HeadNVice2_FrameLayout
@@ -1136,6 +1148,8 @@ id HeadNVice_FrameLayout
 id HeadName_textView
 id Head_textView
 id IEEECUSB_Chat_textView
+id LocationEditText
+id LocationTextView
 id META
 id MemberName_textView
 id Member_imageView
@@ -1154,7 +1168,12 @@ id SYM
 id Sender_imageView
 id ShowPreviousChatting_button
 id SignUp_ButtonLogIn
+id Submit_button
+id TargetSpinner
+id TargetTextView
 id Time_textView
+id TopicEditText
+id TopicTextView
 id UserCommittee1_textView
 id UserNameText
 id UserName_EditText
@@ -1189,6 +1208,7 @@ id all
 id always
 id async
 id auto
+id ballon
 id barrier
 id beginning
 id blocking
@@ -1360,6 +1380,7 @@ id src_in
 id src_over
 id standard
 id start
+id startBtn
 id status_bar_latest_event_content
 id stretch
 id submenuarrow
@@ -1458,6 +1479,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_announcement_display
 layout activity_committees_list
+layout activity_create
 layout activity_create_notifications
 layout activity_home
 layout activity_login
@@ -1465,6 +1487,7 @@ layout activity_main
 layout activity_previous_chatting
 layout activity_result
 layout activity_view_notifications
+layout activity_welcome
 layout chat_item
 layout committee_activity
 layout committees_list_item
