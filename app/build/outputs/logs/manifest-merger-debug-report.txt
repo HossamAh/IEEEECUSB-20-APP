@@ -132,72 +132,76 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\H S\.gradl
 		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:7:9-35
 	android:theme
 		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:12:9-52
+activity#com.example.firebase.DisplayTaskActivity
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:13:9-66
+	android:name
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:13:19-54
 activity#com.example.firebase.WelcomeActivity
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:13:9-20:20
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:14:9-21:20
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:13:19-50
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:14:19-50
 intent-filter#action:name:android.intent.action.MAIN+action:name:android.intent.action.VIEW+category:name:android.intent.category.LAUNCHER
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:14:13-19:29
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:15:13-20:29
 action#android.intent.action.MAIN
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:15:17-69
-	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:15:25-66
-action#android.intent.action.VIEW
 ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:16:17-69
 	android:name
 		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:16:25-66
+action#android.intent.action.VIEW
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:17:17-69
+	android:name
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:17:25-66
 category#android.intent.category.LAUNCHER
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:18:17-77
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:19:17-77
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:18:27-74
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:19:27-74
 activity#com.example.firebase.Create
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:21:9-44
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:22:9-44
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:21:19-41
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:22:19-41
 activity#com.example.firebase.PreviousChatting
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:22:9-54
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:23:9-54
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:22:19-51
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:23:19-51
 activity#com.example.firebase.AnnouncementDisplayActivity
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:23:9-26:71
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:24:9-27:71
 	android:label
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:25:13-72
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:26:13-72
 	android:theme
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:26:13-68
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:27:13-68
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:24:13-56
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:25:13-56
 activity#com.example.firebase.CommitteesListActivity
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:27:9-60
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:28:9-60
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:27:19-57
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:28:19-57
 activity#com.example.firebase.ViewNotifications
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:28:9-55
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:29:9-55
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:28:19-52
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:29:19-52
 activity#com.example.firebase.CreateNotifications
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:29:9-57
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:30:9-57
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:29:19-54
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:30:19-54
 activity#com.example.firebase.CommitteActivity
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:30:9-54
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:31:9-54
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:30:19-51
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:31:19-51
 activity#com.example.firebase.ProfileActivity
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:31:9-53
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:32:9-53
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:31:19-50
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:32:19-50
 activity#com.example.firebase.HomeActivity
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:32:9-50
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:33:9-50
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:32:19-47
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:33:19-47
 activity#com.example.firebase.LoginActivity
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:33:9-51
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:34:9-51
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:33:19-48
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:34:19-48
 activity#com.example.firebase.MainActivity
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:34:9-35:20
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:35:9-59
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:34:19-47
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:35:19-47
 service#com.example.firebase.Notifications.MyAndroidFirebaseMessagingService
 ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:37:9-41:19
 	android:name
@@ -218,12 +222,8 @@ action#com.google.firebase.INSTANCE_ID_EVENT
 ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:44:17-80
 	android:name
 		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:44:25-77
-uses-permission#android.permission.VIBRATE
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:48:5-66
-	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:48:22-63
 uses-permission#android.permission.INTERNET
-ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:50:5-67
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:48:5-67
 MERGED from [com.google.firebase:firebase-storage:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\4d918562546c21333825c652a639e1f9\firebase-storage-16.0.4\AndroidManifest.xml:24:5-67
 MERGED from [com.google.firebase:firebase-storage:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\4d918562546c21333825c652a639e1f9\firebase-storage-16.0.4\AndroidManifest.xml:24:5-67
 MERGED from [com.google.firebase:firebase-database:16.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\bd9fea90f32c6472f55f9a06f9546aeb\firebase-database-16.0.4\AndroidManifest.xml:23:5-67
@@ -231,7 +231,11 @@ MERGED from [com.google.firebase:firebase-database:16.0.4] C:\Users\H S\.gradle\
 MERGED from [com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:23:5-67
 MERGED from [com.google.firebase:firebase-iid:17.0.4] C:\Users\H S\.gradle\caches\transforms-2\files-2.1\f812aa0c82fadb0bc8e1403264ebbc81\firebase-iid-17.0.4\AndroidManifest.xml:23:5-67
 	android:name
-		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:50:22-64
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:48:22-64
+uses-permission#android.permission.VIBRATE
+ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:50:5-66
+	android:name
+		ADDED from G:\android course\FireBase\app\src\main\AndroidManifest.xml:50:22-63
 uses-sdk
 INJECTED from G:\android course\FireBase\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from G:\android course\FireBase\app\src\main\AndroidManifest.xml

@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class Create extends AppCompatActivity {
@@ -18,11 +21,23 @@ public class Create extends AppCompatActivity {
     private Spinner TargetSpinner;
     private Button CreateEvent,CreateTask,Submit;
     private TextView TopicTextView,DetailsTextView,DateTextView,LocationTextView,TargetTextView;
+    private FirebaseDatabase mFireBaseDataBase;
+    private DatabaseReference mFirebaseDataBaseReference;
+    private DatabaseReference mCommitteeTaskReference;
+    private DatabaseReference mCommitteeEventReference;
+    private DatabaseReference mGeneralEventReference;
+    private DatabaseReference mIndividualTaskReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
+        mFireBaseDataBase = FirebaseDatabase.getInstance();
+        mFirebaseDataBaseReference = mFireBaseDataBase.getReference();
+        //mCommitteeEventReference = mFirebaseDataBaseReference.child("Committees");//.child(committeeName).child("Event").push().setValue(CommitteeEvent Object);
+
+
         Topic = (EditText) findViewById(R.id.TopicEditText);
         Details =(EditText)findViewById(R.id.DetailsEditText);
         Date = (EditText)findViewById(R.id.DateEditText);
@@ -108,5 +123,8 @@ public class Create extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.firebase.Notifications;
 
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,8 +12,11 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.example.firebase.DisplayEventActivity;
+import com.example.firebase.DisplayTaskActivity;
 import com.example.firebase.HomeActivity;
 import com.example.firebase.R;
+import com.example.firebase.models.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -50,13 +54,108 @@ public class MyAndroidFirebaseMessagingService extends FirebaseMessagingService 
                 sendMessageNotification(title, message, messageId,senderName,senderId);
             }
             else if(remoteMessage.getData().get("sender_id") != null)
-                {
-                    String Committee = remoteMessage.getData().get("Committee");
-                    String senderId = remoteMessage.getData().get("sender_id");
-                    sendCommitteeMessageNotification(title, message, messageId,senderName,Committee,senderId);
-                }
+            {
+                String Committee = remoteMessage.getData().get("Committee");
+                String senderId = remoteMessage.getData().get("sender_id");
+                sendCommitteeMessageNotification(title, message, messageId,senderName,Committee,senderId);
+            }
 
         }
+        else  {
+            Log.d(TAG, "onMessageReceived: new incoming message.");
+            String Topic = remoteMessage.getData().get("Topic");
+            String Details = remoteMessage.getData().get("Details");
+            String Date = remoteMessage.getData().get("Date");
+            String Location = remoteMessage.getData().get("Location");
+            String Deadline = remoteMessage.getData().get("Deadline");
+            String EventID = remoteMessage.getData().get("EventID");
+            String TaskID = remoteMessage.getData().get("TaskID");
+            String Target = remoteMessage.getData().get("Target");
+            String img = remoteMessage.getData().get("ImageUrl");
+            sendAnyNotification(Topic,Details,Date,Location,Deadline,EventID,TaskID,Target,img , dataType);
+        }
+
+    }
+
+    private void sendAnyNotification(String topic, String details, String date, String location, String deadline, String eventID, String taskID, String target, String img, String dataType) {
+        int notificationId;
+        if(taskID !=null) {//get the notification id
+            notificationId= buildNotificationId(taskID);
+        }
+
+        //get the notification id
+        else {
+            notificationId = buildNotificationId(eventID);
+        }
+
+
+        Intent intent ;
+        PendingIntent pendingIntent;
+        switch (dataType){
+            case "Committee_Event":
+            case "General_Event":
+                intent = new Intent(this, DisplayEventActivity.class);
+                intent.putExtra("Topic",topic);
+                intent.putExtra("Details",details);
+                intent.putExtra("Date",date);
+                intent.putExtra("Location",location);
+                if(img !=null)
+                    intent.putExtra("ImageUrl",img);
+                else
+                    intent.putExtra("ImageUrl","");
+                intent.putExtra("Target",target);
+                intent.putExtra("EventID",eventID);
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                        PendingIntent.FLAG_ONE_SHOT);
+
+                break;
+
+
+            case "Committee_Task":
+                intent = new Intent(this, DisplayTaskActivity.class);
+                intent.putExtra("Topic",topic);
+                intent.putExtra("Details",details);
+                intent.putExtra("DeadLine",deadline);
+                intent.putExtra("Target",target);
+                intent.putExtra("TaskID",taskID);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                        PendingIntent.FLAG_ONE_SHOT);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + topic);
+        }
+
+
+
+
+
+        String channelId = getString(R.string.default_notification_channel_id);
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, channelId)
+                        .setSmallIcon(R.drawable.ic_launcher_background)
+                        .setContentTitle(topic)
+                        .setContentText("You have new Announcement To Show")
+                        .setAutoCancel(true)
+                        .setSound(defaultSoundUri)
+                        .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Since android Oreo notification channel is needed.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        notificationManager.notify(notificationId /* ID of notification */, notificationBuilder.build());
+
 
     }
 
@@ -111,6 +210,8 @@ public class MyAndroidFirebaseMessagingService extends FirebaseMessagingService 
             notificationManager.notify(notificationId /* ID of notification */, notificationBuilder.build());
         }
     }
+
+
     private void sendCommitteeMessageNotification(String title, String message, String messageId ,String senderName,String Committee,String senderID ){
         Log.d(TAG, "sendMessageNotification: Title: " + title);
         Log.d(TAG, "sendMessageNotification: notification body: " + message);

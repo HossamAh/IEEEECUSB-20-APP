@@ -8,8 +8,8 @@
         android:minSdkVersion="19"
         android:targetSdkVersion="28" />
 
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -22,8 +22,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme.NoActionBar" >
+        <activity android:name="com.example.firebase.DisplayTaskActivity" />
         <activity android:name="com.example.firebase.WelcomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,8 +45,7 @@
         <activity android:name="com.example.firebase.ProfileActivity" />
         <activity android:name="com.example.firebase.HomeActivity" />
         <activity android:name="com.example.firebase.LoginActivity" />
-        <activity android:name="com.example.firebase.MainActivity" >
-        </activity>
+        <activity android:name="com.example.firebase.MainActivity" />
 
         <service android:name="com.example.firebase.Notifications.MyAndroidFirebaseMessagingService" >
             <intent-filter>

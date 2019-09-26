@@ -79,3 +79,4 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
 >>>>>>> 2ee192bfae78a2c4a5bee0a695af800e43bb5ac1
+node_modules

@@ -1,0 +1,49 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisplayTaskActivity">
+
+    <TextView
+        android:id="@+id/topic"
+        android:layout_width="126dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="44dp"
+        android:text="topic"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/target"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/target"
+        android:layout_width="126dp"
+        android:layout_height="39dp"
+        android:text="target"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/deatails"
+        app:layout_constraintStart_toStartOf="@+id/topic"
+        app:layout_constraintTop_toBottomOf="@+id/topic" />
+
+    <TextView
+        android:id="@+id/deadline"
+        android:layout_width="126dp"
+        android:layout_height="39dp"
+        android:text="deadline"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/deatails"
+        app:layout_constraintTop_toBottomOf="@+id/deatails" />
+
+    <TextView
+        android:id="@+id/deatails"
+        android:layout_width="126dp"
+        android:layout_height="39dp"
+        android:text="deatails"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/deadline"
+        app:layout_constraintStart_toStartOf="@+id/target"
+        app:layout_constraintTop_toBottomOf="@+id/target" />
+
+</android.support.constraint.ConstraintLayout>
