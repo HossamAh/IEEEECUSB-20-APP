@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-=======
 # Built application files
 *.apk
 *.ap_
@@ -78,5 +63,4 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
->>>>>>> 2ee192bfae78a2c4a5bee0a695af800e43bb5ac1
 node_modules

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/draw_committees_menu"
+            android:title="Committees" />
+
+        <item
+            android:id="@+id/draw_notifications_menu"
+            android:title="Announcement" />
+
+        <item
+            android:id="@+id/draw_Logout_menu"
+            android:title="Logout" />
+
+    </group>
+</menu>

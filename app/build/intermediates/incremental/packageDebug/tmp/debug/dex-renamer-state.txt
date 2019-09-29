@@ -1,4 +1,4 @@
-#Thu Sep 26 21:14:01 EET 2019
-base.0=C\:\\Users\\Dell\\Desktop\\IEEEECUSB-20-APP\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Sat Sep 28 02:29:57 EET 2019
+base.0=G\:\\android course\\FireBase\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

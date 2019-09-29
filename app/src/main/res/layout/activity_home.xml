@@ -14,6 +14,34 @@
         android:orientation="vertical"
         tools:context=".HomeActivity">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/blue2"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/User_imageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/smallcircle"></ImageView>
+
+                <TextView
+                    android:id="@+id/UserNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/blue5"></TextView>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+
         <RelativeLayout
 
             android:layout_width="match_parent"
@@ -78,32 +106,5 @@
 
         </RelativeLayout>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/blue2"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/User_imageView"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/smallcircle"></ImageView>
-
-                <TextView
-                    android:id="@+id/UserNameText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:text="@string/app_name"
-                    android:textColor="@color/blue5"></TextView>
-            </LinearLayout>
-        </android.support.v7.widget.Toolbar>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

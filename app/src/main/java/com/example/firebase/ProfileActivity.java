@@ -42,7 +42,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private TextView Name, CommitteeName1, CommitteeName2, CommitteeName3, PositionName, privateChat, committeeChat1, committeeChat2, committeeChat3, clubChat;
     private ImageView ProfileImage;
     private String Profile_Uid, UserName, Committee2Name;
@@ -109,6 +109,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
+
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
@@ -241,10 +242,15 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             privateChat.setVisibility(View.VISIBLE);
             Profile_Uid = bundle.getString("UserID");
             databaseReference.child(Profile_Uid).addValueEventListener(profileUser);
-            ChattingList.setVisibility(View.GONE);
+//            ChattingList.setVisibility(View.GONE);
             committeeChat1.setVisibility(View.GONE);
             committeeChat2.setVisibility(View.GONE);
             clubChat.setVisibility(View.GONE);
+            ViewChatting.setVisibility(View.GONE);
+            if(user.getUser_Position().equals("member")) {
+                navigationView.getMenu().removeItem(R.id.draw_creation_menu);
+            }
+            //Line.setVisibility(View.GONE);
         } else {
             Log.e("ProfileActivity", "auth user");
             privateChat.setVisibility(View.GONE);
@@ -297,7 +303,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         CommitteeName1.setVisibility(View.VISIBLE);
         ProfileImage.setVisibility(View.VISIBLE);
         PositionName.setVisibility(View.VISIBLE);
-
+        Line.setVisibility(View.VISIBLE);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -315,7 +321,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 committeeChat1.setVisibility(View.GONE);
                 committeeChat2.setVisibility(View.GONE);
                 clubChat.setVisibility(View.GONE);
-                Line.setVisibility(View.GONE);
+                //Line.setVisibility(View.GONE);
                 ViewChatting.setVisibility(View.GONE);
 
             }
@@ -443,25 +449,48 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         initFCM();
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        if(user.getUser_Position().equals("member")) {
+            navigationView.getMenu().findItem(R.id.draw_creation_menu).setEnabled(false);
+            switch (menuItem.getItemId()) {
+                case R.id.draw_notifications_menu://display
 
-        switch (menuItem.getItemId()) {
-            case R.id.draw_notifications_menu://display
+                    break;
+                case R.id.draw_creation_menu:
+                    Toast.makeText(getBaseContext(),"you can't use this feature",Toast.LENGTH_LONG).show();
+                    break;
+                case R.id.draw_committees_menu:
+                    Intent intent = new Intent(ProfileActivity.this, CommitteesListActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.draw_Logout_menu:
+                    firebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                    break;
+            }
+        }
+        else
+        {
+            switch (menuItem.getItemId()) {
+                case R.id.draw_notifications_menu://display
 
-                break;
-            case R.id.draw_creation_menu:
-
-                break;
-            case R.id.draw_committees_menu:
-                Intent intent = new Intent(ProfileActivity.this, CommitteesListActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.draw_Logout_menu:
-                firebaseAuth.getInstance().signOut();
-                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-                break;
+                    break;
+                case R.id.draw_creation_menu:
+                    startActivity(new Intent(ProfileActivity.this,Create.class));
+                    break;
+                case R.id.draw_committees_menu:
+                    Intent intent = new Intent(ProfileActivity.this, CommitteesListActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.draw_Logout_menu:
+                    firebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                    break;
+            }
         }
         return true;
     }
+
 }

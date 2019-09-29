@@ -30,10 +30,10 @@ class DisplayEventActivity : AppCompatActivity() {
         detailsTxt.text = details
         dateTxt.text = date
         LocationTxt.text = location
-        if(imgurl == "")
+        /*if(imgurl == "")
             image.setImageResource(R.drawable.ieeeblue)
         else
             Picasso.get().load(imgurl).transform(CircleTransform()).into(ImageURL)
-
+*/
     }
 }
