@@ -10,48 +10,28 @@
         android:layout_width="126dp"
         android:layout_height="39dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="128dp"
+        android:layout_marginEnd="124dp"
         android:fontFamily="@font/ruluko"
         android:textAlignment="textStart"
         android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/ImageURL"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/DETAILS"
         android:layout_width="109dp"
-        android:layout_height="148dp"
-        android:layout_marginStart="88dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="92dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/ruluko"
         android:textAlignment="textStart"
         android:textSize="19sp"
-        app:layout_constraintStart_toEndOf="@+id/ImageURL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/deatails"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/LOCATION"
-        android:layout_width="126dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="56dp"
-        android:fontFamily="@font/ruluko"
-        android:textAlignment="textStart"
-        android:textSize="19sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImageURL" />
-
-    <TextView
-        android:id="@+id/DATE"
-        android:layout_width="126dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/ruluko"
-        android:textAlignment="textStart"
-        android:textSize="19sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LOCATION" />
 
     <ImageView
         android:id="@+id/ImageURL"
@@ -81,8 +61,8 @@
         android:id="@+id/target"
         android:layout_width="126dp"
         android:layout_height="39dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="112dp"
         android:fontFamily="@font/ruluko"
         android:text="location :"
         android:textAlignment="textStart"
@@ -91,24 +71,58 @@
         app:layout_constraintTop_toBottomOf="@+id/ImageURL" />
 
     <TextView
+        android:id="@+id/LOCATION"
+        android:layout_width="219dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/ruluko"
+        android:textAlignment="textStart"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/target"
+        app:layout_constraintTop_toBottomOf="@+id/ImageURL" />
+
+    <TextView
+        android:id="@+id/DATE"
+        android:layout_width="219dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/ruluko"
+        android:textAlignment="textStart"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/deadline"
+        app:layout_constraintTop_toBottomOf="@+id/ImageURL"
+        app:layout_constraintVertical_bias="0.619" />
+
+    <TextView
         android:id="@+id/deadline"
         android:layout_width="126dp"
         android:layout_height="39dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/ruluko"
         android:text="date :"
         android:textAlignment="textStart"
         android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/target" />
+        app:layout_constraintTop_toBottomOf="@+id/ImageURL" />
 
     <TextView
         android:id="@+id/deatails"
         android:layout_width="69dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/ruluko"
         android:text="details :"
         android:textAlignment="textStart"
@@ -118,12 +132,14 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="0dp"
-        android:layout_height="333dp"
+        android:layout_width="413dp"
+        android:layout_height="243dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImageURL"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ieee" />
 
 </android.support.constraint.ConstraintLayout>
