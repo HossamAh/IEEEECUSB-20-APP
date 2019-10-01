@@ -2,6 +2,7 @@ package com.example.firebase
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 
 class DisplayTaskActivity : AppCompatActivity() {
@@ -15,10 +16,9 @@ class DisplayTaskActivity : AppCompatActivity() {
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_task)
-
            topic = intent.getStringExtra("Topic")
            details = intent.getStringExtra("Details")
-           deadlinedate = intent.getStringExtra("DeadLine")
+           deadlinedate = intent.getStringExtra("Deadline")
            target = intent.getStringExtra("Target")
            val topicTxt = findViewById<TextView>(R.id.Topic)
            val detailsTxt = findViewById<TextView>(R.id.Deatails)
