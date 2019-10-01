@@ -78,13 +78,13 @@ public class MyAndroidFirebaseMessagingService extends FirebaseMessagingService 
     }
 
     private void sendAnyNotification(String topic, String details, String date, String location, String deadline, String eventID, String taskID, String target, String img, String dataType) {
-        int notificationId;
+        int notificationId=0;
         if(taskID !=null) {//get the notification id
             notificationId= buildNotificationId(taskID);
         }
 
         //get the notification id
-        else {
+        else if(eventID!=null){
             notificationId = buildNotificationId(eventID);
         }
 

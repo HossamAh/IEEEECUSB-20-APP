@@ -18,7 +18,7 @@ class DisplayTaskActivity : AppCompatActivity() {
         setContentView(R.layout.activity_display_task)
            topic = intent.getStringExtra("Topic")
            details = intent.getStringExtra("Details")
-           deadlinedate = intent.getStringExtra("Deadline")
+           deadlinedate = intent.getStringExtra("DeadLine")
            target = intent.getStringExtra("Target")
            val topicTxt = findViewById<TextView>(R.id.Topic)
            val detailsTxt = findViewById<TextView>(R.id.Deatails)
