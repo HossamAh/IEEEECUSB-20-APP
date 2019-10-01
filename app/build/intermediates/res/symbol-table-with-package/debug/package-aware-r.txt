@@ -1136,6 +1136,8 @@ drawable tooltip_frame_light
 font rammetto_one
 font ruluko
 id ALT
+id AnnouncementItemTarget
+id AnnouncementItemTopic
 id CTRL
 id ChattingNodesList
 id CommitteChat1_textView
@@ -1179,6 +1181,7 @@ id ProfileImagePickerbutton
 id Profile_progressBar
 id Receiver_imageView
 id ReciverName_textView
+id Recycle
 id SHIFT
 id SYM
 id Sender_imageView
@@ -1245,6 +1248,7 @@ id clip_vertical
 id collapseActionView
 id committeChat2_textView
 id committe_ImageView
+id constraintLayout
 id container
 id content
 id contentPanel
@@ -1409,6 +1413,7 @@ id stretch
 id submenuarrow
 id submit_area
 id tabMode
+id tabs
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
@@ -1449,6 +1454,7 @@ id view3
 id view4
 id view5
 id view_offset_helper
+id view_pager
 id visible
 id wide
 id withText
@@ -1502,6 +1508,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_announcement
 layout activity_announcement_display
 layout activity_committees_list
 layout activity_create
@@ -1515,6 +1522,7 @@ layout activity_previous_chatting
 layout activity_result
 layout activity_view_notifications
 layout activity_welcome
+layout announcement_item
 layout chat_item
 layout committee_activity
 layout committees_list_item
@@ -1534,6 +1542,7 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_chatting_list
 layout fragment_committee_info
+layout fragment_main
 layout fragment_members
 layout fragment_vice
 layout item_message

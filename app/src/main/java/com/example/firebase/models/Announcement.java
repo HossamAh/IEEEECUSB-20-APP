@@ -1,12 +1,13 @@
 package com.example.firebase.models;
 
 public class Announcement {
-private int Type; //task or envent
+private int Type; //task 1 or envent 0
 private String Topic;
 private String Location;
 private String Details;
 private String Target;
 private String imageURL;
+private String Date;
 private  String notificationID;
 
     public Announcement(int type, String topic, String location, String details, String target, String imageURL) {
@@ -16,6 +17,14 @@ private  String notificationID;
         Details = details;
         Target = target;
         this.imageURL = imageURL;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 
     public Announcement() {

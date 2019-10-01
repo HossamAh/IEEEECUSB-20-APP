@@ -27,6 +27,7 @@
         android:theme="@style/AppTheme.NoActionBar" >
         <activity android:name="com.example.firebase.DisplayEventActivity" />
         <activity android:name="com.example.firebase.DisplayTaskActivity" />
+        <activity android:name="com.example.firebase.AnnouncementActivity" />
         <activity android:name="com.example.firebase.WelcomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

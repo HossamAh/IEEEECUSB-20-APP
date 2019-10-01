@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".DisplayEventActivity"></activity>
         <activity android:name=".DisplayTaskActivity" />
+        <activity android:name=".AnnouncementActivity"/>
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

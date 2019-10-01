@@ -143,6 +143,10 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 user = dataSnapshot.getValue(Users.class);
+                UserInfo.sUserName = user.getUser_Name();
+                UserInfo.sImageUrl=user.getUrl();
+                UserInfo.USER_ID=dataSnapshot.getKey();
+                UserInfo.sCommitteeName = user.getUser_Committee();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (snapshot.getKey().equals("ChattingList")) {
                         Log.e("ProfileActivity", "user children data : " + snapshot.getValue().toString());
@@ -456,7 +460,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             navigationView.getMenu().findItem(R.id.draw_creation_menu).setEnabled(false);
             switch (menuItem.getItemId()) {
                 case R.id.draw_notifications_menu://display
-
+                    Intent intent1 = new Intent(ProfileActivity.this, AnnouncementActivity.class);
+                    startActivity(intent1);
                     break;
                 case R.id.draw_creation_menu:
                     Toast.makeText(getBaseContext(),"you can't use this feature",Toast.LENGTH_LONG).show();
@@ -475,14 +480,15 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         {
             switch (menuItem.getItemId()) {
                 case R.id.draw_notifications_menu://display
-
+                    Intent intent = new Intent(ProfileActivity.this, AnnouncementActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.draw_creation_menu:
                     startActivity(new Intent(ProfileActivity.this,Create.class));
                     break;
                 case R.id.draw_committees_menu:
-                    Intent intent = new Intent(ProfileActivity.this, CommitteesListActivity.class);
-                    startActivity(intent);
+                    Intent intent1 = new Intent(ProfileActivity.this, CommitteesListActivity.class);
+                    startActivity(intent1);
                     break;
                 case R.id.draw_Logout_menu:
                     firebaseAuth.getInstance().signOut();
