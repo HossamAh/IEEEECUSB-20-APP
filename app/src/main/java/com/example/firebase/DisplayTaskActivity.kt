@@ -20,8 +20,8 @@ class DisplayTaskActivity : AppCompatActivity() {
         details = intent.getStringExtra("Details")
         deadlinedate = intent.getStringExtra("Deadline")
         target = intent.getStringExtra("Target")
-        val topicTxt = findViewById<TextView>(R.id.Topic)
-        val detailsTxt = findViewById<TextView>(R.id.Deatails)
+        val topicTxt = findViewById<TextView>(R.id.TOPIC)
+        val detailsTxt = findViewById<TextView>(R.id.DETAILS)
         val deadlineTxt = findViewById<TextView>(R.id.Deadline)
         val  targetTxt = findViewById<TextView>(R.id.Target)
         topicTxt.text = topic
