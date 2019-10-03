@@ -1,4 +1,4 @@
-#Thu Oct 03 19:21:43 EET 2019
+#Thu Oct 03 19:59:25 EET 2019
 base.0=C\:\\Users\\Dell\\Desktop\\IEEEECUSB-20-APP\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
