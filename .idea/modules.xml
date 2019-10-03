@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Desktop-IEEEECUSB-20-APP.iml" filepath="$PROJECT_DIR$/Desktop-IEEEECUSB-20-APP.iml" />
       <module fileurl="file://$PROJECT_DIR$/FireBase.iml" filepath="$PROJECT_DIR$/FireBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IEEE.iml" filepath="$PROJECT_DIR$/IEEE.iml" />
       <module fileurl="file://$PROJECT_DIR$/IEEEECUSB-20-APP.iml" filepath="$PROJECT_DIR$/IEEEECUSB-20-APP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

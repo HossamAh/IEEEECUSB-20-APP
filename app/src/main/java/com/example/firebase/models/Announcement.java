@@ -8,14 +8,16 @@ private String Details;
 private String Target;
 private String imageURL;
 private String Date;
+private String id;
 private  String notificationID;
 
-    public Announcement(int type, String topic, String location, String details, String target, String imageURL) {
+    public Announcement(int type, String topic, String location, String details, String target, String imageURL , String id) {
         Type = type;
         Topic = topic;
         Location = location;
         Details = details;
         Target = target;
+        this.id = id;
         this.imageURL = imageURL;
     }
 
@@ -76,5 +78,13 @@ private  String notificationID;
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

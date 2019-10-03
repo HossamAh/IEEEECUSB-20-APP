@@ -1,7 +1,9 @@
 package com.example.firebase;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class PlaceholderFragment extends Fragment  implements RecyclerViewAdapterAnnouncements.OnNotListener {
     ArrayList<Announcement> announcementArrayList;
     Announcement announcement ;
     RecyclerView recyclerView;
@@ -51,6 +53,32 @@ public class PlaceholderFragment extends Fragment {
         Log.d("lmao", "newInstance: "+index);
         mam = index;
         return fragment;
+    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(!isVisibleToUser){
+            //You can do inside this method
+
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d("AnnouncementFragment ", "onDestroy: ");
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("AnnouncementFragment ", "onDetach: ");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("AnnouncementFragment ", "onDestroyView: ");
     }
 
     @Override
@@ -84,6 +112,7 @@ public class PlaceholderFragment extends Fragment {
                 Log.e("AnnouncementFragment",dataSnapshot.getValue().toString());
                 if(dataSnapshot.exists()) {
                     announcement = new Announcement();
+                    Log.e("AnnouncementFragment","index is "+ index);
                     switch (index) {
                         case 1:
                         case 3:
@@ -96,6 +125,7 @@ public class PlaceholderFragment extends Fragment {
                             announcement.setTarget(event.getTarget());
                             announcement.setTopic(event.getTopic());
                             announcement.setDate(event.getDate());
+                            announcement.setId("Event");
                             announcement.setType(0);
                             break;
                         case 2:
@@ -103,14 +133,17 @@ public class PlaceholderFragment extends Fragment {
                             Log.e("AnnouncementFragment","Task is "+dataSnapshot.getValue().toString());
                             announcement.setDetails(task.getDetails());
                             announcement.setTarget(task.getTarget());
+                            announcement.setId("Task");
                             announcement.setTopic(task.getTopic());
                             announcement.setDate(task.getDeadlineDate());
                             announcement.setType(1);
                             break;
                     }
                     announcementArrayList.add(announcement);
+                    adapterAnnouncements.notifyDataSetChanged();
 
-                  }
+
+                }
             }
 
             @Override
@@ -134,6 +167,7 @@ public class PlaceholderFragment extends Fragment {
             }
         });
 
+
     }
 
     @Override
@@ -142,12 +176,12 @@ public class PlaceholderFragment extends Fragment {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-        recyclerView = (RecyclerView) root.findViewById(R.id.Recycle);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        RecyclerViewAdapterAnnouncements adapterAnnouncements = new RecyclerViewAdapterAnnouncements(announcementArrayList,getContext());
-        recyclerView.setAdapter(adapterAnnouncements);
+
+
+        Log.d("AnnouncementFragment ", "onCreateView: ");
                return root;
     }
+
 
     @Override
     public void onStart() {
@@ -155,10 +189,46 @@ public class PlaceholderFragment extends Fragment {
 
 
     }
+    RecyclerViewAdapterAnnouncements adapterAnnouncements;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        recyclerView = (RecyclerView) view.findViewById(R.id.Recycle);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        adapterAnnouncements = new RecyclerViewAdapterAnnouncements(announcementArrayList,view.getContext(),this);
+        recyclerView.setAdapter(adapterAnnouncements);
+        Log.d("AnnouncementFragment ", "onViewCreated: ");
     }
+
+    @Override
+    public void OnNotClick(int position) {
+        if(announcementArrayList.get(position).getId().equals("Event")){
+        Intent intent = new Intent(getActivity(),DisplayEventActivity.class);
+            intent.putExtra("Topic",announcementArrayList.get(position).getTopic());
+            intent.putExtra("Details",announcementArrayList.get(position).getDetails());
+            intent.putExtra("Date",announcementArrayList.get(position).getDate());
+            intent.putExtra("Location",announcementArrayList.get(position).getLocation());
+            if(announcementArrayList.get(position).getImageURL() !=null)
+                intent.putExtra("ImageUrl",announcementArrayList.get(position).getImageURL());
+            else
+                intent.putExtra("ImageUrl","");
+            intent.putExtra("Target",announcementArrayList.get(position).getTarget());
+            intent.putExtra("EventID",announcementArrayList.get(position).getId());
+
+        startActivity(intent);
+    }
+        else{
+            Intent intent = new Intent(getActivity(),DisplayTaskActivity.class);
+
+            intent.putExtra("Topic",announcementArrayList.get(position).getTopic());
+            intent.putExtra("Details",announcementArrayList.get(position).getDetails());
+            intent.putExtra("DeadLine",announcementArrayList.get(position).getDate());
+            intent.putExtra("Target",announcementArrayList.get(position).getTarget());
+            intent.putExtra("TaskID",announcementArrayList.get(position).getId());
+            startActivity(intent);
+
+
+        }
+}
 }

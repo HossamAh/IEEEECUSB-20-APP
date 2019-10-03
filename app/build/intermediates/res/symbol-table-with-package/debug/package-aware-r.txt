@@ -1299,6 +1299,7 @@ id homeAsUp
 id icon
 id icon_group
 id icon_only
+id id
 id ifRoom
 id image
 id imageView4
