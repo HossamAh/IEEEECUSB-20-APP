@@ -28,7 +28,6 @@
             android:label="@string/title_activity_announcement_display"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity android:name=".CommitteesListActivity" />
-        <activity android:name=".ViewNotifications" />
         <activity android:name=".CreateNotifications" />
         <activity android:name=".CommitteActivity" />
         <activity android:name=".ProfileActivity" />

@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:elevation="20dp"
     android:orientation="vertical"
@@ -16,20 +16,31 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/id"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+        <TextView
             android:id="@+id/AnnouncementItemTarget"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
-            android:text="@string/app_name" />
+            android:text="@string/app_name"
+            android:textColor="@color/Black"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/AnnouncementItemTopic"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginRight="8dp"
-            android:text="@string/app_name" />
+            android:layout_marginBottom="4dp"
+            android:text="@string/app_name"
+            android:textSize="16dp" />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

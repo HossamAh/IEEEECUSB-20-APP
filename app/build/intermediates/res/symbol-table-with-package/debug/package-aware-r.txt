@@ -1065,6 +1065,7 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable ballon
 drawable bg
+drawable button_background
 drawable circle
 drawable committee
 drawable common_full_open_on_phone
@@ -1096,6 +1097,7 @@ drawable design_snackbar_background
 drawable download
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable gradientbackground
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_menu
@@ -1177,6 +1179,7 @@ id Message_textView
 id NavHeaderUserName_textView
 id Password_EditTextLogIn
 id Postition_spinner
+id ProfileData
 id ProfileImagePickerbutton
 id Profile_progressBar
 id Receiver_imageView
@@ -1241,6 +1244,7 @@ id center
 id center_horizontal
 id center_vertical
 id chains
+id chattingsLayout
 id checkbox
 id chronometer
 id clip_horizontal
@@ -1256,6 +1260,7 @@ id coordinator
 id custom
 id customPanel
 id dark
+id dataLayout
 id deadline
 id deatails
 id decor_content_parent
@@ -1272,7 +1277,6 @@ id draw_Logout_menu
 id draw_committees_menu
 id draw_creation_menu
 id draw_notifications_menu
-id draw_profile_menu
 id drawer_layout
 id edit_query
 id end
@@ -1299,9 +1303,9 @@ id homeAsUp
 id icon
 id icon_group
 id icon_only
+id id
 id ifRoom
 id image
-id imageView4
 id info
 id invisible
 id italic
@@ -1452,7 +1456,6 @@ id view
 id view2
 id view3
 id view4
-id view5
 id view_offset_helper
 id view_pager
 id visible
@@ -1519,8 +1522,6 @@ layout activity_home
 layout activity_login
 layout activity_main
 layout activity_previous_chatting
-layout activity_result
-layout activity_view_notifications
 layout activity_welcome
 layout announcement_item
 layout chat_item
@@ -1565,7 +1566,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
-layout profile_activity
+layout profile
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material

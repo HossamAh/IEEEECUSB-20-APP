@@ -42,7 +42,6 @@
             android:label="@string/title_activity_announcement_display"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity android:name="com.example.firebase.CommitteesListActivity" />
-        <activity android:name="com.example.firebase.ViewNotifications" />
         <activity android:name="com.example.firebase.CreateNotifications" />
         <activity android:name="com.example.firebase.CommitteActivity" />
         <activity android:name="com.example.firebase.ProfileActivity" />

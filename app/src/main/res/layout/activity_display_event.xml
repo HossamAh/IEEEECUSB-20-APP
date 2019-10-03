@@ -5,50 +5,48 @@
     android:layout_height="match_parent"
     tools:context=".DisplayTaskActivity">
 
+
     <TextView
         android:id="@+id/TOPIC"
-        android:layout_width="126dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="124dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/ruluko"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textAlignment="textStart"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@+id/ImageURL"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toEndOf="@+id/topic"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/DETAILS"
-        android:layout_width="109dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/ruluko"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textAlignment="textStart"
-        android:textSize="19sp"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toEndOf="@+id/deatails"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ImageURL"
-        android:layout_width="162dp"
-        android:layout_height="111dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="88dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ieeeblue" />
+        app:layout_constraintTop_toBottomOf="@+id/TOPIC" />
 
     <TextView
         android:id="@+id/topic"
-        android:layout_width="126dp"
+        android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/ruluko"
         android:text="topic :"
@@ -61,85 +59,97 @@
         android:id="@+id/target"
         android:layout_width="126dp"
         android:layout_height="39dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/ruluko"
         android:text="location :"
         android:textAlignment="textStart"
         android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImageURL" />
+        app:layout_constraintTop_toBottomOf="@+id/DETAILS" />
 
     <TextView
         android:id="@+id/LOCATION"
-        android:layout_width="219dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/ruluko"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textAlignment="textStart"
-        android:textSize="19sp"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/target"
-        app:layout_constraintTop_toBottomOf="@+id/ImageURL" />
+        app:layout_constraintTop_toBottomOf="@+id/DETAILS" />
 
     <TextView
         android:id="@+id/DATE"
-        android:layout_width="219dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/ruluko"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textAlignment="textStart"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/ImageURL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/deadline"
-        app:layout_constraintTop_toBottomOf="@+id/ImageURL"
-        app:layout_constraintVertical_bias="0.619" />
+        app:layout_constraintTop_toBottomOf="@+id/LOCATION"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/deadline"
         android:layout_width="126dp"
         android:layout_height="39dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="269dp"
         android:fontFamily="@font/ruluko"
         android:text="date :"
         android:textAlignment="textStart"
         android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/ImageURL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImageURL" />
+        app:layout_constraintTop_toBottomOf="@+id/LOCATION"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/deatails"
         android:layout_width="69dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/ruluko"
         android:text="details :"
         android:textAlignment="textStart"
         android:textSize="19sp"
-        app:layout_constraintStart_toEndOf="@+id/ImageURL"
-        app:layout_constraintTop_toBottomOf="@+id/TOPIC" />
+        app:layout_constraintBottom_toTopOf="@+id/target"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TOPIC"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/ImageURL"
         android:layout_width="413dp"
         android:layout_height="243dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ImageURL"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ieee" />
 
 </android.support.constraint.ConstraintLayout>

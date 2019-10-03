@@ -32,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/previousChattingTitle"
-        android:layout_marginTop="8dp"></ListView>
+        android:layout_marginTop="8dp"
+        android:headerDividersEnabled="true"></ListView>
 
 </RelativeLayout>

@@ -20,8 +20,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,18 +64,24 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     private ImageView NavHeaderUserImage;
     private Button ViewChatting;
     private View Line;
-
+private RelativeLayout datalayout;
+private LinearLayout chattingLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_activity);
+        setContentView(R.layout.profile);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        chattingLayout =  findViewById(R.id.chattingsLayout);
+        datalayout = findViewById(R.id.dataLayout);
 
-        Line = findViewById(R.id.view5);
+        chattingLayout.setVisibility(View.INVISIBLE);
+        datalayout.setVisibility(View.INVISIBLE);
+
+  //      Line = findViewById(R.id.view5);
         ViewChatting = (Button)findViewById(R.id.ShowPreviousChatting_button);
         Name = (TextView) findViewById(R.id.UserName_textView);
         CommitteeName1 = (TextView) findViewById(R.id.UserCommittee1_textView);
@@ -91,16 +99,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         navigationView = (NavigationView)findViewById(R.id.nav_view);
         View Header = navigationView.getHeaderView(0);
 
-        progressBar.setVisibility(ProgressBar.VISIBLE);
-        Name.setVisibility(View.INVISIBLE);
-        CommitteeName1.setVisibility(View.INVISIBLE);
-        ProfileImage.setVisibility(View.INVISIBLE);
-        privateChat.setVisibility(View.INVISIBLE);
-        committeeChat1.setVisibility(View.INVISIBLE);
-        clubChat.setVisibility(View.INVISIBLE);
-        PositionName.setVisibility(View.INVISIBLE);
-        Line.setVisibility(View.GONE);
-        ViewChatting.setVisibility(View.GONE);
 
         NavHeaderUserName = (TextView)Header.findViewById(R.id.NavHeaderUserName_textView);
         NavHeaderUserImage=(ImageView)Header.findViewById(R.id.navHeaderImage);
@@ -267,34 +265,12 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.nav_menu, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()) {
-            case R.id.draw_committees_menu:
-                Intent intent = new Intent(ProfileActivity.this, CommitteesListActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.draw_Logout_menu:
-                firebaseAuth.getInstance().signOut();
-                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-                break;
-        }
-
-        return true;
-
-    }
 
     private void UpdateUI() {
         progressBar.setVisibility(View.GONE);
+        chattingLayout.setVisibility(View.VISIBLE);
+        datalayout.setVisibility(View.VISIBLE);
+
         if (user.getUser_Position().equals("Chairman") || user.getUser_Position().equals("Chairman Vice")) {
             CommitteeName2.setVisibility(View.GONE);
             committeeChat2.setVisibility(View.GONE);
@@ -307,7 +283,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         CommitteeName1.setVisibility(View.VISIBLE);
         ProfileImage.setVisibility(View.VISIBLE);
         PositionName.setVisibility(View.VISIBLE);
-        Line.setVisibility(View.VISIBLE);
+    //    Line.setVisibility(View.VISIBLE);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -317,7 +293,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 committeeChat2.setVisibility(View.VISIBLE);
                 clubChat.setVisibility(View.VISIBLE);
                 ChattingList.setVisibility(View.VISIBLE);
-                Line.setVisibility(View.VISIBLE);
+                //Line.setVisibility(View.VISIBLE);
                 ViewChatting.setVisibility(View.GONE);
 
 
@@ -333,7 +309,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             committeeChat1.setVisibility(View.VISIBLE);
             committeeChat2.setVisibility(View.VISIBLE);
             clubChat.setVisibility(View.VISIBLE);
-            Line.setVisibility(View.VISIBLE);
+         //   Line.setVisibility(View.VISIBLE);
             ViewChatting.setVisibility(View.VISIBLE);
 
         }

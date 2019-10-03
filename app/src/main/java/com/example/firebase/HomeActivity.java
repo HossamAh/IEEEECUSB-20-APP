@@ -357,10 +357,6 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
-            case R.id.draw_committees_menu:
-                Intent intent = new Intent(HomeActivity.this,CommitteesListActivity.class);
-                startActivity(intent);
-                break;
             case R.id.draw_Logout_menu:
                 mFireBaseAuth.signOut();
                 startActivity(new Intent(HomeActivity.this,LoginActivity.class));
@@ -438,7 +434,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
     private String getTimestamp(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd   HH:mm");
         sdf.setTimeZone(TimeZone.getTimeZone("Africa/Egypt"));
         return sdf.format(new Date());
     }
