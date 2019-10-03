@@ -6,6 +6,8 @@ public class UserInfo {
     public static String sCommitteeName;
     public static String sImageUrl;
     public static String USER_ID;
+    public static String sPosition;
+
 
 
 }

@@ -141,23 +141,24 @@ private LinearLayout chattingLayout;
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 user = dataSnapshot.getValue(Users.class);
-                UserInfo.sUserName = user.getUser_Name();
-                UserInfo.sImageUrl=user.getUrl();
-                UserInfo.USER_ID=dataSnapshot.getKey();
-                UserInfo.sCommitteeName = user.getUser_Committee();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    if (snapshot.getKey().equals("ChattingList")) {
-                        Log.e("ProfileActivity", "user children data : " + snapshot.getValue().toString());
-                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                            //Log.e("ProfileActivity","Chatting List data : "+snapshot1.getValue().toString());
-                            chatIDs.add(snapshot1.getValue().toString());
+                if(dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                    UserInfo.sUserName = user.getUser_Name();
+                    UserInfo.sImageUrl = user.getUrl();
+                    UserInfo.USER_ID = dataSnapshot.getKey();
+                    UserInfo.sCommitteeName = user.getUser_Committee();
+                    UserInfo.sPosition = user.getUser_Position();
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.getKey().equals("ChattingList")) {
+                            Log.e("ProfileActivity", "user children data : " + snapshot.getValue().toString());
+                            for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                                //Log.e("ProfileActivity","Chatting List data : "+snapshot1.getValue().toString());
+                                chatIDs.add(snapshot1.getValue().toString());
+                            }
+                            //chatIDs = snapshot.getValue(ArrayList.class);
+                            chattingListBundle.putStringArrayList("ChattingIDs", chatIDs);
                         }
-                        //chatIDs = snapshot.getValue(ArrayList.class);
-                        chattingListBundle.putStringArrayList("ChattingIDs", chatIDs);
                     }
-                }
-                for (String ID : chatIDs) {
-                    Log.e("ProfileActivity", "Chatting List data : " + ID);
                 }
 
                 if (user != null) {
@@ -249,9 +250,6 @@ private LinearLayout chattingLayout;
             committeeChat2.setVisibility(View.GONE);
             clubChat.setVisibility(View.GONE);
             ViewChatting.setVisibility(View.GONE);
-            if(user.getUser_Position().equals("member")) {
-                navigationView.getMenu().removeItem(R.id.draw_creation_menu);
-            }
             //Line.setVisibility(View.GONE);
         } else {
             Log.e("ProfileActivity", "auth user");
@@ -432,7 +430,7 @@ private LinearLayout chattingLayout;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        if(user.getUser_Position().equals("member")) {
+        if(UserInfo.sPosition.equals("Member")) {
             navigationView.getMenu().findItem(R.id.draw_creation_menu).setEnabled(false);
             switch (menuItem.getItemId()) {
                 case R.id.draw_notifications_menu://display
