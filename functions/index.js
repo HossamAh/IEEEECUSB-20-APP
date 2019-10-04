@@ -27,6 +27,8 @@ exports.sendNotificationCommitteeEvent = functions.database.ref("/Committees/{Co
             EventID:EventID,
         }
     }
+    
+    console.log(payload);
     var CommitteeNameArray =CommitteeID.split(" ");
     var CommitteeName = CommitteeNameArray[0]+CommitteeNameArray[1];
     console.log(CommitteeName);
@@ -62,6 +64,7 @@ exports.sendNotificationGeneralEvent = functions.database.ref("/IEEECUSB/Events/
         }
     }
 
+    console.log(payload);
     return admin.messaging().sendToTopic("IEEECUSB",payload).then(function(response)
     {
       console.log("Successfully sent message: ",response);  
@@ -94,6 +97,8 @@ exports.sendNotificationCommitteeTask = functions.database.ref("/Committees/{Com
             TasksID:TasksID,
         }
     }
+    console.log(payload);
+
     var CommitteeNameArray =CommitteeID.split(" ");
     var CommitteeName = CommitteeNameArray[0]+CommitteeNameArray[1];
     console.log(CommitteeName);

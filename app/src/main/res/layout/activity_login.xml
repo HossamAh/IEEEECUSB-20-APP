@@ -4,7 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/appbackground"
     tools:context=".LoginActivity">
+
+    <Button
+        android:id="@+id/SignUp_ButtonLogIn"
+        android:layout_width="166dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_background"
+        android:text="@string/SignIn_Button"
+        app:layout_constraintBottom_toTopOf="@+id/signup_TextViewLogIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.849" />
+
+    <EditText
+        android:id="@+id/Password_EditTextLogIn"
+        android:layout_width="290dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="@string/Password_EditText"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/SignUp_ButtonLogIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.77" />
 
     <EditText
         android:id="@+id/EmailEditTextLogIn"
@@ -25,41 +61,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.725" />
 
-    <EditText
-        android:id="@+id/Password_EditTextLogIn"
-        android:layout_width="290dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="@string/Password_EditText"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/SignUp_ButtonLogIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
-
-    <Button
-        android:id="@+id/SignUp_ButtonLogIn"
-        android:layout_width="166dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button_background"
-        android:text="@string/SignIn_Button"
-        app:layout_constraintBottom_toTopOf="@+id/signup_TextViewLogIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.849" />
-
     <TextView
         android:id="@+id/signup_TextViewLogIn"
         android:layout_width="301dp"
@@ -70,7 +71,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
         android:text="@string/SignUp_Text"
-        android:textColor="@color/blue3"
+        android:textColor="@color/Black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"

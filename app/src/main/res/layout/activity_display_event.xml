@@ -3,26 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/appbackground"
     tools:context=".DisplayTaskActivity">
 
 
-    <TextView
-        android:id="@+id/TOPIC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/ruluko"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textAlignment="textStart"
-        android:textColor="@color/Black"
-        android:textSize="20sp"
+    <ImageView
+        android:id="@+id/ImageURL"
+        android:layout_width="413dp"
+        android:layout_height="243dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toEndOf="@+id/topic"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ieee" />
 
     <TextView
         android:id="@+id/DETAILS"
@@ -142,14 +135,22 @@
         app:layout_constraintTop_toBottomOf="@+id/TOPIC"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/ImageURL"
-        android:layout_width="413dp"
-        android:layout_height="243dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/TOPIC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/ruluko"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/Black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ieee" />
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toEndOf="@+id/topic"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -72,6 +72,7 @@ public class MyAndroidFirebaseMessagingService extends FirebaseMessagingService 
             String TaskID = remoteMessage.getData().get("TaskID");
             String Target = remoteMessage.getData().get("Target");
             String img = remoteMessage.getData().get("ImageUrl");
+            Log.e(TAG, "onMessageReceived: "+remoteMessage.getData().toString());
             sendAnyNotification(Topic,Details,Date,Location,Deadline,EventID,TaskID,Target,img , dataType);
         }
 
@@ -87,6 +88,8 @@ public class MyAndroidFirebaseMessagingService extends FirebaseMessagingService 
         else if(eventID!=null){
             notificationId = buildNotificationId(eventID);
         }
+
+        Log.e(TAG, "onMessageReceived: "+topic+" "+details+" "+date+" "+location+" "+deadline+" "+target+" ");
 
 
         Intent intent ;

@@ -1060,6 +1060,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable appbackground
 drawable auth_background
 drawable avd_hide_password
 drawable avd_show_password
@@ -1113,6 +1114,7 @@ drawable ic_mtrl_chip_close_circle
 drawable ieee
 drawable ieee_blue_logo
 drawable ieeeblue
+drawable ieeecusb
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1427,6 +1429,8 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
+id textView2
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
