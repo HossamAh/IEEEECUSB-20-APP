@@ -163,9 +163,7 @@ private LinearLayout chattingLayout;
 
                 if (user != null) {
                     UpdateUI();
-
-                } else
-                    Toast.makeText(ProfileActivity.this, "user is null ", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
