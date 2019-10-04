@@ -58,6 +58,7 @@ public class Create extends AppCompatActivity {
         LocationTextView = (TextView) findViewById(R.id.LocationTextView);
         TargetTextView = (TextView) findViewById(R.id.TargetTextView);
 
+        Details.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)});
 
         TopicTextView.setVisibility(View.GONE);
         DetailsTextView.setVisibility(View.GONE);
