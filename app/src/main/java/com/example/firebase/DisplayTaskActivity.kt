@@ -18,10 +18,15 @@ class DisplayTaskActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_task)
-        TOPIC.text = intent.getStringExtra("Topic")
-        DETAILS.text = intent.getStringExtra("Details")
-        Deadline.text = intent.getStringExtra("DeadLine")
-        Target.text = intent.getStringExtra("Target")
-
+        topic = intent.getStringExtra("Topic")
+        details = intent.getStringExtra("Details")
+        deadlinedate = intent.getStringExtra("DeadLine")
+        target = intent.getStringExtra("Target")
+        Log.e("DisplayActivity","topic is :$topic")
+        if(topic != null)
+            Topic.text = topic
+        Deatails.text = details
+        Deadline.text = deadlinedate
+        Target.text = target
     }
 }
