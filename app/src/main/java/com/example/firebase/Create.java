@@ -153,17 +153,24 @@ public class Create extends AppCompatActivity {
                 if (Target.equals("Committee")) {
                     spinner2.setVisibility(View.VISIBLE);
                     Spinner spinner1 = spinner2;
-                    ArrayList<String> arrayList1 = new ArrayList<>();
-                    arrayList1.add("High Board");
-                    arrayList1.add("Technical Committee");
-                    arrayList1.add("Embedded Committee");
-                    arrayList1.add("IT Committee");
-                    arrayList1.add("HR Committee");
-                    arrayList1.add("Marketing Committee");
-                    arrayList1.add("Media Committee");
-                    arrayList1.add("HR Committee");
-                    arrayList1.add("PR Committee");
-                    arrayList1.add("FR Committee");
+                    final String[] arrayList1
+                            ={"None",
+                            "High Board",
+                            "Technical Committee",
+                            "Embedded Committee",
+                            "IT Committee",
+                            "HR Committee",
+                            "Marketing Committee",
+                            "Media Committee",
+                            "Biomedical Committee",
+                            "Electronics Committee",
+                            "Coaching Committee",
+                            "Organization Committee",
+                            "Magazine Committee",
+                            "Computer Committee",
+                            "Power Committee",
+                            "PR Committee",
+                            "FR Committee"};
                     ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(Create.this,android.R.layout.simple_list_item_1,arrayList1);
                     arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner1.setAdapter(arrayAdapter1);
