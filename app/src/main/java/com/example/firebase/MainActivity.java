@@ -93,7 +93,13 @@ public class MainActivity extends AppCompatActivity {
         "HR Committee",
         "Marketing Committee",
         "Media Committee",
-        "HR Committee",
+        "Biomedical Committee",
+        "Electronics Committee",
+        "Coaching Committee",
+        "Organization Committee",
+        "Magazine Committee",
+        "Computer Committee",
+        "Power Committee",
         "PR Committee",
         "FR Committee"};
 
