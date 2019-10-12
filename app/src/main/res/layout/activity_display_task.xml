@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,8 +12,8 @@
         android:id="@+id/topic"
         android:layout_width="126dp"
         android:layout_height="39dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/ruluko"
         android:text="topic :"
         android:textAlignment="textStart"
@@ -22,16 +24,17 @@
 
     <TextView
         android:id="@+id/Topic"
-        android:layout_width="126dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/ruluko"
         android:textAlignment="textStart"
         android:textColor="@color/Black"
         android:textSize="19sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topic"
+        app:layout_constraintTop_toTopOf="@+id/topic" />
 
     <TextView
         android:id="@+id/deatails"
@@ -40,7 +43,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="108dp"
         android:fontFamily="@font/ruluko"
-        android:text="details :"
+        android:text="deatails :"
         android:textAlignment="center"
         android:textColor="@color/Black"
         android:textSize="19sp"
@@ -51,15 +54,15 @@
         android:id="@+id/deadline"
         android:layout_width="115dp"
         android:layout_height="39dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="128dp"
         android:fontFamily="@font/ruluko"
         android:text="deadline :"
         android:textAlignment="center"
         android:textColor="@color/Black"
         android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Details" />
+        app:layout_constraintTop_toBottomOf="@+id/deatails" />
 
     <TextView
         android:id="@+id/target"
@@ -80,7 +83,6 @@
         android:layout_width="205dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="144dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/rammetto_one"
         android:textAlignment="center"
@@ -88,14 +90,13 @@
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/deadline"
-        app:layout_constraintTop_toBottomOf="@+id/Details" />
+        app:layout_constraintTop_toTopOf="@+id/deadline" />
 
     <TextView
-        android:id="@+id/Details"
+        android:id="@+id/Deatails"
         android:layout_width="193dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="144dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/ruluko"
         android:textAlignment="center"
@@ -103,14 +104,13 @@
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/deatails"
-        app:layout_constraintTop_toBottomOf="@+id/Target" />
+        app:layout_constraintTop_toTopOf="@+id/deatails" />
 
     <TextView
         android:id="@+id/Target"
         android:layout_width="188dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/ruluko"
         android:textAlignment="center"
@@ -118,6 +118,6 @@
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/target"
-        app:layout_constraintTop_toBottomOf="@+id/topic" />
+        app:layout_constraintTop_toTopOf="@+id/target" />
 
 </android.support.constraint.ConstraintLayout>
