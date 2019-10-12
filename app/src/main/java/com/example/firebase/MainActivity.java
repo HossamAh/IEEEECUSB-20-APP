@@ -247,6 +247,8 @@ public class MainActivity extends AppCompatActivity {
         ProfilePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SignUp.setClickable(false);
+                //TODO add progreessbar to indicate loading picture.
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);//action type is get content
                 intent.setType("image/jpeg");// type of data to determine the component that receive the intent
                 intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);//to make the component be the data on the device.
@@ -273,8 +275,11 @@ public class MainActivity extends AppCompatActivity {
                          @Override
                          public void onComplete(@NonNull Task<Uri> task) {
                              Log.e("MainActivity","download url success");
+                             SignUp.setClickable(true);
+                             //TODO disappear progress bar.
                              profilePicUri = task.getResult();
                              imagePicked = true;
+                             Toast.makeText(getApplicationContext(),"Uploading Profile Picture Successfully",Toast.LENGTH_LONG).show();
                              Log.e("MainActivity",profilePicUri.toString());
 
                          }

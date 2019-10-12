@@ -4,8 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_display_event.*
-import kotlinx.android.synthetic.main.activity_display_task.*
 
 class DisplayTaskActivity : AppCompatActivity() {
 
@@ -22,11 +20,15 @@ class DisplayTaskActivity : AppCompatActivity() {
         details = intent.getStringExtra("Details")
         deadlinedate = intent.getStringExtra("DeadLine")
         target = intent.getStringExtra("Target")
-        Log.e("DisplayActivity","topic is :$topic")
+        val topicTxt = findViewById<TextView>(R.id.Topic)
+        val detailsTxt = findViewById<TextView>(R.id.Details)
+        val deadlineTxt = findViewById<TextView>(R.id.Deadline)
+        val  targetTxt = findViewById<TextView>(R.id.Target)
+        Log.e("DisplayActivity","topic is :$topic");
         if(topic != null)
-            Topic.text = topic
-        Deatails.text = details
-        Deadline.text = deadlinedate
-        Target.text = target
+            topicTxt.text = topic
+        detailsTxt.text = details
+        deadlineTxt.text = deadlinedate
+        targetTxt.text = target
     }
 }
