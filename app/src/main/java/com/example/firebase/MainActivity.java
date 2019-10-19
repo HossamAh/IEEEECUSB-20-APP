@@ -26,8 +26,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -35,21 +39,24 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
 
     String TAG = "MainActivity";
     private static final int RC_Profile_Picker = 1;
-    EditText EmailId,Password,UserNameEditText;
+    EditText EmailId,Password,UserNameEditText,CodeEditText;
     TextView SigninText;
     Button SignUp,ProfilePicker;
     String Email,pass,UserName;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    Spinner CommitteeSpinner,PostitonSpinner;
+    //Spinner CommitteeSpinner,PostitonSpinner;
     DatabaseReference databaseReference;
     Users user;
     FirebaseAuth.AuthStateListener mAuthListener;
@@ -57,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private StorageReference mStorageReference;
     List<String> finalPositions1;
     boolean imagePicked;
-    String CommitteeName,PositionName;
+    String CommitteeName,PositionName,UserCode;
     Uri profilePicUri;
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseCommitteesReference;
@@ -66,15 +73,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EmailId= (EditText)findViewById(R.id.EmailEditTextLogIn);
-        Password= (EditText)findViewById(R.id.Password_EditTextLogIn);
-        UserNameEditText= (EditText)findViewById(R.id.UserName_EditText);
-        SignUp = (Button)findViewById(R.id.SignUp_ButtonLogIn);
+        EmailId = (EditText) findViewById(R.id.EmailEditTextLogIn);
+        Password = (EditText) findViewById(R.id.Password_EditTextLogIn);
+        UserNameEditText = (EditText) findViewById(R.id.UserName_EditText);
+        SignUp = (Button) findViewById(R.id.SignUp_ButtonLogIn);
         SigninText = (TextView) findViewById(R.id.signup_TextViewLogIn);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        CommitteeSpinner = (Spinner)findViewById(R.id.Committee_spinner);
-        PostitonSpinner = (Spinner)findViewById(R.id.Postition_spinner);
+        CodeEditText = (EditText) findViewById(R.id.Code);
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
         ProfilePicker = (Button)findViewById(R.id.ProfileImagePickerbutton);
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseCommitteesReference = firebaseDatabase.getReference().child("Committees");
         imagePicked = false;
         mFirebaseAuth = FirebaseAuth.getInstance();
-        final String[] Committees
+   /*     final String[] Committees
         ={"None",
         "High Board",
         "Technical Committee",
@@ -96,65 +102,70 @@ public class MainActivity extends AppCompatActivity {
         "HR Committee",
         "PR Committee",
         "FR Committee"};
+*/
 
-        ArrayAdapter ArrAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,Committees);
-        ArrAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        CommitteeSpinner.setAdapter(ArrAdapter);
-
-
-        CommitteeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //TODO: link committee name and position name to codes
+        //TODO: Map Codes in the following Ref and it shall be OK
+        final Map<String, ArrayList<String>> localCodes = new HashMap<String, ArrayList<String>>();
+        final ArrayList<String> names = new ArrayList<String>();
+        DatabaseReference codes = databaseReference.child("Codes");
+        final DatabaseReference NamesRef = databaseReference.child("Names");
+        NamesRef.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e(TAG,"Committee is : "+Committees[position]);
-                CommitteeName = Committees[position];
-                ArrayAdapter ArrAdapter2;
-                finalPositions1 = new ArrayList<>();
-                if(CommitteeName.equals("High Board")) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                names.add(dataSnapshot.getValue().toString());
+            }
 
-                    finalPositions1.add( "Chairman");
-                    finalPositions1.add("Chairman Vice");
-                     ArrAdapter2= new ArrayAdapter(MainActivity.this,android.R.layout.simple_spinner_item,finalPositions1);
-                }
-                else if(CommitteeName.equals("Technical Committee")) {
-                    finalPositions1.add("Technical Manager");
-                    finalPositions1.add("Technical Vice");
-                    ArrAdapter2 = new ArrayAdapter(MainActivity.this,android.R.layout.simple_spinner_item,finalPositions1);
-                }
-                else
-                    {
-                        finalPositions1.add("Head");
-                        finalPositions1.add("Vice");
-                        finalPositions1.add("Member");
-                        ArrAdapter2 = new ArrayAdapter(MainActivity.this,android.R.layout.simple_spinner_item,finalPositions1);
-                    }
-
-                ArrAdapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-                PostitonSpinner.setAdapter(ArrAdapter2);
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                CommitteeName = Committees[0];
-                Log.e(TAG,"Committee not selected");
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
-
-
-        PostitonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        codes.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                PositionName = finalPositions1.get(position);
-                Log.e(TAG,"position is : "+finalPositions1.get(position));
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                localCodes.put(dataSnapshot.getKey(), (ArrayList<String>) dataSnapshot.getValue());
+                Log.d(TAG, "onCreate: local codes = "+localCodes);
+
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                PositionName = finalPositions1.get(0);
-                Log.e(TAG,"Position not selected");
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
+        Log.d(TAG, "onCreate: local codes = "+localCodes);
 
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +174,17 @@ public class MainActivity extends AppCompatActivity {
                 pass = Password.getText().toString();
                 UserName = UserNameEditText.getText().toString();
 
-                if(!Email.isEmpty() && !pass.isEmpty() && !UserName.isEmpty())
+                for(int i = 0 ; i<localCodes.size() ; i++){
+                    if(!CodeEditText.getText().toString().isEmpty())
+                        if (localCodes.get(CodeEditText.getText().toString())!=null)
+                            CommitteeName = localCodes.get(CodeEditText.getText().toString()).get(0);
+                            PositionName = localCodes.get(CodeEditText.getText().toString()).get(1);
+                }
+                if(names.contains(UserName)){
+                    Toast.makeText(MainActivity.this, "Name Already Exists" , Toast.LENGTH_SHORT).show();
+
+                }else
+                if(!Email.isEmpty() && !pass.isEmpty() && !UserName.isEmpty() && !CommitteeName.isEmpty() )
                     firebaseAuth.createUserWithEmailAndPassword(Email,pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -222,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                Toast.makeText(getBaseContext(), "account creation is completed"+UserName, Toast.LENGTH_LONG).show();
+                               NamesRef.push().setValue(UserName);
                                startActivity(new Intent(getBaseContext(),ProfileActivity.class));
                               }
                            else
