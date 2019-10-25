@@ -176,84 +176,69 @@ public class MainActivity extends AppCompatActivity {
                 pass = Password.getText().toString();
                 UserName = UserNameEditText.getText().toString();
 
-                for(int i = 0 ; i<localCodes.size() ; i++){
-                    if(!CodeEditText.getText().toString().isEmpty())
-                        if (localCodes.get(CodeEditText.getText().toString())!=null)
+                for (int i = 0; i < localCodes.size(); i++) {
+                    if (!CodeEditText.getText().toString().isEmpty())
+                        if (localCodes.get(CodeEditText.getText().toString()) != null){
                             CommitteeName = localCodes.get(CodeEditText.getText().toString()).get(0);
-                            PositionName = localCodes.get(CodeEditText.getText().toString()).get(1);
+                            PositionName = localCodes.get(CodeEditText.getText().toString()).get(1);}
                 }
-                if(names.contains(UserName)){
-                    Toast.makeText(MainActivity.this, "Name Already Exists" , Toast.LENGTH_SHORT).show();
+                if (names.contains(UserName)) {
+                    Log.d(TAG, "onClick: BLIN");
+                    Toast.makeText(MainActivity.this, "YOU ARE TRYING TO STEAL SOMEONE'S NAME BLIN", Toast.LENGTH_SHORT).show();
 
-                }else
-                if(!Email.isEmpty() && !pass.isEmpty() && !UserName.isEmpty() && CommitteeName != null )
-                    firebaseAuth.createUserWithEmailAndPassword(Email,pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                           if(task.isSuccessful()) {
-                               Log.e(TAG,CommitteeName);
-                               Log.e(TAG,PositionName);
-                               if(imagePicked)
-                               user = new Users(UserName,CommitteeName,PositionName,profilePicUri.toString());
-                               else
-                                   user = new Users(UserName,CommitteeName,PositionName,null);
-                               databaseReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
-
-
-                               if(PositionName == "Head" ||PositionName == "Vice")
-                               {
-                                   if(CommitteeName .equals( "Embedded Committee") || CommitteeName.equals("Computer Committee")
-                                           || CommitteeName.equals("Power Committee")
-                                   ||CommitteeName.equals("Biomedical Committee")
-                                   ||CommitteeName.equals("Electronics Committee"))
-                                   {
-                                       mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   }
-                                   mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   if(PositionName.equals( "Head"))
-                                   {
-                                       mDatabaseCommitteesReference.child(CommitteeName).child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   }
-                                   else if(PositionName.equals("Vice"))
-                                   {
-                                       mDatabaseCommitteesReference.child(CommitteeName).child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   }
-                               }
-                               else if(PositionName.equals("Chairman") ||PositionName.equals("Chairman Vice"))
-                               {
-                                   if(PositionName.equals("Chairman"))
-                                   {
-                                       mDatabaseCommitteesReference.child("High Board").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   }
-                                   else if(PositionName .equals("Chairman Vice"))
-                                   {
-                                       mDatabaseCommitteesReference.child("High Board").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   }
-                               }
-                               else if(PositionName.equals("Technical Manager") ||PositionName.equals("Technical Vice"))
-                               {
-                                   mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   if(PositionName == "Technical Manager")
-                                   {
-                                       mDatabaseCommitteesReference.child("Technical Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   }
-                                   else if(PositionName == "Chairman Vice")
-                                   {
-                                       mDatabaseCommitteesReference.child("Technical Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                   }
-                               }
+                } else {
+                    if (!Email.isEmpty() && !pass.isEmpty() && !UserName.isEmpty() && CommitteeName != null)
+                        firebaseAuth.createUserWithEmailAndPassword(Email, pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Log.e(TAG, CommitteeName);
+                                    Log.e(TAG, PositionName);
+                                    if (imagePicked)
+                                        user = new Users(UserName, CommitteeName, PositionName, profilePicUri.toString());
+                                    else
+                                        user = new Users(UserName, CommitteeName, PositionName, null);
+                                    databaseReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
 
 
-                               Toast.makeText(getBaseContext(), "account creation is completed"+UserName, Toast.LENGTH_LONG).show();
-                               NamesRef.push().setValue(UserName);
-                               startActivity(new Intent(getBaseContext(),ProfileActivity.class));
-                              }
-                           else
-                               Toast.makeText(getBaseContext(),"account creation is uncompleted",Toast.LENGTH_LONG).show();
-                        }
-                    });
-            }
-        });
+                                    if (PositionName == "Head" || PositionName == "Vice") {
+                                        if (CommitteeName.equals("Embedded Committee") || CommitteeName.equals("Computer Committee")
+                                                || CommitteeName.equals("Power Committee")
+                                                || CommitteeName.equals("Biomedical Committee")
+                                                || CommitteeName.equals("Electronics Committee")) {
+                                            mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        }
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        if (PositionName.equals("Head")) {
+                                            mDatabaseCommitteesReference.child(CommitteeName).child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        } else if (PositionName.equals("Vice")) {
+                                            mDatabaseCommitteesReference.child(CommitteeName).child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        }
+                                    } else if (PositionName.equals("Chairman") || PositionName.equals("Chairman Vice")) {
+                                        if (PositionName.equals("Chairman")) {
+                                            mDatabaseCommitteesReference.child("High Board").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        } else if (PositionName.equals("Chairman Vice")) {
+                                            mDatabaseCommitteesReference.child("High Board").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        }
+                                    } else if (PositionName.equals("Technical Manager") || PositionName.equals("Technical Vice")) {
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        if (PositionName == "Technical Manager") {
+                                            mDatabaseCommitteesReference.child("Technical Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        } else if (PositionName == "Chairman Vice") {
+                                            mDatabaseCommitteesReference.child("Technical Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        }
+                                    }
+
+
+                                    Toast.makeText(getBaseContext(), "account creation is completed" + UserName, Toast.LENGTH_LONG).show();
+                                    NamesRef.push().setValue(UserName);
+                                    startActivity(new Intent(getBaseContext(), ProfileActivity.class));
+                                } else
+                                    Toast.makeText(getBaseContext(), "account creation is uncompleted", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                }
+            }});
         SigninText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
