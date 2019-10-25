@@ -18,7 +18,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_background"
         android:text="@string/SignUp_Button"
-        app:layout_constraintBottom_toTopOf="@+id/signup_TextViewLogIn"
+        app:layout_constraintBottom_toTopOf="@id/signup_TextViewLogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,11 +34,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/ic_menu_gallery"
-        app:layout_constraintBottom_toTopOf="@+id/SignUp_ButtonLogIn"
+        app:layout_constraintBottom_toTopOf="@id/SignUp_ButtonLogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Postition_spinner" />
+        app:layout_constraintTop_toBottomOf="@id/Code" />
 
     <EditText
         android:id="@+id/EmailEditTextLogIn"
@@ -53,7 +53,7 @@
         android:inputType="textEmailAddress"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/Password_EditTextLogIn"
+        app:layout_constraintBottom_toTopOf="@id/Password_EditTextLogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password_EditTextLogIn"
+        app:layout_constraintTop_toBottomOf="@id/Password_EditTextLogIn"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -87,40 +87,27 @@
         android:ems="10"
         android:hint="@string/Password_EditText"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/SignUp_ButtonLogIn"
+        app:layout_constraintBottom_toTopOf="@id/SignUp_ButtonLogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.225" />
 
-    <Spinner
-        android:id="@+id/Postition_spinner"
-        android:layout_width="277dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Committee_spinner"
-        app:layout_constraintVertical_bias="0.044" />
 
-    <Spinner
-        android:id="@+id/Committee_spinner"
+    <EditText
+        android:id="@+id/Code"
         android:layout_width="277dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:entries="@array/CommitteesList"
+        android:hint="Code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserName_EditText"
+        app:layout_constraintTop_toBottomOf="@id/UserName_EditText"
         app:layout_constraintVertical_bias="0.061" />
 
     <TextView
