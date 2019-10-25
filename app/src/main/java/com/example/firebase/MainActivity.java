@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     //Spinner CommitteeSpinner,PostitonSpinner;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
     Users user;
     FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseStorage mFirebaseStorage;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         CodeEditText = (EditText) findViewById(R.id.Code);
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
+        databaseReference2 = firebaseDatabase.getReference();
         ProfilePicker = (Button)findViewById(R.id.ProfileImagePickerbutton);
 
         mFirebaseStorage = FirebaseStorage.getInstance();
@@ -108,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
         //TODO: Map Codes in the following Ref and it shall be OK
         final Map<String, ArrayList<String>> localCodes = new HashMap<String, ArrayList<String>>();
         final ArrayList<String> names = new ArrayList<String>();
-        DatabaseReference codes = databaseReference.child("Codes");
-        final DatabaseReference NamesRef = databaseReference.child("Names");
+        DatabaseReference codes = databaseReference2.child("Codes");
+        final DatabaseReference NamesRef = databaseReference2.child("Names");
         NamesRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -141,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 localCodes.put(dataSnapshot.getKey(), (ArrayList<String>) dataSnapshot.getValue());
-                Log.d(TAG, "onCreate: local codes = "+localCodes);
+                Log.d(TAG, "onCreate: local codes = "+dataSnapshot.getKey());
 
             }
 
@@ -184,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Name Already Exists" , Toast.LENGTH_SHORT).show();
 
                 }else
-                if(!Email.isEmpty() && !pass.isEmpty() && !UserName.isEmpty() && !CommitteeName.isEmpty() )
+                if(!Email.isEmpty() && !pass.isEmpty() && !UserName.isEmpty() && CommitteeName != null )
                     firebaseAuth.createUserWithEmailAndPassword(Email,pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
