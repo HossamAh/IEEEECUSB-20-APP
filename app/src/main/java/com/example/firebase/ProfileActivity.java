@@ -132,6 +132,10 @@ private LinearLayout chattingLayout;
                     intent.putExtras(chattingListBundle);
                     startActivity(intent);
                     }
+                else
+                    {
+                        Toast.makeText(getBaseContext(),"No Previous Chats",Toast.LENGTH_LONG).show();
+                    }
 
             }
         });
@@ -211,7 +215,7 @@ private LinearLayout chattingLayout;
             }
         });
 
-        clubChat.setText("Club Chatting");
+        clubChat.setText("Volunteers Chatting");
         clubChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -288,7 +292,7 @@ private LinearLayout chattingLayout;
                 committeeChat1.setVisibility(View.VISIBLE);
                 committeeChat2.setVisibility(View.VISIBLE);
                 clubChat.setVisibility(View.VISIBLE);
-                ChattingList.setVisibility(View.VISIBLE);
+            //    ChattingList.setVisibility(View.VISIBLE);
                 //Line.setVisibility(View.VISIBLE);
                 ViewChatting.setVisibility(View.GONE);
 
@@ -313,37 +317,51 @@ private LinearLayout chattingLayout;
 
         if (user.getUser_Position().equals("Head") || user.getUser_Position().equals("Vice") ||
                 (user.getUser_Position().equals("Technical Manager") || user.getUser_Position().equals("Technical Vice"))
-                || (user.getUser_Position().equals("Chairman") || user.getUser_Position().equals("Chairman Vice"))) {
+                || (user.getUser_Position().equals("Chairman") || user.getUser_Position().equals("Chairman Vice"))||user.getUser_Position().equals("Secretary")||user.getUser_Position().equals("Branding Manager")||user.getUser_Position().equals("Relation Manger")) {
 
             Log.e("ProfileActivity", user.getUser_Committee());
-            CommitteeName1.setText(user.getUser_Committee());
-            committeeChat1.setText(user.getUser_Committee() + " Chatting");
-            FirebaseMessaging.getInstance().subscribeToTopic("HighBoard" + "_Chatting")
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            String msg = "subscribe successful";
-                            if (!task.isSuccessful()) {
-                                msg = "subscribe failed";
-                            }
-                            Log.d(TAG, msg);
-                        }
-                    });
-            FirebaseMessaging.getInstance().subscribeToTopic("HighBoard")
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            String msg = "subscribe successful";
-                            if (!task.isSuccessful()) {
-                                msg = "subscribe failed";
-                            }
-                            Log.d(TAG, msg);
-                        }
-                    });
 
-            CommitteeName2.setText("High Board");
-            committeeChat2.setText("High Board" + " Chatting");
-        } else if (user.getUser_Position().equals("Member")) {
+            if(user.getUser_Committee().equals("Relation Committee") ||user.getUser_Committee().equals("Technical Committee")
+                    || user.getUser_Committee().equals("Branding Committee")
+                    ||user.getUser_Committee().equals("IT Committee")||user.getUser_Committee().equals("HR Committee") )
+            {
+
+                if (user.getUser_Committee().equals("IT Committee") || user.getUser_Committee().equals("HR Committee")) {
+                    CommitteeName1.setText(user.getUser_Committee());
+                    committeeChat1.setText(user.getUser_Committee() + " Chatting");
+                } else {
+                    CommitteeName1.setText(user.getUser_Committee().split(" ")[0] + " Section");
+                    committeeChat1.setText(user.getUser_Committee().split(" ")[0] + " Section Chatting");
+                }
+                FirebaseMessaging.getInstance().subscribeToTopic("HighBoard" + "_Chatting")
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                String msg = "subscribe successful";
+                                if (!task.isSuccessful()) {
+                                    msg = "subscribe failed";
+                                }
+                                Log.d(TAG, msg);
+                            }
+                        });
+                FirebaseMessaging.getInstance().subscribeToTopic("HighBoard")
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                String msg = "subscribe successful";
+                                if (!task.isSuccessful()) {
+                                    msg = "subscribe failed";
+                                }
+                                Log.d(TAG, msg);
+                            }
+                        });
+
+                CommitteeName2.setText("High Board");
+                committeeChat2.setText("High Board" + " Chatting");
+
+            }
+        }
+        else if (user.getUser_Position().equals("Member")) {
             Log.e("ProfileActivity", "user is member inside the member condition");
             CommitteeName1.setText(user.getUser_Committee());
             committeeChat1.setText(user.getUser_Committee() + " Chatting");

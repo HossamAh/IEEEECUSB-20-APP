@@ -31,6 +31,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -38,14 +39,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-
 public class MainActivity extends AppCompatActivity {
+
     String TAG = "MainActivity";
     private static final int RC_Profile_Picker = 1;
     EditText EmailId,Password,UserNameEditText,CodeEditText;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     //Spinner CommitteeSpinner,PostitonSpinner;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
     Users user;
     FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseStorage mFirebaseStorage;
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         CodeEditText = (EditText) findViewById(R.id.Code);
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
+        databaseReference2 = firebaseDatabase.getReference();
         ProfilePicker = (Button)findViewById(R.id.ProfileImagePickerbutton);
 
         mFirebaseStorage = FirebaseStorage.getInstance();
@@ -88,77 +92,26 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseCommitteesReference = firebaseDatabase.getReference().child("Committees");
         imagePicked = false;
         mFirebaseAuth = FirebaseAuth.getInstance();
-        /*
-        final String[] Committees
-                ={
-                "None",
-                "High Board",
-                "IT Committee",
-                "Coaching Committee",
-                "HR Committee",
-                "Technical Section",
-                "Biomedical Committee",
-                "Electronics Committee",
-                "Embedded Committee",
-                "Computer Committee",
-                "Power Committee",
-                "Branding Section",
-                "Marketing Committee",
-                "Multimedia Committee",
-                "Magazine Committee",
-                "Relation Section",
-                "Organization Committee",
-                "PR Committee",
-                "FR Committee"
-        };
-
-
-        final String[] Positions
-                ={
-                "Chairman",
-                "Chairman Vice",
-                "IT Head",
-                "IT Vice",
-                "Secretary",
-                "Coaching Head",
-                "Coaching Vice",
-                "HR Head",
-                "HR Vice",
-                "Branding Manager",
-                "Multimedia Head",
-                "Multimedia Vice",
-                "Magazine Head",
-                "Magazine Vice",
-                "Marketing Head",
-                "Marketing Vice",
-                "Technical Manager",
-                "Technical Vice",
-                "Electronics Head",
-                "Electronics Vice",
-                "Computer Head",
-                "Computer Vice",
-                "Biomedical Head",
-                "Biomedical Vice",
-                "Power Head",
-                "Power Vice",
-                "Embedded Head",
-                "Embedded Vice",
-                "Relation Manager",
-                "PR Head",
-                "PR Vice",
-                "FR Head",
-                "FR Vice",
-                "OC Head",
-                "OC Vice"
-        };
-         */
+   /*     final String[] Committees
+        ={"None",
+        "High Board",
+        "Technical Committee",
+        "Embedded Committee",
+        "IT Committee",
+        "HR Committee",
+        "Marketing Committee",
+        "Media Committee",
+        "HR Committee",
+        "PR Committee",
+        "FR Committee"};
+*/
 
         //TODO: link committee name and position name to codes
         //TODO: Map Codes in the following Ref and it shall be OK
         final Map<String, ArrayList<String>> localCodes = new HashMap<String, ArrayList<String>>();
         final ArrayList<String> names = new ArrayList<String>();
-        DatabaseReference codes = databaseReference.child("Codes");
-        final DatabaseReference NamesRef = databaseReference.child("Names");
+        DatabaseReference codes = databaseReference2.child("Codes");
+        final DatabaseReference NamesRef = databaseReference2.child("Names");
         NamesRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -190,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 localCodes.put(dataSnapshot.getKey(), (ArrayList<String>) dataSnapshot.getValue());
-                Log.d(TAG, "onCreate: local codes = "+localCodes);
+                Log.d(TAG, "onCreate: local codes = "+dataSnapshot.getKey());
 
             }
 
@@ -223,271 +176,275 @@ public class MainActivity extends AppCompatActivity {
                 pass = Password.getText().toString();
                 UserName = UserNameEditText.getText().toString();
 
-                for(int i = 0 ; i<localCodes.size() ; i++){
-                    if(!CodeEditText.getText().toString().isEmpty())
-                        if (localCodes.get(CodeEditText.getText().toString())!=null)
+                for (int i = 0; i < localCodes.size(); i++) {
+                    if (!CodeEditText.getText().toString().isEmpty())
+                        if (localCodes.get(CodeEditText.getText().toString()) != null){
                             CommitteeName = localCodes.get(CodeEditText.getText().toString()).get(0);
-                    PositionName = localCodes.get(CodeEditText.getText().toString()).get(1);
+                            PositionName = localCodes.get(CodeEditText.getText().toString()).get(1);}
                 }
-                if(names.contains(UserName)){
-                    Toast.makeText(MainActivity.this, "Name Already Exists" , Toast.LENGTH_SHORT).show();
+                if (names.contains(UserName)) {
+                    Log.d(TAG, "onClick: BLIN");
+                    Toast.makeText(MainActivity.this, "UserName is Taken", Toast.LENGTH_SHORT).show();
 
-                }else
-                if(!Email.isEmpty() && !pass.isEmpty() && !UserName.isEmpty() && !CommitteeName.isEmpty() )
-                    firebaseAuth.createUserWithEmailAndPassword(Email,pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()) {
-                                Log.e(TAG,CommitteeName);
-                                Log.e(TAG,PositionName);
-                                if(imagePicked)
-                                    user = new Users(UserName,CommitteeName,PositionName,profilePicUri.toString());
+                } else {
+                    if (!Email.isEmpty() && !pass.isEmpty() && !UserName.isEmpty() && CommitteeName != null)
+                        firebaseAuth.createUserWithEmailAndPassword(Email, pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Log.e(TAG, CommitteeName);
+                                    Log.e(TAG, PositionName);
+                                    if (imagePicked)
+                                        user = new Users(UserName, CommitteeName, PositionName, profilePicUri.toString());
+                                    else
+                                        user = new Users(UserName, CommitteeName, PositionName, null);
+                                    databaseReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
+
+
+
+                                    if (PositionName .equals( "Chairman") || PositionName .equals("Chairman Vice"))
+                                    {
+                                        if(PositionName.equals("Chairman"))
+                                        {
+                                            mDatabaseCommitteesReference.child("High Board").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        }
+                                        else if(PositionName .equals("Chairman Vice"))
+                                        {
+                                            mDatabaseCommitteesReference.child("High Board").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        }
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "IT Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("IT Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "IT Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("IT Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "IT Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("IT Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Secretary"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Coaching Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if (PositionName .equals( "Head")  && CommitteeName .equals( "Coaching Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Coaching Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if (PositionName .equals( "Vice")  && CommitteeName .equals( "Coaching Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Coaching Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Coaching Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Coaching Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "HR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("HR Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "HR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("HR Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "HR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("HR Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if (PositionName .equals( "Branding Manager"))
+                                    {
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Branding Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "Multimedia Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Branding Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Multimedia Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "Multimedia Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Branding Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Multimedia Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Multimedia Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Multimedia Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "Magazine Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Branding Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Magazine Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "Magazine Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Branding Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Magazine Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Magazine Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Magazine Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "Marketing Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Branding Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Marketing Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "Marketing Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Branding Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Marketing Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Marketing Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Marketing Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if (PositionName .equals( "Technical Manager"))
+                                    {
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if (PositionName .equals( "Technical Vice"))
+                                    {
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "Electronics Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Electronics Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "Electronics Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Electronics Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Electronics Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Electronics Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "Embedded Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Embedded Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "Embedded Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Embedded Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Embedded Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Embedded Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "Computer Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Computer Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "Computer Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Computer Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Computer Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Computer Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "Power Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Power Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "Power Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Power Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Power Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Power Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "Biomedical Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Biomedical Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "Biomedical Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Technical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Biomedical Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "Biomedical Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Biomedical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if (PositionName .equals( "Relation Manager"))
+                                    {
+                                        mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("Relation Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "PR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Relation Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("PR Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "PR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Relation Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("PR Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "PR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("PR Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "FR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Relation Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("FR Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "FR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Relation Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("FR Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "FR Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("FR Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Head") && CommitteeName .equals( "OC Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Relation Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("OC Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Vice") && CommitteeName .equals( "OC Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("Relation Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                        mDatabaseCommitteesReference.child("OC Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+                                    else if(PositionName .equals( "Member") && CommitteeName .equals( "OC Committee"))
+                                    {
+                                        mDatabaseCommitteesReference.child("OC Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
+                                    }
+
+
+                                    Toast.makeText(getBaseContext(), "account creation is completed"+UserName, Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(getBaseContext(),ProfileActivity.class));
+                                }
                                 else
-                                    user = new Users(UserName,CommitteeName,PositionName,null);
-                                databaseReference.child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
-
-
-                                if (PositionName == "Chairman" || PositionName=="Chairman Vice")
-                                {
-                                    if(PositionName.equals("Chairman"))
-                                    {
-                                        mDatabaseCommitteesReference.child("High Board").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    }
-                                    else if(PositionName .equals("Chairman Vice"))
-                                    {
-                                        mDatabaseCommitteesReference.child("High Board").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    }
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "IT Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("IT Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "IT Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("IT Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "IT Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("IT Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Secretary")
-                                {
-                                    mDatabaseCommitteesReference.child("Coaching Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if (PositionName == "Head"  && CommitteeName == "Coaching Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Coaching Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if (PositionName == "Vice"  && CommitteeName == "Coaching Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Coaching Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Coaching Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Coaching Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "HR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("HR Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "HR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("HR Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "HR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("HR Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if (PositionName == "Branding Manager")
-                                {
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Branding Section").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "Multimedia Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Branding Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Multimedia Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "Multimedia Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Branding Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Multimedia Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Multimedia Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Multimedia Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "Magazine Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Branding Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Magazine Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "Magazine Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Branding Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Magazine Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Magazine Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Magazine Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "Marketing Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Branding Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Marketing Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "Marketing Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Branding Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Marketing Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Marketing Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Marketing Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if (PositionName == "Technical Manager")
-                                {
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Technical Section").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if (PositionName == "Technical Vice")
-                                {
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Technical Section").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "Electronics Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Electronics Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "Electronics Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Electronics Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Electronics Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Electronics Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "Embedded Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Embedded Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "Embedded Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Embedded Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Embedded Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Embedded Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "Computer Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Computer Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "Computer Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Computer Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Computer Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Computer Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "Power Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Power Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "Power Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Power Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Power Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Power Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "Biomedical Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Biomedical Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "Biomedical Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Technical Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Biomedical Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "Biomedical Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Biomedical Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if (PositionName == "Relation Manager")
-                                {
-                                    mDatabaseCommitteesReference.child("High Board").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("Relation Section").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "PR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Relation Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("PR Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "PR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Relation Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("PR Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "PR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("PR Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "FR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Relation Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("FR Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "FR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Relation Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("FR Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "FR Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("FR Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Head" && CommitteeName == "OC Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Relation Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("OC Committee").child("Committee_Heads_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Vice" && CommitteeName == "OC Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("Relation Section").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                    mDatabaseCommitteesReference.child("OC Committee").child("Committee_Vice_ID").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-                                else if(PositionName == "Member" && CommitteeName == "OC Committee")
-                                {
-                                    mDatabaseCommitteesReference.child("OC Committee").child("members_IDs").push().setValue(firebaseAuth.getCurrentUser().getUid());
-                                }
-
-
-                                Toast.makeText(getBaseContext(), "account creation is completed"+UserName, Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(getBaseContext(),ProfileActivity.class));
+                                    Toast.makeText(getBaseContext(),"account creation is uncompleted",Toast.LENGTH_LONG).show();
                             }
-                            else
-                                Toast.makeText(getBaseContext(),"account creation is uncompleted",Toast.LENGTH_LONG).show();
-                        }
-                    });
-            }
-        });
+                        });
+                    else
+                        Toast.makeText(getBaseContext(), "Invaild Data", Toast.LENGTH_SHORT).show();
+                }
+            }});
         SigninText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -495,7 +452,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentToLogIn);
             }
         });
-
         ProfilePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
