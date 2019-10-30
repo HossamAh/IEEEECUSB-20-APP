@@ -92,7 +92,7 @@ public class CommitteActivity extends AppCompatActivity {
                         CommitteeData.putStringArrayList("Heads_IDS", Head_IDs);
                         CommitteeData.putString("CommitteeName", Committee_Name);
                         CommitteeInfo.setArguments(CommitteeData);
-                        getSupportFragmentManager().beginTransaction().add(R.id.HeadNVice_FrameLayout, CommitteeInfo, "CommitteeInfoFragment").commit();
+                        getSupportFragmentManager().beginTransaction().add(R.id.HeadNVice_FrameLayout, CommitteeInfo, "CommitteeInfoFragment").commitAllowingStateLoss();
                     }
                 } else {
                     heads.setVisibility(View.GONE);

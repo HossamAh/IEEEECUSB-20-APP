@@ -114,3 +114,47 @@ exports.sendNotificationCommitteeTask = functions.database.ref("/Committees/{Com
     });
     
 });
+
+
+exports.sendNotificationCommitteesMessages = functions.database.ref("/Committees chatting/{chatId}/Messages/{messageId}").onWrite((event,context)=>
+{
+    const MessageID = context.params.messageId;
+    const CommitteeID = context.params.chatId;
+
+    if(CommitteeID === "IEEECUSB_Chat")
+    {
+        CommitteeName = "IEEECUSB";        
+    }
+    else{
+    var CommitteeNameArray2 =CommitteeID.split("_Chat")[0];
+    var CommitteeNameArray =CommitteeNameArray2.split(" ");
+    var CommitteeName = CommitteeNameArray[0]+CommitteeNameArray[1];
+    }
+    console.log(CommitteeName);
+    
+    const payload=
+    {
+        data:
+        {
+            data_type:"direct_message",
+            title:"newMessage from "+CommitteeID.split("_Chat")[0],
+            message:event.after.val().text,
+            message_id:MessageID,
+            sender_name:event.after.val().name,
+            sender_id:event.after.val().user_id,
+            Committee:CommitteeName,
+        }
+    }
+    console.log(payload);
+    
+    return admin.messaging().sendToTopic(CommitteeName,payload).then(function(response)
+    {
+      console.log("Successfully sent message: ",response);  
+      return;
+    }).catch(function(error)
+    {
+        console.log("Error sending message: ",error)
+        return;
+    });
+    
+});

@@ -33,6 +33,7 @@ public class Create extends AppCompatActivity {
     private FirebaseDatabase mFireBaseDataBase;
     private DatabaseReference mFirebaseDataBaseReference;
     private int TaskOrEvent = 0;  // 1 for task 2 for event
+    private String Target;
 
 
     @Override
@@ -98,7 +99,7 @@ public class Create extends AppCompatActivity {
                 Date.setVisibility(View.VISIBLE);
                 Location.setVisibility(View.VISIBLE);
                 TargetSpinner.setVisibility(View.VISIBLE);
-                spinner2.setVisibility(View.VISIBLE);
+                //spinner2.setVisibility(View.VISIBLE);
                 Submit.setVisibility(View.VISIBLE);
 
             }
@@ -130,16 +131,23 @@ public class Create extends AppCompatActivity {
                 Date.setVisibility(View.VISIBLE);
 
                 TargetSpinner.setVisibility(View.VISIBLE);
-                spinner2.setVisibility(View.VISIBLE);
+                //spinner2.setVisibility(View.VISIBLE);
                 Submit.setVisibility(View.VISIBLE);
             }
         });
 
-        spinner2.setVisibility(View.INVISIBLE);
+        //spinner2.setVisibility(View.INVISIBLE);
         final Spinner spinner = TargetSpinner;
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("General");
-        arrayList.add("Committee");
+        if(UserInfo.sPosition.equals("Chairman")||UserInfo.sPosition.equals("Chairman Vice")||UserInfo.sPosition.equals("Secretary")) {
+            arrayList.clear();
+            arrayList.add("General");
+            arrayList.add("Committee");
+        }
+        else{
+            arrayList.clear();
+            arrayList.add("Committee");
+        }
         // arrayList.add("Member");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -148,48 +156,7 @@ public class Create extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String Target = adapterView.getItemAtPosition(i).toString();
-
-                if (Target.equals("Committee")) {
-                    spinner2.setVisibility(View.VISIBLE);
-                    Spinner spinner1 = spinner2;
-                    final String[] arrayList1
-                            ={"None",
-                            "High Board",
-                            "Technical Committee",
-                            "Embedded Committee",
-                            "IT Committee",
-                            "HR Committee",
-                            "Marketing Committee",
-                            "Media Committee",
-                            "Biomedical Committee",
-                            "Electronics Committee",
-                            "Coaching Committee",
-                            "Organization Committee",
-                            "Magazine Committee",
-                            "Computer Committee",
-                            "Power Committee",
-                            "PR Committee",
-                            "FR Committee"};
-                    ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(Create.this,android.R.layout.simple_list_item_1,arrayList1);
-                    arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner1.setAdapter(arrayAdapter1);
-                    spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            String TargetCommittee = adapterView.getItemAtPosition(i).toString();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-                        }
-                    });
-
-                }
-                else
-                    {
-                        spinner2.setVisibility(View.INVISIBLE);
-                    }
+                Target = adapterView.getItemAtPosition(i).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -208,8 +175,8 @@ public class Create extends AppCompatActivity {
                             if (TargetSpinner.getSelectedItem().toString().equals("General")) {
                                 task = new Task(Topic.getText().toString(), "IEEE CUSB", Details.getText().toString(), Date.getText().toString(), null);
                             } else {
-                                task = new Task(Topic.getText().toString(), spinner2.getSelectedItem().toString(), Details.getText().toString(), Date.getText().toString(), null);
-                                mFirebaseDataBaseReference.child("Committees").child(spinner2.getSelectedItem().toString()).child("Tasks").push().setValue(task);
+                                task = new Task(Topic.getText().toString(), UserInfo.sCommitteeName, Details.getText().toString(), Date.getText().toString(), null);
+                                mFirebaseDataBaseReference.child("Committees").child(UserInfo.sCommitteeName).child("Tasks").push().setValue(task);
                             }
                             if (task != null) {
                                 Toast.makeText(getBaseContext(), "Successful Creation of an Task", Toast.LENGTH_SHORT).show();
@@ -238,9 +205,9 @@ public class Create extends AppCompatActivity {
                                 mFirebaseDataBaseReference.child("IEEECUSB").child("Events").push().setValue(event);
                             }
                             if (TargetSpinner.getSelectedItem().toString() == "Committee") {
-                                event = new Event(Topic.getText().toString(), Details.getText().toString(), spinner2.getSelectedItem().toString(), Date.getText().toString(), Location.getText().toString(), null, null);
+                                event = new Event(Topic.getText().toString(), Details.getText().toString(), UserInfo.sCommitteeName, Date.getText().toString(), Location.getText().toString(), null, null);
 
-                                mFirebaseDataBaseReference.child("Committees").child(spinner2.getSelectedItem().toString()).child("Events").push().setValue(event);
+                                mFirebaseDataBaseReference.child("Committees").child(UserInfo.sCommitteeName).child("Events").push().setValue(event);
                             }
                             Toast.makeText(getBaseContext(), "Successful Creation of an announcement", Toast.LENGTH_SHORT).show();
                             if (event != null) {

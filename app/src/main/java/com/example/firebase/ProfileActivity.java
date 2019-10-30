@@ -198,7 +198,16 @@ private LinearLayout chattingLayout;
                 Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
                 intent.putExtra("ProfileUID", "");
                 intent.putExtra("chatType", 1);
-                intent.putExtra("CommitteeName", user.getUser_Committee());
+                String Committee2 = "";
+                if(CommitteeName1.getText().toString().split(" ")[1].equals("Section"))
+                {
+                    Committee2 = CommitteeName1.getText().toString().split(" ")[0]+" Committee";
+                }
+                else
+                {
+                    Committee2=CommitteeName1.getText().toString();
+                }
+                intent.putExtra("CommitteeName", Committee2);
                 intent.putExtra("ProfileUserName", "");
                 startActivity(intent);
             }
@@ -209,7 +218,16 @@ private LinearLayout chattingLayout;
                 Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
                 intent.putExtra("ProfileUID", "");
                 intent.putExtra("chatType", 1);
-                intent.putExtra("CommitteeName", CommitteeName2.getText().toString());
+                String Committee2 = "";
+                if(CommitteeName2.getText().toString().split(" ")[1].equals("Section"))
+                {
+                    Committee2 = CommitteeName2.getText().toString().split(" ")[0]+" Committee";
+                }
+                else
+                {
+                    Committee2=CommitteeName2.getText().toString();
+                }
+                intent.putExtra("CommitteeName",Committee2 );
                 intent.putExtra("ProfileUserName", "");
                 startActivity(intent);
             }
@@ -231,13 +249,32 @@ private LinearLayout chattingLayout;
         CommitteeName1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, CommitteActivity.class).putExtra("CommitteeName", user.getUser_Committee()));
+                String Committee2 = "";
+                if(CommitteeName1.getText().toString().split(" ")[1].equals("Section"))
+                {
+                    Committee2 = CommitteeName1.getText().toString().split(" ")[0]+" Committee";
+                }
+                else
+                {
+                    Committee2=CommitteeName1.getText().toString();
+                }
+                startActivity(new Intent(ProfileActivity.this, CommitteActivity.class).putExtra("CommitteeName", Committee2));
             }
         });
         CommitteeName2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, CommitteActivity.class).putExtra("CommitteeName", CommitteeName2.getText().toString()));
+                String Committee2 = "";
+                if(CommitteeName2.getText().toString().split(" ")[1].equals("Section"))
+                {
+                    Committee2 = CommitteeName2.getText().toString().split(" ")[0]+" Committee";
+                }
+                else
+                    {
+                        Committee2=CommitteeName2.getText().toString();
+                    }
+
+                startActivity(new Intent(ProfileActivity.this, CommitteActivity.class).putExtra("CommitteeName", Committee2));
             }
         });
 
@@ -271,7 +308,7 @@ private LinearLayout chattingLayout;
         chattingLayout.setVisibility(View.VISIBLE);
         datalayout.setVisibility(View.VISIBLE);
 
-        if (user.getUser_Position().equals("Chairman") || user.getUser_Position().equals("Chairman Vice")) {
+        if (user.getUser_Position().equals("Chairman") || user.getUser_Position().equals("Chairman Vice") || user.getUser_Position().equals("Member")) {
             CommitteeName2.setVisibility(View.GONE);
             committeeChat2.setVisibility(View.GONE);
         } else {
@@ -286,7 +323,7 @@ private LinearLayout chattingLayout;
     //    Line.setVisibility(View.VISIBLE);
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
+        if (bundle != null) {//not auth user
             if (bundle.getString("UserID").equals(firebaseAuth.getCurrentUser().getUid())) {
                 privateChat.setVisibility(View.GONE);
                 committeeChat1.setVisibility(View.VISIBLE);
@@ -297,69 +334,142 @@ private LinearLayout chattingLayout;
                 ViewChatting.setVisibility(View.GONE);
 
 
-            } else {
+            }
+            else {
                 committeeChat1.setVisibility(View.GONE);
                 committeeChat2.setVisibility(View.GONE);
                 clubChat.setVisibility(View.GONE);
+                privateChat.setVisibility(View.VISIBLE);
                 //Line.setVisibility(View.GONE);
                 ViewChatting.setVisibility(View.GONE);
 
             }
-        } else {
+        }
+        else {//auth user
             committeeChat1.setVisibility(View.VISIBLE);
             committeeChat2.setVisibility(View.VISIBLE);
             clubChat.setVisibility(View.VISIBLE);
          //   Line.setVisibility(View.VISIBLE);
             ViewChatting.setVisibility(View.VISIBLE);
-
+            privateChat.setVisibility(View.GONE);
         }
 
 
         if (user.getUser_Position().equals("Head") || user.getUser_Position().equals("Vice") ||
                 (user.getUser_Position().equals("Technical Manager") || user.getUser_Position().equals("Technical Vice"))
-                || (user.getUser_Position().equals("Chairman") || user.getUser_Position().equals("Chairman Vice"))||user.getUser_Position().equals("Secretary")||user.getUser_Position().equals("Branding Manager")||user.getUser_Position().equals("Relation Manger")) {
+                || (user.getUser_Position().equals("Chairman") || user.getUser_Position().equals("Chairman Vice"))||user.getUser_Position().equals("Secretary")
+                ||user.getUser_Position().equals("Branding Manager")||user.getUser_Position().equals("Relation Manger")) {
 
             Log.e("ProfileActivity", user.getUser_Committee());
 
             if(user.getUser_Committee().equals("Relation Committee") ||user.getUser_Committee().equals("Technical Committee")
                     || user.getUser_Committee().equals("Branding Committee")
-                    ||user.getUser_Committee().equals("IT Committee")||user.getUser_Committee().equals("HR Committee") )
+                    ||user.getUser_Committee().equals("IT Committee")||user.getUser_Committee().equals("HR Committee")||user.getUser_Position().equals("Secretary") )
             {
 
                 if (user.getUser_Committee().equals("IT Committee") || user.getUser_Committee().equals("HR Committee")) {
                     CommitteeName1.setText(user.getUser_Committee());
                     committeeChat1.setText(user.getUser_Committee() + " Chatting");
-                } else {
+
+                }else
+                if(user.getUser_Position().equals("Secretary"))
+                {
+                    CommitteeName1.setText(user.getUser_Committee());
+                    committeeChat1.setText(user.getUser_Committee()+" Chatting");
+                }
+                else {
                     CommitteeName1.setText(user.getUser_Committee().split(" ")[0] + " Section");
                     committeeChat1.setText(user.getUser_Committee().split(" ")[0] + " Section Chatting");
                 }
-                FirebaseMessaging.getInstance().subscribeToTopic("HighBoard" + "_Chatting")
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                String msg = "subscribe successful";
-                                if (!task.isSuccessful()) {
-                                    msg = "subscribe failed";
+                if (bundle == null) {
+                    FirebaseMessaging.getInstance().subscribeToTopic("HighBoard" + "_Chatting")
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    String msg = "subscribe successful";
+                                    if (!task.isSuccessful()) {
+                                        msg = "subscribe failed";
+                                    }
+                                    Log.d(TAG, msg);
                                 }
-                                Log.d(TAG, msg);
-                            }
-                        });
-                FirebaseMessaging.getInstance().subscribeToTopic("HighBoard")
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                String msg = "subscribe successful";
-                                if (!task.isSuccessful()) {
-                                    msg = "subscribe failed";
+                            });
+                    FirebaseMessaging.getInstance().subscribeToTopic("HighBoard")
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    String msg = "subscribe successful";
+                                    if (!task.isSuccessful()) {
+                                        msg = "subscribe failed";
+                                    }
+                                    Log.d(TAG, msg);
                                 }
-                                Log.d(TAG, msg);
-                            }
-                        });
-
+                            });
+                }
                 CommitteeName2.setText("High Board");
                 committeeChat2.setText("High Board" + " Chatting");
 
             }
+            else if(user.getUser_Position().equals("Chairman")||user.getUser_Position().equals("Chairman Vice"))
+            {
+                CommitteeName1.setText(user.getUser_Committee());
+                committeeChat1.setText(user.getUser_Committee()+"Chatting");
+                CommitteeName2.setVisibility(View.GONE);
+                committeeChat2.setVisibility(View.GONE);
+            }
+
+            else //head or vice of committee 3adya
+                {
+                    String SectionWithNoSpaces="";
+                    if(user.getUser_Committee().equals("Embedded Committee")||user.getUser_Committee().equals("Power Committee")
+                            || user.getUser_Committee().equals("Electronics Committee")||user.getUser_Committee().equals("Biomedical Committee")||user.getUser_Committee().equals("Computer Committee"))
+                    {
+                        CommitteeName2.setText("Technical Section");
+                        committeeChat2.setText("Technical Section Chatting");
+                        SectionWithNoSpaces = "TechnicalCommittee";
+                    }
+                    if(user.getUser_Committee().equals("Multimedia Committee")||user.getUser_Committee().equals("Magazine Committee")
+                            || user.getUser_Committee().equals("Marketing Committee"))
+                    {
+                        CommitteeName2.setText("Branding Section");
+                        committeeChat2.setText("Branding Section Chatting");
+                        SectionWithNoSpaces = "BrandingCommittee";
+                    }
+                    if(user.getUser_Committee().equals("OC Committee")||user.getUser_Committee().equals("PR Committee")
+                            || user.getUser_Committee().equals("FR Committee")||user.getUser_Committee().equals("Biomedical Committee")||user.getUser_Committee().equals("Computer Committee"))
+                    {
+                        CommitteeName2.setText("Relations Section");
+                        committeeChat2.setText("Relations Section Chatting");
+                        SectionWithNoSpaces = "RelationCommittee";
+                    }
+                    CommitteeName1.setText(user.getUser_Committee());
+                    committeeChat1.setText(user.getUser_Committee() +" Chatting");
+                    if (bundle == null) {
+                        FirebaseMessaging.getInstance().subscribeToTopic(SectionWithNoSpaces + "_Chatting")
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        String msg = "subscribe successful";
+                                        if (!task.isSuccessful()) {
+                                            msg = "subscribe failed";
+                                        }
+                                        Log.d(TAG, msg);
+                                    }
+                                });
+
+                        FirebaseMessaging.getInstance().subscribeToTopic(SectionWithNoSpaces)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        String msg = "subscribe successful";
+                                        if (!task.isSuccessful()) {
+                                            msg = "subscribe failed";
+                                        }
+                                        Log.d(TAG, msg);
+                                    }
+                                });
+                    }
+                }
+
         }
         else if (user.getUser_Position().equals("Member")) {
             Log.e("ProfileActivity", "user is member inside the member condition");
@@ -368,43 +478,44 @@ private LinearLayout chattingLayout;
             CommitteeName2.setVisibility(View.GONE);
             committeeChat2.setVisibility(View.GONE);
         }
-        FirebaseMessaging.getInstance().subscribeToTopic(user.getUser_Committee().replaceAll("\\s", "") + "_Chatting")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "subscribe successful";
-                        if (!task.isSuccessful()) {
-                            msg = "subscribe failed";
+        if (bundle == null) {
+            FirebaseMessaging.getInstance().subscribeToTopic(user.getUser_Committee().replaceAll("\\s", "") + "_Chatting")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            String msg = "subscribe successful";
+                            if (!task.isSuccessful()) {
+                                msg = "subscribe failed";
+                            }
+                            Log.d(TAG, msg);
                         }
-                        Log.d(TAG, msg);
-                    }
-                });
+                    });
 
-        FirebaseMessaging.getInstance().subscribeToTopic(user.getUser_Committee().replaceAll("\\s", ""))
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "subscribe successful";
-                        if (!task.isSuccessful()) {
-                            msg = "subscribe failed";
+            FirebaseMessaging.getInstance().subscribeToTopic(user.getUser_Committee().replaceAll("\\s", ""))
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            String msg = "subscribe successful";
+                            if (!task.isSuccessful()) {
+                                msg = "subscribe failed";
+                            }
+                            Log.d(TAG, msg);
                         }
-                        Log.d(TAG, msg);
-                    }
-                });
+                    });
 
-        FirebaseMessaging.getInstance().subscribeToTopic("IEEECUSB")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "subscribe successful";
-                        if (!task.isSuccessful()) {
-                            msg = "subscribe failed";
+            FirebaseMessaging.getInstance().subscribeToTopic("IEEECUSB")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            String msg = "subscribe successful";
+                            if (!task.isSuccessful()) {
+                                msg = "subscribe failed";
+                            }
+                            Log.d(TAG, msg);
                         }
-                        Log.d(TAG, msg);
-                    }
-                });
+                    });
 
-
+        }
         Name.setText(user.getUser_Name());
         PositionName.setText(user.getUser_Position());
 
@@ -420,7 +531,7 @@ private LinearLayout chattingLayout;
     }
 
 
-    private void sendRegistrationToServer(String token) {
+    private  void sendRegistrationToServer(String token) {
         Log.d(TAG, "sendRegistrationToServer: sending token to server: " + token);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         reference.child("users")
