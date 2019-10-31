@@ -435,7 +435,7 @@ private LinearLayout chattingLayout;
                         SectionWithNoSpaces = "BrandingCommittee";
                     }
                     if(user.getUser_Committee().equals("OC Committee")||user.getUser_Committee().equals("PR Committee")
-                            || user.getUser_Committee().equals("FR Committee")||user.getUser_Committee().equals("Biomedical Committee")||user.getUser_Committee().equals("Computer Committee"))
+                            || user.getUser_Committee().equals("FR Committee"))
                     {
                         CommitteeName2.setText("Relations Section");
                         committeeChat2.setText("Relations Section Chatting");
