@@ -2,13 +2,11 @@ package com.example.firebase;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.firebase.models.FreindlyMessage;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +35,7 @@ public class MessageAdapter extends ArrayAdapter<FreindlyMessage> {
 
         boolean isPhoto = message.getPhotoUrl() != null;
         if (isPhoto) {
-            Log.e("MessageAdapter","download image uri "+message.getPhotoUrl());
+            //Log.e("MessageAdapter","download image uri "+message.getPhotoUrl());
             messageTextView.setVisibility(View.GONE);
             photoImageView.setVisibility(View.VISIBLE);
             Picasso.get().load(message.getPhotoUrl())

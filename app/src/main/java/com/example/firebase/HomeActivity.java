@@ -3,13 +3,11 @@ package com.example.firebase;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -25,15 +23,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.firebase.models.FreindlyMessage;
 import com.example.firebase.models.Users;
 import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -49,10 +43,8 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -71,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button mSendButton;
     private android.support.v7.widget.Toolbar toolbar;
 
+    List<FreindlyMessage> friendlyMessages;
     private String mUsername;
     private FirebaseDatabase mFireBaseDataBase;
     private DatabaseReference mFirebaseDatabaseReference;
@@ -89,11 +82,15 @@ public class HomeActivity extends AppCompatActivity {
     private String Title;
     private Users user;
     private String chatID;
+    private String saveCurrentTime, saveCurrentDate;
+    private boolean check1; // to check whether auth id is the first part in room id or not.
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Log.e("homeactivity","insideoncreate");
         mUsername = ANONYMOUS;
 
         mFirebaseUserName = mUsername;
@@ -112,13 +109,13 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mUser_Image = (ImageView)findViewById(R.id.User_imageView);
         mNameTextView = (TextView)findViewById(R.id.UserNameText);
-        final List<FreindlyMessage> friendlyMessages = new ArrayList<>();
+        friendlyMessages = new ArrayList<>();
 
         mMessageAdapter= new MessageAdapter(this, R.layout.item_message, friendlyMessages);
         mMessageListView.setAdapter(mMessageAdapter);
 
         // Initialize progress bar
-        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+        mProgressBar.setVisibility(View.VISIBLE);
 
 
         //check for what is the chat  type is
@@ -158,7 +155,10 @@ public class HomeActivity extends AppCompatActivity {
         }
 
 
-
+        if(childEventListener == null)
+        {
+            Log.e(TAG, "onCreate: childListener is null" );
+        }
 
 
         mFireBaseDataBase.getReference().child("users").child(mFireBaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -178,6 +178,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
         mFireBaseDataBase.getReference().child("users").child(ProfileUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -205,8 +206,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-
-
+//        mPhotoPickerButton.setEnabled(false);
         // ImagePickerButton shows an image picker to upload a image for a message
         mPhotoPickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,19 +246,37 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Send messages on click
-                FreindlyMessage message = new FreindlyMessage(mMessageEditText.getText().toString(),mFirebaseUserName,null,getTimestamp(),mFireBaseAuth.getCurrentUser().getUid(),user.getUrl());
+                FreindlyMessage message = new FreindlyMessage(mMessageEditText.getText().toString(),mFirebaseUserName,null,getTimestamp(),mFireBaseAuth.getCurrentUser().getUid(),UserInfo.sImageUrl);
                 mFirebaseDatabaseReference.child("Messages").push().setValue(message);
-                checkIsExist(ChatKey,chatType);
+                boolean check = checkIsExist(ChatKey,chatType);
                 mFirebaseDatabaseReference.child("ChatNode").child("Last Message").setValue(message);
-                if(chatType ==0)
+                mFirebaseDatabaseReference.child("ChatNode").child("ChatID").setValue(ChatKey);
+
+                if(!check)
                 {
-                    mFirebaseDatabaseReference.child("ChatNode").child("ReceiverName").setValue(ProfileUserName);
-                    mFirebaseDatabaseReference.child("ChatNode").child("ReceiverImageUrl").setValue(user.getUrl());
-                }
-                else
-                {
-                    mFirebaseDatabaseReference.child("ChatNode").child("ReceiverName").setValue(ChatKey);
-                    //
+                    if(chatType == 0) {
+                        if (!check1) //chat id (receiver ,, auth)
+                        {
+                            mFirebaseDatabaseReference.child("ChatNode").child("Name1").setValue(ProfileUserName);
+                            mFirebaseDatabaseReference.child("ChatNode").child("ImageUrl1").setValue(user.getUrl());
+                            mFirebaseDatabaseReference.child("ChatNode").child("Name2").setValue(UserInfo.sUserName);
+                            mFirebaseDatabaseReference.child("ChatNode").child("ImageUrl2").setValue(UserInfo.sImageUrl);
+
+                        }
+                        else//chat id (auth ,, receiver)
+                        {
+                            mFirebaseDatabaseReference.child("ChatNode").child("Name2").setValue(ProfileUserName);
+                            mFirebaseDatabaseReference.child("ChatNode").child("ImageUrl2").setValue(user.getUrl());
+                            mFirebaseDatabaseReference.child("ChatNode").child("Name1").setValue(UserInfo.sUserName);
+                            mFirebaseDatabaseReference.child("ChatNode").child("ImageUrl1").setValue(UserInfo.sImageUrl);
+                        }
+                    }
+                    else
+                    {
+                        mFirebaseDatabaseReference.child("ChatNode").child("Name1").setValue(ChatKey);
+                        //
+                    }
+
                 }
                 // Clear input box
                 mMessageEditText.setText("");
@@ -266,10 +284,10 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        onSignedInInit(mFirebaseUserName);
+
     }
 
-    private void checkIsExist(final String chatKey, final int chatType) {
+    private boolean checkIsExist(final String chatKey, final int chatType) {
         final boolean[] check = new boolean[1];
         check[0] = false;
         mFireBaseDataBase.getReference().child("users").child(mFireBaseAuth.getCurrentUser().getUid()).child("ChattingList").addValueEventListener(new ValueEventListener() {
@@ -300,7 +318,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+    return check[0];
     }
 
 
@@ -310,22 +328,29 @@ public class HomeActivity extends AppCompatActivity {
 
     }
     private void attachDatabaseReadListner() {
-        Log.e("Reader", "Reader initialization is completed correctly");
+        //Log.e("Reader", "Reader initialization is completed correctly");
+        mProgressBar.setVisibility(View.GONE);
         if (childEventListener == null) {
             Log.e("ReaderInside", "childEventListener is completed correctly");
             childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    //Log.e("HomeActivity","messages:"+dataSnapshot.getValue().toString());
                     FreindlyMessage freindlyMessage = dataSnapshot.getValue(FreindlyMessage.class);
-                    mMessageAdapter.add(freindlyMessage);
+                    friendlyMessages.add(freindlyMessage);
+                    mMessageAdapter.notifyDataSetChanged();
                 }
 
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
                 }
 
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                    FreindlyMessage freindlyMessage = dataSnapshot.getValue(FreindlyMessage.class);
+                    if(freindlyMessage !=null)
+                        mMessageAdapter.remove(freindlyMessage);
                 }
 
                 @Override
@@ -343,6 +368,7 @@ public class HomeActivity extends AppCompatActivity {
         if(childEventListener != null)
             mFirebaseDatabaseReference.removeEventListener(childEventListener);
         childEventListener=null;
+        mMessageAdapter.clear();
     }
 
     @Override
@@ -367,32 +393,29 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-
     @Override
-    public void onResume()
-    {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         attachDatabaseReadListner();
     }
 
-
     @Override
-    public void onPause()
-    {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         detachDatabaseReadListener();
-        mMessageAdapter.clear();
     }
-
 
     private String setOneToOneChat(String uid1, String uid2) //key of the private chat of these two users . auth user and the profile user.
     {
+        //uid2 is the auth user id.
         //Check if user1’s id is less than user2's
         if(uid1.compareToIgnoreCase(uid2) <= -1)
         {
+            check1= false;
             return uid1+uid2;
         }
         else{
+            check1 = true;
             return uid2+uid1;
         }
 
@@ -421,9 +444,9 @@ public class HomeActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
-                        FreindlyMessage message = new FreindlyMessage(null,mFirebaseUserName,downloadUri.toString(),getTimestamp(),mFireBaseAuth.getCurrentUser().getUid(),user.getUrl());
-                        mFirebaseDatabaseReference.push().setValue(message);
-                        mMessageAdapter.notifyDataSetChanged();
+                        FreindlyMessage message = new FreindlyMessage(null,mFirebaseUserName,downloadUri.toString(),getTimestamp(),mFireBaseAuth.getCurrentUser().getUid(),UserInfo.sImageUrl);
+                        mFirebaseDatabaseReference.child("Messages").push().setValue(message);
+
                     } else {
                         // Handle failures
                         // ...
@@ -434,8 +457,13 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
     private String getTimestamp(){
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd   HH:mm");
-        sdf.setTimeZone(TimeZone.getTimeZone("Africa/Egypt"));
-        return sdf.format(new Date());
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+        return (saveCurrentDate+" - " + saveCurrentTime);
     }
 }

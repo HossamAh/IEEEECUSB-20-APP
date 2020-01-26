@@ -1,14 +1,12 @@
 package com.example.firebase;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class PreviousChatting extends AppCompatActivity {
+    private static final String TAG = "PreviousChatting";
     private TextView PreviousChattingTitleTextView;
     private ArrayList<String> chattingIDsList;
     private ListView chattings;
@@ -37,6 +36,7 @@ public class PreviousChatting extends AppCompatActivity {
     private String CommitteeName;
     private String ProfileName;//receiver name
     private ValueEventListener getChattingListIDs;
+    private ValueEventListener GetUserDataListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class PreviousChatting extends AppCompatActivity {
         setContentView(R.layout.activity_previous_chatting);
         PreviousChattingTitleTextView = (TextView)findViewById(R.id.previousChattingTitle);
         PreviousChattingTitleTextView.setText("Your Previous Messages");
-
+        Log.e(TAG, "onCreate: in it " );
         chatNodes = new ArrayList<>();
 
 
@@ -53,9 +53,6 @@ public class PreviousChatting extends AppCompatActivity {
         mChattingAdapter = new chatNodeAdapter(PreviousChatting.this,R.layout.chat_item,chatNodes);
         chattings.setAdapter(mChattingAdapter);
 
-        mChattingAdapter.clear();
-        detachDatabaseReadListener();
-        attachDatabaseReadListner();
 
         chattings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -69,15 +66,17 @@ public class PreviousChatting extends AppCompatActivity {
                     int authIDStartIndex = chattingIDsList.get(position).indexOf(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     if(authIDStartIndex == 0)
                     {
+                        ProfileName = chatNodes.get(position).getName2();
                         ProfileUid = chattingIDsList.get(position).substring(authIDLength);
                         Log.e("ChattingListFragment","authIDStartIndex = 0"+chattingIDsList.get(position).substring(authIDLength));
 
                     }
                     else {
+                        ProfileName = chatNodes.get(position).getName1();
                         ProfileUid = chattingIDsList.get(position).substring(0,authIDStartIndex);
                         Log.e("ChattingListFragment","authIDStartIndex > 0"+chattingIDsList.get(position).substring(0,5));
                     }
-                    ProfileName = chatNodes.get(position).getReceiverName();
+
                     CommitteeName="";
                 }
                 else if(chattingIDsList.get(position).equals("IEEECUSB_Chat"))
@@ -103,22 +102,29 @@ public class PreviousChatting extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //mChattingAdapter.clear();
+        //attachDatabaseReadListner();
+
     }
 
 
     private void detachDatabaseReadListener(){
-        if(getChattingListIDs != null)
+        if(getChattingListIDs != null || GetUserDataListener != null) {
             mFireBaseDatabaseReference.removeEventListener(getChattingListIDs);
+            mFireBaseDatabaseReference.removeEventListener(GetUserDataListener);
+        }
+
         getChattingListIDs=null;
     }
     private void attachDatabaseReadListner() {
 
         mFireBaseDatabase = FirebaseDatabase.getInstance();
         mFireBaseDatabaseReference = mFireBaseDatabase.getReference();
-        if(getChattingListIDs == null)
+
+        if(getChattingListIDs == null )
         {
             Log.e("PreviousChatting","getchattingListIds is null inside attach on value listener");
-            final ValueEventListener GetUserDataListener = new ValueEventListener() {
+            GetUserDataListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  //   Log.e("ChattingListFragment",dataSnapshot.getValue().toString());
@@ -129,14 +135,25 @@ public class PreviousChatting extends AppCompatActivity {
                         {
                             chatNode.setLastMessage(snapshot.getValue(FreindlyMessage.class));
                         }
-                        else if(snapshot.getKey().equals("ReceiverName"))
+                        else if(snapshot.getKey().equals("Name1"))
                         {
-
-                            chatNode.setReceiverName(snapshot.getValue().toString());
+                            chatNode.setName1(snapshot.getValue().toString());
                         }
-                        else
+                        else if(snapshot.getKey().equals("Name2"))
                         {
-                            chatNode.setReceiverImageUrl(snapshot.getValue().toString());
+                            chatNode.setName2(snapshot.getValue().toString());
+                        }
+                        else if(snapshot.getKey().equals("ImageUrl1"))
+                        {
+                            chatNode.setImageUrl1(snapshot.getValue().toString());
+                        }
+                        else if(snapshot.getKey().equals("ImageUrl2"))
+                        {
+                            chatNode.setImageUrl2(snapshot.getValue().toString());
+                        }
+                        else if (snapshot.getKey().equals("ChatID"))
+                        {
+                            chatNode.setChatID(snapshot.getValue().toString());
                         }
                     }
                     mChattingAdapter.add(chatNode);
@@ -171,26 +188,24 @@ public class PreviousChatting extends AppCompatActivity {
                 }
             };
         }
-        mFireBaseDatabaseReference.child("users").
-                child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("ChattingList").addValueEventListener(getChattingListIDs);
+        mFireBaseDatabaseReference.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("ChattingList").addValueEventListener(getChattingListIDs);
     }
 
+
     @Override
-    protected void onRestart() {
-        super.onRestart();
-    mChattingAdapter.clear();
+    protected void onDestroy() {
+        super.onDestroy();
         detachDatabaseReadListener();
+        mChattingAdapter.clear();
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mChattingAdapter.clear();
         attachDatabaseReadListner();
 
     }
-
-
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        detachDatabaseReadListener();
-        mChattingAdapter.clear();
-    }
-
 }

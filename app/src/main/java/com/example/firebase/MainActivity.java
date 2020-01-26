@@ -9,17 +9,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.firebase.models.FreindlyMessage;
 import com.example.firebase.models.Users;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -31,15 +27,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     DatabaseReference databaseReference2;
     Users user;
+    ProgressBar progressBar2;
     FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseStorage mFirebaseStorage;
     private StorageReference mStorageReference;
@@ -86,12 +78,13 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("users");
         databaseReference2 = firebaseDatabase.getReference();
         ProfilePicker = (Button)findViewById(R.id.ProfileImagePickerbutton);
-
+        progressBar2 = (ProgressBar)findViewById(R.id.progressBar2);
         mFirebaseStorage = FirebaseStorage.getInstance();
         mStorageReference = mFirebaseStorage.getReference();
         mDatabaseCommitteesReference = firebaseDatabase.getReference().child("Committees");
         imagePicked = false;
         mFirebaseAuth = FirebaseAuth.getInstance();
+        progressBar2.setVisibility(View.INVISIBLE);
    /*     final String[] Committees
         ={"None",
         "High Board",
@@ -475,6 +468,7 @@ public class MainActivity extends AppCompatActivity {
             Uri selectedImage = data.getData();
             final StorageReference imageRef = mStorageReference.child("ProfileImages").child(selectedImage.getLastPathSegment());
             UploadTask uploadTask = imageRef.putFile(selectedImage);
+            progressBar2.setVisibility(View.VISIBLE);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -487,6 +481,7 @@ public class MainActivity extends AppCompatActivity {
                             //TODO disappear progress bar.
                             profilePicUri = task.getResult();
                             imagePicked = true;
+                            progressBar2.setVisibility(View.GONE);
                             Toast.makeText(getApplicationContext(),"Uploading Profile Picture Successfully",Toast.LENGTH_LONG).show();
                             Log.e("MainActivity",profilePicUri.toString());
 
@@ -507,7 +502,6 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    Toast.makeText(getBaseContext(), "Signed in completed "+UserName, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getBaseContext(), ProfileActivity.class));
 
                 } else {
@@ -529,7 +523,6 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    Toast.makeText(getBaseContext(), "Signed in completed "+UserName, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getBaseContext(), ProfileActivity.class));
 
                 } else {

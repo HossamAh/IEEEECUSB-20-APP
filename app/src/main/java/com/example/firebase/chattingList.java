@@ -1,8 +1,6 @@
 package com.example.firebase;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,9 +14,7 @@ import android.widget.ListView;
 
 import com.example.firebase.models.ChatNode;
 import com.example.firebase.models.FreindlyMessage;
-import com.example.firebase.models.Users;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,15 +82,18 @@ public class chattingList extends Fragment {
                         int authIDStartIndex = chattingIDsList.get(position).indexOf(FirebaseAuth.getInstance().getCurrentUser().getUid());
                         if(authIDStartIndex == 0)
                         {
+
                             ProfileUid = chattingIDsList.get(position).substring(authIDLength);
+                            ProfileName = chatNodes.get(position).getName2();
                             Log.e("ChattingListFragment","authIDStartIndex = 0"+chattingIDsList.get(position).substring(authIDLength));
 
                         }
                         else {
                             ProfileUid = chattingIDsList.get(position).substring(0,authIDStartIndex);
+                            ProfileName = chatNodes.get(position).getName1();
                             Log.e("ChattingListFragment","authIDStartIndex > 0"+chattingIDsList.get(position).substring(0,5));
                         }
-                        ProfileName = chatNodes.get(position).getReceiverName();
+
                         CommitteeName="";
                     }
                 else if(chattingIDsList.get(position).equals("IEEECUSB_Chat"))
@@ -134,14 +133,26 @@ public class chattingList extends Fragment {
                     {
                         chatNode.setLastMessage(snapshot.getValue(FreindlyMessage.class));
                     }
-                    else if(snapshot.getKey().equals("ReceiverName"))
+                    else if(snapshot.getKey().equals("Name1"))
                     {
-                        chatNode.setReceiverName(snapshot.getValue().toString());
+                        chatNode.setName1(snapshot.getValue().toString());
                     }
-                    else
-                        {
-                            chatNode.setReceiverImageUrl(snapshot.getValue().toString());
-                        }
+                    else if(snapshot.getKey().equals("Name2"))
+                    {
+                        chatNode.setName2(snapshot.getValue().toString());
+                    }
+                    else if(snapshot.getKey().equals("ImageUrl1"))
+                    {
+                        chatNode.setImageUrl1(snapshot.getValue().toString());
+                    }
+                    else if(snapshot.getKey().equals("ImageUrl2"))
+                    {
+                        chatNode.setImageUrl2(snapshot.getValue().toString());
+                    }
+                    else if (snapshot.getKey().equals("ChatID"))
+                    {
+                        chatNode.setChatID(snapshot.getValue().toString());
+                    }
                 }
                 chatNodes.add(chatNode);
                 for(ChatNode chatNode1:chatNodes)
@@ -167,6 +178,7 @@ public class chattingList extends Fragment {
         }
         else //private
             {
+
                 mFireBaseDatabaseReference.child("PrivateChatting").child(ID).child("ChatNode").addValueEventListener(GetUserDataListener);
             }
     }

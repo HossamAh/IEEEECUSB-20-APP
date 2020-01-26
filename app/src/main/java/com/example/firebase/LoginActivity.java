@@ -1,9 +1,9 @@
 package com.example.firebase;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -49,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    Toast.makeText(getBaseContext(), "Signed in completed "+UserName, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getBaseContext(), ProfileActivity.class));
 
                 } else {
@@ -67,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Log.e("LoginAtivity","in Login button listener");
-                Toast.makeText(getBaseContext(),"in Login button listener",Toast.LENGTH_LONG).show();
                 Email = EmailId.getText().toString();
                 pass = Password.getText().toString();
                 firebaseAuth.signInWithEmailAndPassword(Email,pass).addOnCompleteListener( LoginActivity.this,new OnCompleteListener<AuthResult>() {
